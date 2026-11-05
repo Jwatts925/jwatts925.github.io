@@ -4,7 +4,8 @@ A responsive GitHub Pages portfolio focused on BIM, preconstruction, facade syst
 
 ## Main pages
 
-- `index.html` — home page, About, Experience, Portfolio, Services, and Contact sections
+- `index.html` — home page, About, Experience, Portfolio, Freelance, and Contact sections
+- `freelance.html` — independent glazing modeling services, past projects, scope-based pricing, and contact
 - `bim-coordination.html` — 3D Modeling portfolio and project index
 - `facade-design-manual.html` — facade design portfolio category
 - `automation.html` — automation portfolio category
