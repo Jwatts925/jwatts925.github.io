@@ -38,18 +38,19 @@
 .fl-button { display: inline-flex; justify-content: space-between; align-items: center; gap: 1.75rem; min-height: 52px; padding: 0.9rem 1.15rem; background: var(--tech-blue); color: #fff; border: 1px solid var(--tech-blue); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: background 160ms, color 160ms; }
 .fl-button:hover { background: var(--coral); color: #253d78; }
 .fl-text-link { display: inline-block; padding-block: 0.5rem; text-underline-offset: 0.3em; font-size: 0.85rem; color: inherit; }
-.fl-hero-visual { display: flex; flex-direction: column; position: relative; min-width: 0; margin: 0 0 1.5rem; padding: 1.1rem 1.4rem 0.9rem; border: 1px solid var(--grid-line); background: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 56px 56px; }
+.fl-hero-visual { display: flex; flex-direction: column; position: relative; min-width: 0; margin: 0 0 1.5rem; padding: 1.1rem 1.4rem 0.9rem; border: 1px solid var(--grid-line); background: #fff; }
 .fl-figure-label, .fl-hero-visual figcaption { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.64rem; }
 .fl-figure-label { text-transform: uppercase; letter-spacing: 0.04em; }
 .fl-hero-visual img { width: 100%; height: 100%; min-height: 22rem; max-height: 34rem; flex: 1; object-fit: contain; padding: 1rem 0; }
 .fl-hero-visual figcaption { padding-top: 0.75rem; border-top: 1px solid var(--grid-line); background: #fff; }
 .fl-hero-visual figcaption a { color: inherit; white-space: nowrap; }
-.fl-section-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--tech-blue); border-bottom: 1px solid var(--tech-blue); }
+.fl-section-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--tech-blue); border-bottom: 1px solid var(--tech-blue); }
 .fl-section-nav a { padding: 1.2rem 0; color: inherit; font-size: 0.76rem; text-decoration: none; }
 .fl-section-nav a:hover { text-decoration: underline; text-underline-offset: 0.35em; }
 .fl-section { padding-top: clamp(2.5rem, 4vw, 4rem); padding-bottom: clamp(2.5rem, 4vw, 4rem); }
 .fl-service-list { border-top: 1px solid var(--tech-blue); }
-.fl-service-list article { display: grid; grid-template-columns: 0.2fr 1.2fr 1.35fr 0.5fr; align-items: start; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--grid-line); }
+.fl-service-list article { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); align-items: start; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--grid-line); }
+.fl-service-number { display: inline-block; margin-right: 1rem; font-size: .7rem; font-weight: 500; vertical-align: .2em; letter-spacing: .05em; }
 .fl-item-number { font-size: 0.75rem; }
 .fl-service-list article p { margin: 0; max-width: 33rem; font-size: 0.94rem; line-height: 1.6; }
 .fl-service-tag { justify-self: end; border: 1px solid var(--grid-line); padding: 0.3rem 0.5rem; font-size: 0.64rem; white-space: nowrap; }
@@ -73,7 +74,7 @@
 .fl-project-body p { max-width: 31rem; }
 .fl-pricing-section { padding-block: clamp(3rem, 6vw, 6rem); background: #f6f5f0; border-block: 1px solid var(--grid-line); }
 @media (max-width: 1000px) {
-  .fl-service-list article { grid-template-columns: 1.3rem 1fr 1.2fr; gap: 1rem; }
+  .fl-service-list article { gap: 1.5rem; }
   .fl-service-tag { grid-column: 2; justify-self: start; }
 }
 @media (max-width: 760px) {
@@ -89,8 +90,7 @@
   .fl-section-nav { grid-template-columns: 1fr 1fr; }
   .fl-section-nav a { padding: 0.85rem 0; }
   .fl-home { grid-template-columns: 1fr; gap: 1.5rem; }
-  .fl-service-list article { grid-template-columns: 1.2rem 1fr; padding: 1.5rem 0; }
-  .fl-service-list article p, .fl-service-tag { grid-column: 2; }
+  .fl-service-list article { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem 0; }
   .fl-inline-head { align-items: start; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
   .fl-project-grid { grid-template-columns: 1fr; gap: 2rem; }
   .fl-project-art { min-height: 16rem; }
@@ -103,7 +103,7 @@
 /* Revision 2: quiet model slots and the portfolio's shared contact section. */
 .fl-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .fl-projects-heading { margin-bottom: 2rem; }
-.fl-terminal-art, .fl-harvest-art { color: var(--tech-blue); background: linear-gradient(rgba(63,96,177,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(63,96,177,.07) 1px, transparent 1px), #fff; background-size: 48px 48px; }
+.fl-terminal-art, .fl-harvest-art { color: var(--tech-blue); background: #fff; }
 .fl-model-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; opacity: .65; }
 .fl-model-placeholder svg { width: 4.5rem; height: 4.5rem; }
 .fl-model-placeholder > span { font-size: .72rem; letter-spacing: .04em; }
@@ -147,7 +147,12 @@
 .fl-project-specs > div { display: grid; grid-template-columns: 3.5rem minmax(0,1fr); gap: 1rem; }
 .fl-project-specs dt { font-size: .66rem; text-transform: uppercase; letter-spacing: .06em; padding-top: .18rem; }
 .fl-project-specs dd { margin: 0; }
+.fl-quote-links { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; flex-shrink: 0; }
+.fl-script-pricing .fl-quote-heading { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); }
+.home-page { --home-header-height: 73px; }
+.home-page .editorial-hero { min-height: calc(100svh - var(--home-header-height) + 1px); box-sizing: border-box; }
 @media (max-width: 760px) {
+  .home-page { --home-header-height: 65px; }
   .fl-quote-heading { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
   .fl-quote-start { padding-left: 1.25rem; }
   .fl-quote-start strong { font-size: clamp(3.8rem, 16vw, 5rem); }
@@ -156,4 +161,5 @@
   .fl-quote-next { flex-direction: column; align-items: start; gap: 1.5rem; }
   .fl-project-art { height: clamp(16rem, 70vw, 23rem); padding: .75rem; }
   .fl-project-specs > div { grid-template-columns: 3rem minmax(0,1fr); gap: .75rem; }
+  .fl-script-pricing .fl-quote-heading { grid-template-columns: 1fr; }
 }
