@@ -148,7 +148,7 @@
 .fl-quote-next p { max-width: 42rem; margin: 0; font-size: .9rem; line-height: 1.6; }
 .fl-quote-button { flex-shrink: 0; background: #fff; color: var(--tech-blue); border-color: #fff; }
 .fl-quote-button:hover { color: var(--tech-blue); background: var(--coral); }
-.fl-pricing-card-orange { background: #c34b1f; color: var(--white); }
+.fl-pricing-card-orange { background: var(--coral); color: var(--white); }
 .fl-pricing-card-orange .fl-quote-start { border-left-color: var(--white); }
 .fl-pricing-card-orange > summary:focus-visible { outline-color: var(--white); }
 .fl-pricing-card-orange .fl-quote-button { background: transparent; color: var(--white); }
