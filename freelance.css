@@ -63,18 +63,12 @@
 .fl-inline-head > p { margin: 0; font-size: 0.92rem; line-height: 1.65; max-width: 24rem; }
 .fl-project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
 .fl-project { min-width: 0; border-bottom: 1px solid var(--tech-blue); }
-.fl-project summary { cursor: pointer; list-style: none; }
-.fl-project summary::-webkit-details-marker { display: none; }
 .fl-project-art { padding: 1.25rem 1.5rem; min-height: 18rem; border: 0; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
 .fl-art-label { font-size: 0.75rem; }
 .fl-art-caption { font-size: 0.65rem; margin-top: 1rem; }
 .fl-project-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 0; }
 .fl-project-caption p { margin: 0 0 0.5rem; font-size: 0.7rem; }
 .fl-project-caption h3 { font-size: clamp(1.75rem, 2.7vw, 3rem); }
-.fl-project-toggle { font-size: 1.7rem; transition: transform 200ms; }
-.fl-project[open] .fl-project-toggle { transform: rotate(45deg); }
-.fl-project-body { padding: 1.5rem 0; border-top: 1px solid var(--grid-line); }
-.fl-project-body p { max-width: 31rem; }
 .fl-pricing-section { padding-block: clamp(3rem, 6vw, 6rem); background: #f6f5f0; border-block: 1px solid var(--grid-line); }
 @media (max-width: 1000px) {
   .fl-service-list article { gap: 1.5rem; }
@@ -154,6 +148,11 @@
 .fl-quote-next p { max-width: 42rem; margin: 0; font-size: .9rem; line-height: 1.6; }
 .fl-quote-button { flex-shrink: 0; background: #fff; color: var(--tech-blue); border-color: #fff; }
 .fl-quote-button:hover { color: var(--tech-blue); background: var(--coral); }
+.fl-pricing-card-orange { background: #c34b1f; color: var(--white); }
+.fl-pricing-card-orange .fl-quote-start { border-left-color: var(--white); }
+.fl-pricing-card-orange > summary:focus-visible { outline-color: var(--white); }
+.fl-pricing-card-orange .fl-quote-button { background: transparent; color: var(--white); }
+.fl-pricing-card-orange .fl-quote-button:hover { background: rgba(255,255,255,.12); color: var(--white); }
 
 /* Revision 6: model cutouts, project scope, and equal white section bands. */
 .freelance-page { --fl-section-band: clamp(3rem, 6vw, 6rem); }
