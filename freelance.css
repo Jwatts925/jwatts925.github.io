@@ -41,11 +41,11 @@
 .fl-button { display: inline-flex; justify-content: space-between; align-items: center; gap: 1.75rem; min-height: 52px; padding: 0.9rem 1.15rem; background: var(--tech-blue); color: #fff; border: 1px solid var(--tech-blue); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: background 160ms, color 160ms; }
 .fl-button:hover { background: var(--coral); color: #253d78; }
 .fl-text-link { display: inline-block; padding-block: 0.5rem; text-underline-offset: 0.3em; font-size: 0.85rem; color: inherit; }
-.fl-hero-visual { display: flex; flex-direction: column; position: relative; min-width: 0; margin: 0 0 1.5rem; padding: 1.1rem 1.4rem 0.9rem; border: 1px solid var(--grid-line); background: #fff; }
+.fl-hero-visual { display: flex; flex-direction: column; align-self: center; position: relative; min-width: 0; margin: 0 0 1.5rem; padding: 0; border: 0; background: transparent; }
 .fl-figure-label, .fl-hero-visual figcaption { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.64rem; }
 .fl-figure-label { text-transform: uppercase; letter-spacing: 0.04em; }
-.fl-hero-visual img { width: 100%; height: 100%; min-height: 22rem; max-height: 34rem; flex: 1; object-fit: contain; padding: 1rem 0; }
-.fl-hero-visual figcaption { padding-top: 0.75rem; border-top: 1px solid var(--grid-line); background: #fff; }
+.fl-hero-visual img { width: 100%; height: auto; min-height: 0; max-height: 34rem; object-fit: contain; padding: 0; }
+.fl-hero-visual figcaption { padding-top: 0.75rem; border: 0; background: transparent; }
 .fl-hero-visual figcaption a { color: inherit; white-space: nowrap; }
 .fl-section-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--tech-blue); border-bottom: 1px solid var(--tech-blue); }
 .fl-section-nav a { padding: 1.2rem 0; color: inherit; font-size: 0.76rem; text-decoration: none; }
@@ -65,7 +65,7 @@
 .fl-project { min-width: 0; border-bottom: 1px solid var(--tech-blue); }
 .fl-project summary { cursor: pointer; list-style: none; }
 .fl-project summary::-webkit-details-marker { display: none; }
-.fl-project-art { padding: 1.25rem 1.5rem; min-height: 18rem; border: 1px solid var(--grid-line); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.fl-project-art { padding: 1.25rem 1.5rem; min-height: 18rem; border: 0; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
 .fl-art-label { font-size: 0.75rem; }
 .fl-art-caption { font-size: 0.65rem; margin-top: 1rem; }
 .fl-project-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 0; }
@@ -88,8 +88,8 @@
   .freelance-page .fl-hero h1 { font-size: clamp(2.5rem, 12vw, 5.5rem); }
   .fl-hero-copy { padding-bottom: 0; }
   .fl-lede { margin-top: 1.75rem; }
-  .fl-hero-visual { margin-bottom: 1rem; padding-inline: 1rem; }
-  .fl-hero-visual img { min-height: 15rem; max-height: 24rem; }
+  .fl-hero-visual { margin-bottom: 1rem; padding-inline: 0; }
+  .fl-hero-visual img { min-height: 0; max-height: 24rem; }
   .fl-section-nav { grid-template-columns: 1fr 1fr; }
   .fl-section-nav a { padding: 0.85rem 0; }
   .fl-home { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -106,7 +106,7 @@
 /* Revision 2: quiet model slots and the portfolio's shared contact section. */
 .fl-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .fl-projects-heading { margin-bottom: 2rem; }
-.fl-terminal-art, .fl-harvest-art { color: var(--tech-blue); background: #fff; }
+.fl-terminal-art, .fl-harvest-art { color: var(--tech-blue); background: transparent; }
 .fl-model-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; opacity: .65; }
 .fl-model-placeholder svg { width: 4.5rem; height: 4.5rem; }
 .fl-model-placeholder > span { font-size: .72rem; letter-spacing: .04em; }
