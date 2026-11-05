@@ -47,7 +47,7 @@
 .fl-hero-visual img { width: 100%; height: auto; min-height: 0; max-height: 34rem; object-fit: contain; padding: 0; }
 .fl-hero-visual figcaption { padding-top: 0.75rem; border: 0; background: transparent; }
 .fl-hero-visual figcaption a { color: inherit; white-space: nowrap; }
-.fl-section-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--tech-blue); border-bottom: 1px solid var(--tech-blue); }
+.fl-section-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--tech-blue); border-bottom: 1px solid var(--tech-blue); }
 .fl-section-nav a { padding: 1.2rem 0; color: inherit; font-size: 0.76rem; text-decoration: none; }
 .fl-section-nav a:hover { text-decoration: underline; text-underline-offset: 0.35em; }
 .fl-section { padding-top: clamp(2.5rem, 4vw, 4rem); padding-bottom: clamp(2.5rem, 4vw, 4rem); }
@@ -120,20 +120,37 @@
   border-block-color: var(--tech-blue);
 }
 
-/* Revision 4: the fee starts at $1,000 and is quoted against five scope factors. */
-.fl-quote-heading { display: grid; grid-template-columns: 1.35fr 1fr; gap: 4rem; align-items: center; margin-bottom: 3rem; }
-.fl-quote-intro { max-width: 34rem; margin: 1.5rem 0 0; font-size: 1rem; line-height: 1.6; }
+/* Independent service cards keep starting prices visible while details expand. */
+.fl-pricing-heading { margin-bottom: 2.5rem; }
+.fl-pricing-heading > p:last-child { max-width: 36rem; margin: 1.25rem 0 0; font-size: 1rem; line-height: 1.6; }
+.fl-pricing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.fl-pricing-card { min-width: 0; border: 1px solid rgba(255,255,255,.55); background: rgba(255,255,255,.035); scroll-margin-top: 95px; }
+.fl-pricing-card > summary { display: block; padding: clamp(1.4rem, 2.5vw, 2.5rem); cursor: pointer; list-style: none; }
+.fl-pricing-card > summary::-webkit-details-marker { display: none; }
+.fl-pricing-card > summary:hover { background: rgba(255,255,255,.06); }
+.fl-pricing-card > summary:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; }
+.fl-card-category { display: block; margin-bottom: 1rem; font-size: .66rem; text-transform: uppercase; letter-spacing: .09em; }
+.freelance-page .fl-pricing-card > summary h3 { font-size: clamp(1.65rem, 2.6vw, 2.6rem); line-height: 1.08; }
+.fl-card-intro { min-height: 3.2em; margin: 1rem 0 1.75rem; max-width: 28rem; font-size: .95rem; line-height: 1.6; }
+.fl-card-control { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--grid-line); font-size: .8rem; }
+.fl-card-toggle { font-size: 1.65rem; line-height: 1; transition: transform 160ms; }
+.fl-card-collapse { display: none; }
+.fl-pricing-card[open] > summary .fl-card-expand { display: none; }
+.fl-pricing-card[open] > summary .fl-card-collapse { display: inline; }
+.fl-pricing-card[open] > summary .fl-card-toggle { transform: rotate(45deg); }
+.fl-pricing-card-body { padding: 0 clamp(1.4rem, 2.5vw, 2.5rem) clamp(1.4rem, 2.5vw, 2.5rem); }
+.fl-card-detail-intro { margin: 0 0 1.5rem; font-size: .9rem; line-height: 1.6; }
 .fl-quote-start { padding-left: 2rem; border-left: 3px solid var(--coral); }
 .fl-quote-start > span { display: block; font-size: .75rem; }
-.fl-quote-start strong { display: block; margin: .5rem 0; font-size: clamp(3.8rem, 7vw, 7rem); font-weight: 500; line-height: 1.05; letter-spacing: -.06em; white-space: nowrap; }
+.fl-quote-start strong { display: block; margin: .5rem 0; font-size: clamp(3.8rem, 5.5vw, 6rem); font-weight: 500; line-height: 1.05; letter-spacing: -.06em; white-space: nowrap; }
 .fl-quote-start strong span { font-size: .6em; vertical-align: top; }
 .fl-quote-start small { display: block; font-size: .72rem; line-height: 1.5; }
 .fl-quote-factors { border-top: 1px solid rgba(255,255,255,.65); }
-.fl-quote-factors article { display: grid; grid-template-columns: 2rem minmax(0,1fr) minmax(0,1.4fr); gap: 1.75rem; align-items: start; padding: 1.6rem 0; border-bottom: 1px solid var(--grid-line); }
-.fl-quote-factors h3 { font-size: clamp(1.2rem, 1.75vw, 1.75rem); }
+.fl-quote-factors article { display: grid; grid-template-columns: 1.25rem minmax(0,1fr); gap: .75rem 1rem; align-items: start; padding: 1.5rem 0; border-bottom: 1px solid var(--grid-line); }
+.fl-quote-factors h4 { margin: 0; color: inherit; font-size: 1.25rem; font-weight: 500; line-height: 1.2; letter-spacing: -.025em; }
 .fl-lod-label { display: inline-block; font-size: .75em; font-weight: 400; }
-.fl-quote-factors p { max-width: 37rem; margin: 0; font-size: .9rem; line-height: 1.6; }
-.fl-quote-next { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding-top: 2rem; }
+.fl-quote-factors p { grid-column: 2; max-width: 37rem; margin: 0; font-size: .9rem; line-height: 1.6; }
+.fl-quote-next { display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; padding-top: 2rem; }
 .fl-quote-next p { max-width: 42rem; margin: 0; font-size: .9rem; line-height: 1.6; }
 .fl-quote-button { flex-shrink: 0; background: #fff; color: var(--tech-blue); border-color: #fff; }
 .fl-quote-button:hover { color: var(--tech-blue); background: var(--coral); }
@@ -151,19 +168,15 @@
 .fl-project-specs dt { font-size: .66rem; text-transform: uppercase; letter-spacing: .06em; padding-top: .18rem; }
 .fl-project-specs dd { margin: 0; }
 .fl-quote-links { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; flex-shrink: 0; }
-.fl-script-pricing .fl-quote-heading { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); }
 .home-page { --home-header-height: 73px; --home-footer-height: 3.5rem; }
 .home-page .editorial-hero { min-height: calc(100svh - var(--home-header-height) + 1px); box-sizing: border-box; }
 .home-page .site-footer { display: flex; align-items: center; height: var(--home-footer-height); min-height: var(--home-footer-height); padding: 0; }
 @media (max-width: 760px) {
   .home-page { --home-header-height: 65px; }
-  .fl-quote-heading { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .fl-pricing-grid { grid-template-columns: minmax(0,1fr); }
+  .fl-card-intro { min-height: 0; }
   .fl-quote-start { padding-left: 1.25rem; }
   .fl-quote-start strong { font-size: clamp(3.8rem, 16vw, 5rem); }
-  .fl-quote-factors article { grid-template-columns: 1.25rem minmax(0,1fr); gap: .8rem 1rem; padding: 1.5rem 0; }
-  .fl-quote-factors p { grid-column: 2; }
-  .fl-quote-next { flex-direction: column; align-items: start; gap: 1.5rem; }
   .fl-project-art { height: clamp(16rem, 70vw, 23rem); padding: .75rem; }
   .fl-project-specs > div { grid-template-columns: 3rem minmax(0,1fr); gap: .75rem; }
-  .fl-script-pricing .fl-quote-heading { grid-template-columns: 1fr; }
 }
