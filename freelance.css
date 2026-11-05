@@ -1,17 +1,20 @@
 /* Freelance section: extends the portfolio's existing Athletics / blue / coral system. */
 .site-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
-.home-page .portfolio-accordion { --section-count: 5; }
+.home-page .portfolio-accordion {
+  --section-count: 5;
+  --home-tab-height: calc((100svh - var(--home-header-height) - var(--home-footer-height) - 6px) / var(--section-count));
+}
 .home-page .portfolio-section-trigger {
   min-height: 0;
-  height: calc((100svh - 78px) / var(--section-count));
+  height: var(--home-tab-height);
   grid-template-columns: minmax(0, 1fr) 2.5rem;
   align-items: center;
 }
 .home-page .portfolio-section-title {
   align-self: center;
   padding: 0.06em 0 0.04em;
-  font-size: min(13.2vw, calc((100svh - 78px) / var(--section-count) * 1.03));
+  font-size: min(13.2vw, calc(var(--home-tab-height) * 1.03));
   line-height: 0.85;
 }
 .home-page .portfolio-section-number { align-self: end; padding-bottom: 0.8rem; }
@@ -79,8 +82,8 @@
 }
 @media (max-width: 760px) {
   .site-nav { grid-template-columns: 1fr; }
-  .home-page .portfolio-section-trigger { height: max(4.25rem, calc((100svh - 70px) / 5)); grid-template-columns: minmax(0, 1fr) 1.5rem; gap: 0.5rem; }
-  .home-page .portfolio-section-title { font-size: min(13.2vw, calc((100svh - 69px) / 5 * 1.05)); line-height: 0.9; }
+  .home-page .portfolio-section-trigger { height: var(--home-tab-height); grid-template-columns: minmax(0, 1fr) 1.5rem; gap: 0.5rem; }
+  .home-page .portfolio-section-title { font-size: min(13.2vw, calc(var(--home-tab-height) * 1.05)); line-height: 0.9; }
   .fl-hero { grid-template-columns: 1fr; gap: 1.5rem; }
   .freelance-page .fl-hero h1 { font-size: clamp(2.5rem, 12vw, 5.5rem); }
   .fl-hero-copy { padding-bottom: 0; }
@@ -149,8 +152,9 @@
 .fl-project-specs dd { margin: 0; }
 .fl-quote-links { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; flex-shrink: 0; }
 .fl-script-pricing .fl-quote-heading { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); }
-.home-page { --home-header-height: 73px; }
+.home-page { --home-header-height: 73px; --home-footer-height: 3.5rem; }
 .home-page .editorial-hero { min-height: calc(100svh - var(--home-header-height) + 1px); box-sizing: border-box; }
+.home-page .site-footer { display: flex; align-items: center; height: var(--home-footer-height); min-height: var(--home-footer-height); padding: 0; }
 @media (max-width: 760px) {
   .home-page { --home-header-height: 65px; }
   .fl-quote-heading { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
