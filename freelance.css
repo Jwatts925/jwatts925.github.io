@@ -24,7 +24,7 @@
 .fl-home .fl-actions { margin-top: 2rem; }
 .fl-home-visual { margin: 0; min-width: 0; }
 .fl-home-visual img { display: block; width: 100%; height: 23rem; object-fit: contain; }
-.fl-home-visual figcaption { border-top: 1px solid var(--grid-line); padding-top: 0.65rem; font-size: 0.7rem; }
+.fl-home-visual figcaption { border: 0; padding-top: 0.65rem; font-size: 0.7rem; text-align: right; }
 .fl-home-clients { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--tech-blue); font-size: 0.85rem; }
 .fl-home-clients span { margin-right: auto; }
 .fl-home-client-logos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); align-items: center; gap: 1.5rem; width: min(100%, 26rem); }
