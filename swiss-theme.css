@@ -1649,7 +1649,8 @@ summary:focus-visible {
 
 .project-company-trigger {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content 2.25rem;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  column-gap: clamp(1rem, 2vw, 2rem);
   align-items: end;
   width: 100%;
   min-height: clamp(6.5rem, 10vw, 11rem);
@@ -1665,16 +1666,17 @@ summary:focus-visible {
 
 .project-company-identity {
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: clamp(0.75rem, 2vw, 2rem);
   min-width: 0;
 }
 
 .project-company-logo {
   display: block;
-  flex: 0 0 auto;
+  align-self: end;
+  justify-self: end;
   height: clamp(3rem, 5vw, 5.5rem);
-  background: var(--coral);
+  background: var(--tech-blue);
   -webkit-mask: var(--company-logo) center / contain no-repeat;
   mask: var(--company-logo) center / contain no-repeat;
 }
@@ -1702,7 +1704,8 @@ summary:focus-visible {
 
 .project-company-meta {
   align-self: end;
-  padding: 0 1.35rem 0.6rem 2rem;
+  flex: 0 0 auto;
+  padding-bottom: 0.6rem;
   color: var(--coral);
   font-family: var(--mono);
   font-size: clamp(0.62rem, 0.8vw, 0.86rem);
@@ -1710,18 +1713,7 @@ summary:focus-visible {
   line-height: 1;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-}
-
-.project-company-symbol {
-  align-self: end;
-  padding-bottom: 0.35rem;
-  color: var(--coral);
-  font-family: var(--display);
-  font-size: clamp(2.5rem, 4vw, 4.25rem);
-  font-weight: 400;
-  line-height: 0.8;
-  text-align: right;
-  transition: transform 180ms ease;
+  white-space: nowrap;
 }
 
 .project-company-trigger:hover .project-company-title,
@@ -1733,10 +1725,6 @@ summary:focus-visible {
 .project-company-trigger:focus-visible {
   outline: 2px solid var(--coral);
   outline-offset: -4px;
-}
-
-.project-company-group.is-open .project-company-symbol {
-  transform: rotate(45deg);
 }
 
 .project-company-panel[hidden] {
@@ -1977,13 +1965,12 @@ summary:focus-visible {
   }
 
   .project-company-trigger {
-    grid-template-columns: minmax(0, 1fr) 1.6rem;
     min-height: 6.1rem;
     padding-top: 0.9rem;
   }
 
   .project-company-title {
-    font-size: clamp(1.55rem, 7.8vw, 2.65rem);
+    font-size: clamp(1.25rem, 6.4vw, 2.15rem);
     line-height: 0.82;
   }
 
@@ -1996,18 +1983,8 @@ summary:focus-visible {
   }
 
   .project-company-meta {
-    grid-column: 1;
-    grid-row: 2;
-    padding: 0.5rem 0 0.25rem;
+    padding-bottom: 0.15rem;
     font-size: 0.52rem;
-  }
-
-  .project-company-symbol {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    align-self: center;
-    padding: 0;
-    font-size: 2.6rem;
   }
 
   .project-index-title {

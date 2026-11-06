@@ -146,10 +146,9 @@ if (projectIndexList) {
       <button class="project-company-trigger" id="${triggerId}" type="button" aria-expanded="false" aria-controls="${panelId}">
         <span class="project-company-identity">
           <span class="project-company-title">${company.name}</span>
-          <span class="project-company-logo project-company-logo--${company.logo}" aria-hidden="true"></span>
+          <span class="project-company-meta">${company.projects.length} projects</span>
         </span>
-        <span class="project-company-meta">${company.projects.length} projects</span>
-        <span class="project-company-symbol" aria-hidden="true">+</span>
+        <span class="project-company-logo project-company-logo--${company.logo}" aria-hidden="true"></span>
       </button>
       <div class="project-company-panel" id="${panelId}" role="region" aria-labelledby="${triggerId}" hidden>
         <div class="project-company-projects"></div>
