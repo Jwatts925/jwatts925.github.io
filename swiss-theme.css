@@ -1648,8 +1648,9 @@ summary:focus-visible {
 }
 
 .project-company-trigger {
+  --company-logo-height: clamp(3rem, 5vw, 5.5rem);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
+  grid-template-columns: minmax(0, 1fr) calc(var(--company-logo-height) * 363 / 190);
   column-gap: clamp(1rem, 2vw, 2rem);
   align-items: center;
   width: 100%;
@@ -1674,8 +1675,8 @@ summary:focus-visible {
 .project-company-logo {
   display: block;
   align-self: center;
-  justify-self: end;
-  height: clamp(3rem, 5vw, 5.5rem);
+  justify-self: center;
+  height: var(--company-logo-height);
   background: var(--tech-blue);
   -webkit-mask: var(--company-logo) center / contain no-repeat;
   mask: var(--company-logo) center / contain no-repeat;
@@ -1893,8 +1894,8 @@ summary:focus-visible {
     font-size: clamp(2rem, 6.2vw, 4rem);
   }
 
-  .project-company-logo {
-    height: clamp(2rem, 4.5vw, 3.5rem);
+  .project-company-trigger {
+    --company-logo-height: clamp(2rem, 4.5vw, 3.5rem);
   }
 
   .project-index-trigger {
@@ -1965,6 +1966,7 @@ summary:focus-visible {
   }
 
   .project-company-trigger {
+    --company-logo-height: clamp(1.6rem, 6.5vw, 2.25rem);
     min-height: 6.1rem;
     padding-top: 0.9rem;
   }
@@ -1976,10 +1978,6 @@ summary:focus-visible {
 
   .project-company-identity {
     gap: 0.6rem;
-  }
-
-  .project-company-logo {
-    height: clamp(1.6rem, 6.5vw, 2.25rem);
   }
 
   .project-company-meta {
