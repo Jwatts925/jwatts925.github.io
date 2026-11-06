@@ -33,7 +33,7 @@
 .freelance-page section[id]:not(.contact-section) { scroll-margin-top: 95px; }
 .fl-kicker { margin: 0 0 1.2rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
 .fl-hero { padding-top: clamp(2.5rem, 5vw, 5rem); display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem 3vw; }
-.fl-hero-copy { padding-bottom: 1.5rem; }
+.fl-hero-copy { padding-bottom: 0; }
 .freelance-page .fl-hero h1 { margin: 1.5rem 0; font-size: clamp(3.5rem, 6.3vw, 7rem); font-weight: 700; line-height: 0.96; letter-spacing: -0.065em; }
 .fl-hero h1 em { font-style: normal; color: var(--tech-blue); text-decoration: underline; text-decoration-color: var(--coral); text-decoration-thickness: 0.055em; text-underline-offset: 0.1em; }
 .fl-lede { margin: 2rem 0 1.75rem; max-width: 30rem; font-size: clamp(1.05rem, 1.4vw, 1.35rem); line-height: 1.55; }
@@ -58,7 +58,7 @@
 .fl-service-list article p { margin: 0; max-width: 33rem; font-size: 0.94rem; line-height: 1.6; }
 .fl-service-tag { justify-self: end; border: 1px solid var(--grid-line); padding: 0.3rem 0.5rem; font-size: 0.64rem; white-space: nowrap; }
 .fl-footnote { font-size: 0.76rem; line-height: 1.6; margin: 1.3rem 0 0; }
-.fl-projects-section { padding-block: clamp(3rem, 6vw, 6rem); background: #eff2f7; border-block: 1px solid var(--grid-line); }
+.fl-projects-section { padding-block: clamp(1.5rem, 3vw, 3rem); background: var(--white); border: 0; }
 .fl-inline-head { display: flex; justify-content: space-between; align-items: end; gap: 2.5rem; margin-bottom: 2.75rem; }
 .fl-inline-head > p { margin: 0; font-size: 0.92rem; line-height: 1.65; max-width: 24rem; }
 .fl-project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
@@ -187,8 +187,8 @@
 .fl-client-proof { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 2rem; padding: 1.35rem 0 0; border-top: 1px solid var(--grid-line); font-size: .88rem; }
 .fl-client-proof > span { margin-right: auto; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; }
 .fl-client-proof strong { font-weight: 500; }
-.fl-projects-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; }
-.fl-projects-heading p { max-width: 28rem; margin: 0; font-size: .95rem; line-height: 1.6; }
+.fl-projects-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.fl-projects-heading p { max-width: 48rem; margin: 0; font-size: .95rem; line-height: 1.6; }
 .fl-project-specs > div { grid-template-columns: 4rem minmax(0,1fr); }
 .fl-pricing-card { overflow: visible; }
 .fl-pricing-details { min-width: 0; }
