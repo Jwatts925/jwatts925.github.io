@@ -38,7 +38,17 @@ const projectIndexData = [
   { name: "Millbrae Yards Phase II", address: "Millbrae, CA", slug: "millbrae-yards-phase-ii", images: 5 },
   { name: "SLAC - National Accelerator Lab", address: "Menlo Park, CA", slug: "slac-national-accelerator-lab", images: 10 },
   { name: "San Quentin Rehabilitation Center", address: "San Quentin, CA", slug: "san-quentin-rehabilitation-center", images: 13 },
-  { name: "Stanford Atrium", address: "Stanford, CA", slug: "stanford-atrium", images: 10 },
+  {
+    name: "Stanford Atrium", address: "Stanford, CA", slug: "stanford-atrium", images: 10,
+    photos: [
+      { file: "site-01.jpg", alt: "Stanford Atrium facade with vertical perforated fins and glazing during construction", width: 2000, height: 1304 },
+      { file: "site-02.jpg", alt: "Upward view of Stanford Atrium perforated fins, mounting arms, and glazing", width: 1658, height: 2000 },
+      { file: "site-08.jpg", alt: "Interior scaffolding alongside Stanford Atrium glazing and perforated panels", width: 2000, height: 753 },
+      { file: "site-07.jpg", alt: "Stanford Atrium walkway beside glazing installation", width: 2000, height: 1048 },
+      { file: "site-05.jpg", alt: "Stanford Atrium lower facade glazing during construction", width: 2000, height: 1313 },
+      { file: "site-06.jpg", alt: "Close view of Stanford Atrium perforated fins and their mounting details", width: 2000, height: 1546 },
+    ],
+  },
   { name: "YMCA - Redwood City", address: "Redwood City, CA", slug: "ymca-redwood-city", images: 79 },
   { name: "SSF Wellness", address: "South San Francisco, CA", slug: "ssf-wellness", images: 10 }
 ];
@@ -71,15 +81,25 @@ if (projectIndexList) {
       if (secondPriority !== undefined) return 1;
       return 0;
     });
+  const csErectorsProjects = projectIndexData.slice(saintFrancisIndex + 1);
+  const stanfordAtrium = csErectorsProjects.find((project) => project.slug === "stanford-atrium");
   const companyGroups = [
-    { name: "Walters & Wolf", projects: waltersWolfProjects },
-    { name: "C/S Erectors", projects: projectIndexData.slice(saintFrancisIndex + 1) },
+    { name: "Walters & Wolf", logo: "walters-wolf", projects: waltersWolfProjects },
+    {
+      name: "C/S Erectors", logo: "cs-erectors",
+      projects: [stanfordAtrium, ...csErectorsProjects.filter((project) => project !== stanfordAtrium)],
+    },
   ];
 
   const imageMarkup = (project) => {
     if (!project.slug || !project.images) return "";
 
-    return Array.from({ length: project.images }, (_, index) => {
+    const photos = (project.photos || []).map((photo) => `
+        <figure class="project-index-image">
+          <img src="assets/project-index/${project.slug}/${photo.file}" alt="${photo.alt}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async" />
+        </figure>`).join("");
+
+    return photos + Array.from({ length: project.images }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return `
         <figure class="project-index-image">
@@ -124,7 +144,10 @@ if (projectIndexList) {
 
     section.innerHTML = `
       <button class="project-company-trigger" id="${triggerId}" type="button" aria-expanded="false" aria-controls="${panelId}">
-        <span class="project-company-title">${company.name}</span>
+        <span class="project-company-identity">
+          <span class="project-company-title">${company.name}</span>
+          <span class="project-company-logo project-company-logo--${company.logo}" aria-hidden="true"></span>
+        </span>
         <span class="project-company-meta">${company.projects.length} projects</span>
         <span class="project-company-symbol" aria-hidden="true">+</span>
       </button>

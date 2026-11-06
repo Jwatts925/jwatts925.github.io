@@ -1663,6 +1663,32 @@ summary:focus-visible {
   cursor: pointer;
 }
 
+.project-company-identity {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 2rem);
+  min-width: 0;
+}
+
+.project-company-logo {
+  display: block;
+  flex: 0 0 auto;
+  height: clamp(3rem, 5vw, 5.5rem);
+  background: var(--coral);
+  -webkit-mask: var(--company-logo) center / contain no-repeat;
+  mask: var(--company-logo) center / contain no-repeat;
+}
+
+.project-company-logo--walters-wolf {
+  --company-logo: url("assets/walters-wolf-logo.png");
+  aspect-ratio: 363 / 190;
+}
+
+.project-company-logo--cs-erectors {
+  --company-logo: url("assets/cs-erectors-logo.png");
+  aspect-ratio: 1;
+}
+
 .project-company-title {
   min-width: 0;
   font-family: var(--display);
@@ -1875,6 +1901,14 @@ summary:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .project-company-title {
+    font-size: clamp(2rem, 6.2vw, 4rem);
+  }
+
+  .project-company-logo {
+    height: clamp(2rem, 4.5vw, 3.5rem);
+  }
+
   .project-index-trigger {
     grid-template-columns: 2.25rem minmax(0, 1fr);
     min-height: 5.25rem;
@@ -1949,8 +1983,16 @@ summary:focus-visible {
   }
 
   .project-company-title {
-    font-size: clamp(2.15rem, 11vw, 3.4rem);
+    font-size: clamp(1.55rem, 7.8vw, 2.65rem);
     line-height: 0.82;
+  }
+
+  .project-company-identity {
+    gap: 0.6rem;
+  }
+
+  .project-company-logo {
+    height: clamp(1.6rem, 6.5vw, 2.25rem);
   }
 
   .project-company-meta {
