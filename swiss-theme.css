@@ -1651,7 +1651,7 @@ summary:focus-visible {
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content;
   column-gap: clamp(1rem, 2vw, 2rem);
-  align-items: end;
+  align-items: center;
   width: 100%;
   min-height: clamp(6.5rem, 10vw, 11rem);
   margin: 0;
@@ -1673,7 +1673,7 @@ summary:focus-visible {
 
 .project-company-logo {
   display: block;
-  align-self: end;
+  align-self: center;
   justify-self: end;
   height: clamp(3rem, 5vw, 5.5rem);
   background: var(--tech-blue);
