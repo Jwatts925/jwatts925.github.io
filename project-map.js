@@ -3,6 +3,11 @@
   const data = window.portfolioProjectMap;
   const figure = document.querySelector('.project-location-map');
   if (!data || !figure) return;
+  // Fit the opening model overview beneath the actual sticky navigation height.
+  const header = document.querySelector('.site-header');
+  if (header) new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--models-header-height', `${header.getBoundingClientRect().height}px`);
+  }).observe(header);
   const select = document.getElementById('map-project-select');
   const detail = document.getElementById('map-project-detail');
   const ns = 'http://www.w3.org/2000/svg';
