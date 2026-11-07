@@ -1,0 +1,66 @@
+/* Artwork uses the portfolio's shared type, blue, and section rhythm. */
+.home-page .site-nav { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.home-page .portfolio-accordion { --section-count: 7; }
+.artwork-panel { background: var(--white); }
+.artwork-gallery { padding-block: clamp(1.75rem, 4vw, 4rem) clamp(3rem, 6vw, 6rem); }
+.artwork-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 4rem); }
+.artwork-heading p { margin: 0; }
+.artwork-heading p:first-child { font-size: clamp(1.2rem, 2.2vw, 1.75rem); letter-spacing: -.03em; }
+.artwork-heading p:last-child { font-size: .72rem; }
+.artwork-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 6vw, 6rem) clamp(2rem, 7vw, 7rem); align-items: end; max-width: 1180px; margin-inline: auto; }
+.artwork-piece { min-width: 0; margin: 0; }
+.artwork-piece-wide { grid-column: 1 / -1; }
+.artwork-open { display: block; position: relative; width: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; color: inherit; cursor: zoom-in; text-align: left; }
+.artwork-images { display: block; width: 100%; }
+.artwork-images-pair { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(1rem, 4vw, 4rem); }
+/* A precise viewport isolates the art from the supplied page. No artwork pixels are repainted. */
+.artwork-frame { position: relative; display: block; width: 100%; aspect-ratio: var(--art-ratio); overflow: hidden; background: #f4f4f1; }
+.artwork-frame img { position: absolute; inset: 0 auto auto 0; display: block; width: var(--page-width); max-width: none; height: auto; transform: translate(var(--page-x), var(--page-y)); pointer-events: none; }
+.artwork-enlarge { display: grid; place-items: center; position: absolute; right: .65rem; bottom: .65rem; width: 2.2rem; height: 2.2rem; color: var(--tech-blue); background: white; font-size: 1.25rem; opacity: 0; transition: opacity 160ms ease; }
+.artwork-open:hover .artwork-enlarge, .artwork-open:focus-visible .artwork-enlarge { opacity: 1; }
+.artwork-open:focus-visible { outline: 3px solid var(--tech-blue); outline-offset: 5px; }
+.artwork-caption { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: .65rem; align-items: baseline; padding-top: 1rem; color: var(--tech-blue); }
+.artwork-index { font-size: .65rem; }
+.artwork-caption h3 { margin: 0; font-size: clamp(1.1rem, 1.65vw, 1.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -.025em; color: inherit; }
+.artwork-caption p { margin: .45rem 0 0; font-size: .72rem; line-height: 1.5; }
+.artwork-caption p span { padding-inline: .35rem; }
+.artwork-dialog { position: fixed; inset: 0; box-sizing: border-box; width: 100%; max-width: none; height: 100%; height: 100svh; max-height: none; margin: 0; padding: 1.25rem var(--page-gutter); border: 0; background: #fff; color: var(--tech-blue); overflow-y: auto; }
+.artwork-dialog:not([open]) { display: none; }
+.artwork-dialog[open] { display: flex; flex-direction: column; gap: 1.25rem; }
+.artwork-dialog::backdrop { background: #fff; }
+.artwork-viewer-toolbar, .artwork-viewer-footer { display: flex; flex: 0 0 auto; justify-content: space-between; align-items: center; gap: 1.25rem; }
+.artwork-viewer-toolbar { min-height: 2.75rem; border-bottom: 1px solid var(--grid-line); padding-bottom: .75rem; }
+.artwork-viewer-toolbar p { margin: 0; font-size: .75rem; }
+.artwork-dialog button { min-width: 2.75rem; min-height: 2.75rem; border: 1px solid var(--grid-line); border-radius: 0; padding: .5rem 1rem; background: white; color: inherit; font: inherit; font-size: .8rem; cursor: pointer; }
+.artwork-dialog button:hover { background: var(--tech-blue); color: white; }
+.artwork-dialog button:focus-visible { outline: 2px solid var(--tech-blue); outline-offset: 3px; }
+.artwork-close span { display: inline-block; padding-left: 1rem; font-size: 1.3rem; vertical-align: -.06em; }
+.artwork-viewer-stage { display: grid; place-items: center; flex: 1 1 auto; min-height: 0; }
+.artwork-viewer-stage .artwork-images { width: min(100%, calc((100svh - 15rem) * var(--viewer-ratio))); margin-inline: auto; }
+.artwork-viewer-stage .artwork-images-pair { gap: clamp(1rem, 3vw, 3rem); }
+.artwork-viewer-footer { min-height: 4.25rem; max-width: 1180px; width: 100%; margin-inline: auto; }
+.artwork-viewer-caption h3 { margin: 0; font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.2; font-weight: 500; color: inherit; }
+.artwork-viewer-caption p { margin: .4rem 0 0; font-size: .75rem; }
+.artwork-viewer-nav { display: flex; flex: 0 0 auto; gap: .5rem; }
+.artwork-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+body.artwork-viewer-open { overflow: hidden; }
+@media (max-width: 760px) {
+  .home-page .site-nav { grid-template-columns: 1fr; }
+  .artwork-heading { flex-direction: column; align-items: flex-start; gap: .6rem; }
+  .artwork-grid { grid-template-columns: minmax(0, 1fr); gap: 2.75rem; max-width: 36rem; }
+  .artwork-piece-wide { grid-column: auto; }
+  .artwork-caption { grid-template-columns: 1.4rem minmax(0, 1fr); gap: .4rem; padding-top: .8rem; }
+  .artwork-caption h3 { font-size: 1.15rem; }
+  .artwork-enlarge { opacity: 1; width: 1.75rem; height: 1.75rem; right: .45rem; bottom: .45rem; font-size: 1.1rem; }
+  .artwork-dialog { padding: .75rem 1rem; }
+  .artwork-dialog[open] { gap: 1rem; }
+  .artwork-viewer-footer { align-items: flex-end; gap: .75rem; min-height: 5.5rem; }
+  .artwork-viewer-caption h3 { font-size: 1.1rem; }
+  .artwork-viewer-caption p { font-size: .67rem; }
+  .artwork-dialog button { padding-inline: .75rem; }
+}
+@media (max-height: 500px) and (min-width: 761px) {
+  .artwork-dialog[open] { gap: .5rem; }
+  .artwork-viewer-stage .artwork-images { width: min(100%, calc((100svh - 11rem) * var(--viewer-ratio))); }
+}
+@media (prefers-reduced-motion: reduce) { .artwork-enlarge { transition: none; } }
