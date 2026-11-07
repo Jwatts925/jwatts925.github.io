@@ -1979,7 +1979,7 @@ body {
 }
 
 .bim-category-page .project-index {
-  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem) !important;
+  margin-bottom: calc(clamp(1.5rem, 2.5vw, 2.5rem) + 24px) !important;
 }
 
 .bim-category-page .bim-sheet-gallery {
@@ -1987,7 +1987,9 @@ body {
 }
 
 .bim-category-page .bim-sheet-list {
-  gap: clamp(0.25rem, 0.45vw, 0.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1rem, 2vw, 2rem);
 }
 
 @media (max-width: 760px) {
@@ -2000,11 +2002,12 @@ body {
   }
 
   .bim-category-page .project-index {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 2.5rem !important;
   }
 
   .bim-category-page .bim-sheet-list {
-    gap: 0.25rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
