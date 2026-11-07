@@ -1,155 +1,227 @@
-/* One portrait cover, then 56 complete spreads. Each spread uses two exact
-   half-width viewports of the same original image; no content is cropped away. */
-(() => {
-  'use strict';
-  const host = document.getElementById('manual-book');
-  const stage = document.getElementById('book-stage');
-  const position = document.getElementById('book-position');
-  const previous = document.getElementById('previous-page');
-  const next = document.getElementById('next-page');
-  const status = document.getElementById('book-status');
-  const hint = document.getElementById('book-hint');
-  const loading = document.getElementById('loading-note');
-  const error = document.getElementById('book-error');
-  const SPREADS = 56, LAST_PAGE = 113, RATIO = 1531 / 1978;
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  let pageFlip, busy = false, current = 0, sizeKey = '';
-  const images = new Map();
-  const source = n => `assets/facade-manual/page-${String(n).padStart(2, '0')}.webp`;
+const manualGallery = document.querySelector('[data-manual-gallery]');
+const manualLightbox = document.querySelector('[data-manual-lightbox]');
 
-  function loadImage(number, retry = false) {
-    if (retry) images.delete(number);
-    if (!images.has(number)) {
-      const image = new Image();
-      const promise = new Promise((resolve, reject) => {
-        image.onload = async () => {
-          try { await image.decode(); } catch (_) { /* Loaded images can still render if decode is unsupported. */ }
-          resolve(image);
-        };
-        image.onerror = () => reject(new Error(`Spread ${number} failed to load`));
-      });
-      image.src = source(number);
-      images.set(number, promise);
-    }
-    return images.get(number);
-  }
-  function makePage(number, side, cover = false) {
-    const page = document.createElement('div');
-    page.className = `book-page ${cover ? 'is-cover' : `is-${side}`}`;
-    if (cover) page.dataset.density = 'hard';
-    page.dataset.source = String(number);
-    const art = document.createElement('div');
-    art.className = 'page-art';
-    const img = document.createElement('img');
-    img.alt = cover ? 'Facade Design Manual — cover, written by James Watts' : `Spread ${number - 1} of ${SPREADS}, ${side} page`;
-    img.draggable = false;
-    img.decoding = 'async';
-    if (number <= 3) img.src = source(number);
-    else img.dataset.src = source(number);
-    art.append(img); page.append(art);
-    return page;
-  }
-  const pages = [makePage(1, 'right', true)];
-  for (let n = 2; n <= SPREADS + 1; n++) pages.push(makePage(n, 'left'), makePage(n, 'right'));
-  const back = document.createElement('div');
-  back.className = 'book-page is-cover is-back';
-  back.dataset.density = 'hard';
-  back.setAttribute('aria-label', 'Back cover');
-  pages.push(back);
-  pages.forEach(page => host.append(page));
+if (manualGallery && manualLightbox) {
+  const pageCount = Number.parseInt(manualGallery.dataset.pageCount || '0', 10);
+  const pageSources = Array.from(
+    { length: pageCount },
+    (_, index) => `assets/facade-manual/page-${String(index + 1).padStart(2, '0')}.webp`
+  );
 
-  function warmPages(index) {
-    const target = Math.ceil(index / 2) + 1;
-    for (let n = Math.max(1, target - 2); n <= Math.min(SPREADS + 1, target + 3); n++) {
-      host.querySelectorAll(`[data-source="${n}"] img[data-src]`).forEach(img => {
-        img.src = img.dataset.src; delete img.dataset.src;
-      });
-      loadImage(n).catch(() => {});
-    }
-  }
-  function sync(index) {
-    current = index;
-    position.classList.toggle('is-front-cover', index === 0);
-    position.classList.toggle('is-back-cover', index === LAST_PAGE);
-    previous.disabled = index === 0; next.disabled = index === LAST_PAGE;
-    next.setAttribute('aria-label', index === 0 ? 'Open book' : 'Next spread');
-    status.textContent = index === 0 ? 'Cover' : index === LAST_PAGE ? 'Back cover' : `Spread ${Math.ceil(index / 2)} / ${SPREADS}`;
-    hint.textContent = index === 0 ? 'Click the cover to open' : index === LAST_PAGE ? 'Click the cover to return' : 'Drag a corner · Swipe or use ← →';
-    host.setAttribute('aria-label', `${status.textContent}. Drag a corner or click a page to turn it.`);
-    warmPages(index);
-  }
-  function fitBook() {
-    const pageHeight = Math.max(90, Math.min(stage.clientHeight - 14, (stage.clientWidth - 14) / (2 * RATIO), 1000));
-    const pageWidth = pageHeight * RATIO;
-    const key = `${Math.round(pageWidth)}:${Math.round(pageHeight)}`;
-    if (key === sizeKey) return;
-    sizeKey = key;
-    position.style.width = `${pageWidth * 2}px`; position.style.height = `${pageHeight}px`;
-    host.style.width = `${pageWidth * 2}px`; host.style.height = `${pageHeight}px`;
-    if (pageFlip) {
-      pageFlip.getSettings().width = pageWidth; pageFlip.getSettings().height = pageHeight;
-      pageFlip.update();
-    }
-    return { pageWidth, pageHeight };
-  }
-  async function turn(direction) {
-    if (!pageFlip || busy || (direction > 0 && current === LAST_PAGE) || (direction < 0 && current === 0)) return;
-    const targetIndex = current + direction * 2;
-    const targetSource = Math.max(1, Math.min(SPREADS + 1, Math.ceil(targetIndex / 2) + 1));
-    error.hidden = true; busy = true; warmPages(targetIndex);
-    try {
-      await loadImage(targetSource);
-      if (reducedMotion.matches) {
-        direction > 0 ? pageFlip.turnToNextPage() : pageFlip.turnToPrevPage(); busy = false;
-      } else direction > 0 ? pageFlip.flipNext('bottom') : pageFlip.flipPrev('bottom');
-    } catch (_) {
-      error.hidden = false; error.dataset.failedSource = String(targetSource);
-      error.dataset.direction = String(direction); busy = false;
-    }
-  }
-  previous.addEventListener('click', () => turn(-1));
-  next.addEventListener('click', () => turn(1));
-  document.getElementById('retry-spread').addEventListener('click', async () => {
-    try { await loadImage(Number(error.dataset.failedSource), true); } catch (_) { return; }
-    turn(Number(error.dataset.direction));
+  pageSources.forEach((source, index) => {
+    const button = document.createElement('button');
+    const image = document.createElement('img');
+    const pageNumber = index + 1;
+
+    button.className = 'manual-page-tile';
+    button.type = 'button';
+    button.dataset.pageIndex = String(index);
+    button.setAttribute('aria-label', `Enlarge manual page ${pageNumber}`);
+
+    image.src = source;
+    image.alt = `Facade Design Manual page ${pageNumber}`;
+    image.decoding = 'async';
+    image.loading = index < 6 ? 'eager' : 'lazy';
+    if (index < 3) image.fetchPriority = 'high';
+
+    button.append(image);
+    manualGallery.append(button);
   });
-  document.addEventListener('keydown', event => {
-    if (event.altKey || event.ctrlKey || event.metaKey || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-      event.preventDefault(); turn(event.key === 'ArrowRight' ? 1 : -1);
+
+  const lightboxImage = manualLightbox.querySelector('[data-lightbox-image]');
+  const lightboxStage = manualLightbox.querySelector('[data-lightbox-stage]');
+  const closeButton = manualLightbox.querySelector('[data-lightbox-close]');
+  const previousButton = manualLightbox.querySelector('[data-lightbox-previous]');
+  const nextButton = manualLightbox.querySelector('[data-lightbox-next]');
+  const pointers = new Map();
+
+  let currentIndex = 0;
+  let returnFocus = null;
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+  let panStart = null;
+  let pinchStart = null;
+
+  const clamp = (value, minimum, maximum) => Math.min(Math.max(value, minimum), maximum);
+
+  const applyTransform = () => {
+    lightboxImage.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+  };
+
+  const resetTransform = () => {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    panStart = null;
+    pinchStart = null;
+    pointers.clear();
+    applyTransform();
+  };
+
+  const setScale = (nextScale) => {
+    scale = clamp(nextScale, 1, 5);
+    if (scale === 1) {
+      translateX = 0;
+      translateY = 0;
     }
-    if (event.key === 'Home' && pageFlip && !busy) { event.preventDefault(); pageFlip.turnToPage(0); }
-    if (event.key === 'End' && pageFlip && !busy) { event.preventDefault(); warmPages(LAST_PAGE); pageFlip.turnToPage(LAST_PAGE); }
+    applyTransform();
+  };
+
+  const preloadAdjacentPage = (index) => {
+    if (!pageSources[index]) return;
+    const preloadImage = new Image();
+    preloadImage.src = pageSources[index];
+  };
+
+  const showPage = (index) => {
+    currentIndex = clamp(index, 0, pageSources.length - 1);
+    resetTransform();
+    lightboxImage.src = pageSources[currentIndex];
+    lightboxImage.alt = `Facade Design Manual page ${currentIndex + 1}`;
+    previousButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === pageSources.length - 1;
+    preloadAdjacentPage(currentIndex - 1);
+    preloadAdjacentPage(currentIndex + 1);
+  };
+
+  const openLightbox = (index, trigger) => {
+    returnFocus = trigger;
+    showPage(index);
+    manualLightbox.hidden = false;
+    document.body.classList.add('manual-lightbox-open');
+    closeButton.focus();
+  };
+
+  const closeLightbox = () => {
+    manualLightbox.hidden = true;
+    lightboxImage.src = '';
+    document.body.classList.remove('manual-lightbox-open');
+    resetTransform();
+    returnFocus?.focus();
+  };
+
+  manualGallery.addEventListener('click', (event) => {
+    const tile = event.target.closest('.manual-page-tile');
+    if (!tile) return;
+    openLightbox(Number.parseInt(tile.dataset.pageIndex, 10), tile);
   });
-  async function init() {
-    try {
-      if (!window.St?.PageFlip) throw new Error('Page turn library unavailable');
-      await loadImage(1);
-      await pages[0].querySelector('img').decode();
-      const { pageWidth, pageHeight } = fitBook();
-      pageFlip = new St.PageFlip(host, {
-        width: pageWidth, height: pageHeight, size: 'fixed', usePortrait: false,
-        showCover: true, autoSize: false, drawShadow: true, maxShadowOpacity: .28,
-        flippingTime: reducedMotion.matches ? 1 : 950,
-        mobileScrollSupport: true, swipeDistance: 24, showPageCorners: !reducedMotion.matches,
-        useMouseEvents: !reducedMotion.matches
-      });
-      pageFlip.on('flip', event => sync(event.data));
-      pageFlip.on('changeState', event => {
-        busy = event.data !== 'read'; position.classList.toggle('is-turning', busy);
-      });
-      pageFlip.on('init', () => {
-        sync(0); position.classList.add('is-ready'); loading.hidden = true;
-      });
-      pageFlip.loadFromHTML(pages);
-      if (reducedMotion.matches) host.addEventListener('click', e => {
-        const bounds = host.getBoundingClientRect();
-        turn(e.clientX < bounds.left + bounds.width / 2 && current !== 0 ? -1 : 1);
-      });
-      new ResizeObserver(() => requestAnimationFrame(fitBook)).observe(stage);
-    } catch (_) {
-      loading.textContent = 'The book couldn’t open. Please refresh to try again.'; next.disabled = true;
+
+  closeButton.addEventListener('click', closeLightbox);
+  previousButton.addEventListener('click', () => showPage(currentIndex - 1));
+  nextButton.addEventListener('click', () => showPage(currentIndex + 1));
+
+  manualLightbox.addEventListener('click', (event) => {
+    if (event.target === manualLightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (manualLightbox.hidden) return;
+
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowLeft' && currentIndex > 0) showPage(currentIndex - 1);
+    if (event.key === 'ArrowRight' && currentIndex < pageSources.length - 1) showPage(currentIndex + 1);
+
+    if (event.key === 'Tab') {
+      const controls = [closeButton, previousButton, nextButton].filter((control) => !control.disabled);
+      const firstControl = controls[0];
+      const lastControl = controls[controls.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstControl) {
+        event.preventDefault();
+        lastControl.focus();
+      } else if (!event.shiftKey && document.activeElement === lastControl) {
+        event.preventDefault();
+        firstControl.focus();
+      }
     }
-  }
-  init();
-})();
+  });
+
+  const pointerDistance = (pointerList) => {
+    const [firstPointer, secondPointer] = pointerList;
+    return Math.hypot(secondPointer.clientX - firstPointer.clientX, secondPointer.clientY - firstPointer.clientY);
+  };
+
+  const pointerCenter = (pointerList) => {
+    const [firstPointer, secondPointer] = pointerList;
+    return {
+      x: (firstPointer.clientX + secondPointer.clientX) / 2,
+      y: (firstPointer.clientY + secondPointer.clientY) / 2,
+    };
+  };
+
+  lightboxStage.addEventListener('pointerdown', (event) => {
+    pointers.set(event.pointerId, event);
+    lightboxStage.setPointerCapture(event.pointerId);
+
+    if (pointers.size === 1) {
+      panStart = {
+        clientX: event.clientX,
+        clientY: event.clientY,
+        translateX,
+        translateY,
+      };
+    } else if (pointers.size === 2) {
+      const pointerList = [...pointers.values()];
+      pinchStart = {
+        distance: pointerDistance(pointerList),
+        center: pointerCenter(pointerList),
+        scale,
+        translateX,
+        translateY,
+      };
+      panStart = null;
+    }
+  });
+
+  lightboxStage.addEventListener('pointermove', (event) => {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.set(event.pointerId, event);
+
+    if (pointers.size === 2 && pinchStart) {
+      const pointerList = [...pointers.values()];
+      const center = pointerCenter(pointerList);
+      scale = clamp(pinchStart.scale * (pointerDistance(pointerList) / pinchStart.distance), 1, 5);
+      translateX = pinchStart.translateX + center.x - pinchStart.center.x;
+      translateY = pinchStart.translateY + center.y - pinchStart.center.y;
+      if (scale === 1) {
+        translateX = 0;
+        translateY = 0;
+      }
+      applyTransform();
+    } else if (pointers.size === 1 && panStart && scale > 1) {
+      translateX = panStart.translateX + event.clientX - panStart.clientX;
+      translateY = panStart.translateY + event.clientY - panStart.clientY;
+      applyTransform();
+    }
+  });
+
+  const releasePointer = (event) => {
+    pointers.delete(event.pointerId);
+    pinchStart = null;
+
+    if (pointers.size === 1) {
+      const remainingPointer = [...pointers.values()][0];
+      panStart = {
+        clientX: remainingPointer.clientX,
+        clientY: remainingPointer.clientY,
+        translateX,
+        translateY,
+      };
+    } else {
+      panStart = null;
+    }
+  };
+
+  lightboxStage.addEventListener('pointerup', releasePointer);
+  lightboxStage.addEventListener('pointercancel', releasePointer);
+
+  lightboxStage.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    setScale(scale + (event.deltaY < 0 ? 0.25 : -0.25));
+  }, { passive: false });
+
+  lightboxStage.addEventListener('dblclick', () => {
+    setScale(scale > 1 ? 1 : 2.25);
+  });
+}

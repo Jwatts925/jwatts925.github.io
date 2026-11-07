@@ -1,36 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Leaf through James Watts' Facade Design Manual, presented as a book with the original cover and complete spreads." />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Facade Design Manual | James Watts</title>
-  <link rel="preload" href="assets/facade-manual/page-01.webp" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="facade-manual.css?v=book-1" />
-  <script defer src="assets/vendor/page-flip/page-flip.browser.js"></script>
-  <script defer src="facade-manual.js?v=book-1"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="James Watts — Facade Design Manual portfolio." />
+  <title>Facade Design Manual | James Watts Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="swiss-theme.css?v=athletics-site-53" />
+  <link rel="stylesheet" href="facade-manual.css?v=4" />
+  <script defer src="script.js?v=contact-fasteners-2"></script>
+  <script defer src="facade-manual.js?v=1"></script>
+  <link rel="stylesheet" href="freelance.css?v=freelance-books-20261106-1" />
 </head>
-<body>
-  <a class="back-link" href="index.html#work"><span aria-hidden="true">←</span> Portfolio</a>
-  <main class="book-viewer" aria-label="Facade Design Manual book viewer">
-    <h1 class="visually-hidden">Facade Design Manual by James Watts</h1>
-    <div class="book-stage" id="book-stage">
-      <div class="book-position is-front-cover" id="book-position">
-        <div class="book-body" aria-hidden="true"></div>
-        <div class="manual-book" id="manual-book" aria-label="Book pages. Drag a corner or click a page to turn it."></div>
-        <div class="book-gutter" aria-hidden="true"></div>
-      </div>
-      <p class="loading-note" id="loading-note" role="status">Opening the manual…</p>
+<body class="category-page facade-manual-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="James Watts portfolio home">James Watts</a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#work">Portfolio</a>
+        <a href="freelance.html">Freelance</a>
+        <a href="index.html#books">Books</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-    <nav class="book-controls" aria-label="Book navigation">
-      <button type="button" id="previous-page" aria-label="Previous spread" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
-      <span class="book-status" id="book-status" role="status" aria-live="polite" aria-atomic="true">Cover</span>
-      <button type="button" id="next-page" aria-label="Open book"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
-    </nav>
-    <p class="book-hint" id="book-hint">Click the cover to open</p>
-    <p class="book-error" id="book-error" role="alert" hidden>We couldn't load this spread. <button type="button" id="retry-spread">Try again</button></p>
-    <noscript><p class="noscript-note">Enable JavaScript to flip through the manual. <a href="assets/facade-manual/page-01.webp">View the cover</a>.</p></noscript>
+  </header>
+
+  <main id="main-content">
+    <section class="category-hero section section-dark">
+      <div class="container category-hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Portfolio 02</p>
+          <h1>Facade Design Manual</h1>
+          <p class="category-hero-copy">When I began working at Walters &amp; Wolf, I was eager to learn everything I could about the glass industry. I started creating a booklet to better understand the engineering principles behind curtain wall design, which led me to seek out even more information about the many aspects of our trade. This manual remains a constant work in progress and serves as a way to document the knowledge that is critical to becoming a successful engineer in the glazing industry. It is intended as a practical resource for anyone beginning their journey in the facade industry.</p>
+          <a class="category-back" href="index.html#work"><span aria-hidden="true">←</span> Back to portfolio</a>
+        </div>
+        <figure class="facade-manual-hero-book reveal">
+          <img src="assets/facade-design-manual-book-mockup.png" alt="Facade Design Manual hardcover book mockup" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-light manual-gallery-section" aria-label="Facade Design Manual pages">
+      <div class="container">
+        <div class="manual-gallery" data-manual-gallery data-page-count="57"></div>
+
+        <noscript>
+          <p class="manual-noscript">JavaScript is required to display the manual gallery.</p>
+        </noscript>
+
+        <nav class="category-navigation reveal manual-category-navigation" aria-label="Portfolio categories">
+          <a href="bim-coordination.html">3D Modeling</a>
+          <a href="facade-design-manual.html" aria-current="page">Facade Design Manual</a>
+          <a href="automation.html">Dynamo + PyRevit</a>
+          <a href="documentation.html">Logistics &amp; Proposals</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <h2>Let’s build clearer project workflows.</h2>
+          <p>For BIM, preconstruction, facade coordination, technical documentation, or automation opportunities, reach out directly.</p>
+        </div>
+
+        <div class="contact-links reveal">
+          <a href="mailto:james.watts@live.com">
+            <span>Email</span>
+            <strong>james.watts@live.com</strong>
+          </a>
+          <a href="assets/James-Watts-Resume.pdf?v=2026-001" target="_blank" rel="noopener">
+            <span>Resume</span>
+            <strong>Open PDF</strong>
+          </a>
+          <a href="https://www.linkedin.com/in/james-watts-935b4a135/" target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+            <strong>View Profile ↗</strong>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© <span id="year"></span> James Watts</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="manual-lightbox" data-manual-lightbox role="dialog" aria-modal="true" aria-label="Enlarged manual page" hidden>
+    <button class="manual-lightbox-close" type="button" data-lightbox-close aria-label="Close enlarged page">&times;</button>
+    <button class="manual-lightbox-arrow manual-lightbox-previous" type="button" data-lightbox-previous aria-label="Previous manual page">&larr;</button>
+    <div class="manual-lightbox-stage" data-lightbox-stage>
+      <img data-lightbox-image src="" alt="" draggable="false" />
+    </div>
+    <button class="manual-lightbox-arrow manual-lightbox-next" type="button" data-lightbox-next aria-label="Next manual page">&rarr;</button>
+  </div>
 </body>
 </html>
