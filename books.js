@@ -23,8 +23,8 @@
   const scrollButtons = Array.from(library.querySelectorAll('[data-books-scroll]'));
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const defaultHint = 'Click a spine to pull out a book. Scroll to explore the whole shelf.';
-  library.querySelector('.books-count').textContent = `${books.length} books · A personal library`;
-  viewport.setAttribute('aria-label', `Bookshelf — scroll horizontally to browse all ${books.length} books`);
+  library.querySelector('.books-count').textContent = `${books.length} books`;
+  viewport.setAttribute('aria-label', `2026 bookshelf — scroll horizontally to browse all ${books.length} books`);
   let activeIndex = -1;
   let flight;
 
@@ -56,6 +56,20 @@
     spineAuthor.className = 'books-spine-author';
     spineAuthor.textContent = book.author.split(' ').slice(-1)[0];
     button.append(spineTitle, spineAuthor);
+    if (book.spine) {
+      const image = document.createElement('img');
+      image.className = 'books-spine-photo';
+      image.src = book.spine;
+      image.alt = '';
+      image.decoding = 'async';
+      image.setAttribute('aria-hidden', 'true');
+      button.classList.add('has-spine-photo');
+      button.appendChild(image);
+      image.addEventListener('error', () => {
+        image.hidden = true;
+        button.classList.remove('has-spine-photo');
+      });
+    }
     const showHint = () => {
       hint.textContent = `${book.title} — ${book.author}`;
       preload(book);
@@ -134,6 +148,7 @@
     }
     ratingLabel.textContent = hasRating ? `${rating} / 10` : 'Not rated yet';
     const hasQuote = typeof book.quote === 'string' && book.quote.trim().length > 0;
+    library.querySelector('.books-quote').hidden = !hasQuote;
     quoteText.hidden = !hasQuote;
     quoteEmpty.hidden = hasQuote;
     quoteText.textContent = hasQuote ? book.quote : '';
@@ -143,9 +158,9 @@
       const x = sourceRect.left + sourceRect.width / 2 - targetRect.left - targetRect.width / 2;
       const y = sourceRect.top + sourceRect.height / 2 - targetRect.top - targetRect.height / 2;
       flight = anchor.animate([
-        { transform: `translate(${x}px, ${y}px) scale(.3, .8) rotateY(-72deg)`, opacity: .3 },
-        { transform: `translate(${x * .2}px, -22px) scale(.95) rotateY(-30deg)`, opacity: 1, offset: .62 },
-        { transform: 'translate(0, 0) scale(1) rotateY(0deg)', opacity: 1 }
+        { transform: `translate(${x}px, ${y}px) scale(.22, .8)`, opacity: .3 },
+        { transform: `translate(${x * .2}px, -22px) scale(.95)`, opacity: 1, offset: .62 },
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 }
       ], { duration: 720, easing: 'cubic-bezier(.2,.72,.2,1)' });
     }
     if (animate) revealSpine(index);

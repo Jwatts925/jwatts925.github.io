@@ -1,4 +1,4 @@
-// Personal library. Add a rating (1–10) or a quote to any entry when ready.
+// 2026 shelf. Ratings supplied by James; no review text is published.
 window.PORTFOLIO_BOOKS = [
   {
     "id": "the-candy-house",
@@ -6,11 +6,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Jennifer Egan",
     "color": "#b63f6d",
     "ink": "#fff4f3",
-    "width": 47,
+    "width": 29,
     "height": 254,
     "cover": "assets/books/the-candy-house.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-candy-house.webp",
+    "spineType": "photographed"
   },
   {
     "id": "driven",
@@ -18,11 +21,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Mason Coile",
     "color": "#852a34",
     "ink": "#fff2e8",
-    "width": 35,
+    "width": 28,
     "height": 241,
     "cover": "assets/books/driven.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 6,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/driven.webp",
+    "spineType": "photographed"
   },
   {
     "id": "william",
@@ -30,11 +36,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Mason Coile",
     "color": "#e38882",
     "ink": "#442722",
-    "width": 36,
+    "width": 28,
     "height": 237,
     "cover": "assets/books/william.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/william.webp",
+    "spineType": "photographed"
   },
   {
     "id": "carmilla",
@@ -42,11 +51,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "J. Sheridan Le Fanu",
     "color": "#302f36",
     "ink": "#e5ada4",
-    "width": 30,
+    "width": 28,
     "height": 226,
     "cover": "assets/books/carmilla.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/carmilla.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-exorcist",
@@ -54,11 +66,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "William Peter Blatty",
     "color": "#362d34",
     "ink": "#f1e4db",
-    "width": 45,
+    "width": 28,
     "height": 244,
     "cover": "assets/books/the-exorcist.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-exorcist.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-day-of-the-triffids",
@@ -66,11 +81,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "John Wyndham",
     "color": "#667b50",
     "ink": "#fbf4d8",
-    "width": 34,
+    "width": 28,
     "height": 220,
     "cover": "assets/books/the-day-of-the-triffids.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-day-of-the-triffids.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-underground-railroad",
@@ -78,11 +96,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Colson Whitehead",
     "color": "#d26356",
     "ink": "#211e20",
-    "width": 40,
+    "width": 28,
     "height": 232,
     "cover": "assets/books/the-underground-railroad.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-underground-railroad.webp",
+    "spineType": "photographed"
   },
   {
     "id": "tokyo-express",
@@ -90,11 +111,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Seichō Matsumoto",
     "color": "#eae1cc",
     "ink": "#293b38",
-    "width": 31,
+    "width": 32,
     "height": 222,
     "cover": "assets/books/tokyo-express.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/tokyo-express.svg",
+    "spineType": "recreated"
   },
   {
     "id": "jaws",
@@ -102,11 +126,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Peter Benchley",
     "color": "#3d484a",
     "ink": "#ef8274",
-    "width": 46,
+    "width": 32,
     "height": 234,
     "cover": "assets/books/jaws.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/jaws.svg",
+    "spineType": "recreated"
   },
   {
     "id": "the-abominable",
@@ -114,11 +141,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Dan Simmons",
     "color": "#6b7b84",
     "ink": "#faf2dc",
-    "width": 62,
+    "width": 54,
     "height": 268,
     "cover": "assets/books/the-abominable.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-abominable.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-institute",
@@ -126,11 +156,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Stephen King",
     "color": "#303941",
     "ink": "#eac55e",
-    "width": 53,
+    "width": 28,
     "height": 251,
     "cover": "assets/books/the-institute.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 5,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-institute.webp",
+    "spineType": "photographed"
   },
   {
     "id": "exiles",
@@ -138,11 +171,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Mason Coile",
     "color": "#b4784d",
     "ink": "#251e1a",
-    "width": 35,
+    "width": 28,
     "height": 239,
     "cover": "assets/books/exiles.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 10,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/exiles.webp",
+    "spineType": "photographed"
   },
   {
     "id": "jane-eyre",
@@ -150,11 +186,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Charlotte Brontë",
     "color": "#ca947c",
     "ink": "#fff8e8",
-    "width": 48,
+    "width": 31,
     "height": 236,
     "cover": "assets/books/jane-eyre.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/jane-eyre.webp",
+    "spineType": "photographed"
   },
   {
     "id": "salt",
@@ -162,11 +201,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Mark Kurlansky",
     "color": "#7597ba",
     "ink": "#ffffff",
-    "width": 44,
+    "width": 28,
     "height": 243,
     "cover": "assets/books/salt.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/salt.webp",
+    "spineType": "photographed"
   },
   {
     "id": "station-eleven",
@@ -174,11 +216,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Emily St. John Mandel",
     "color": "#41453c",
     "ink": "#f4e7c0",
-    "width": 39,
+    "width": 28,
     "height": 234,
     "cover": "assets/books/station-eleven.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/station-eleven.webp",
+    "spineType": "photographed"
   },
   {
     "id": "hyperion",
@@ -186,11 +231,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Dan Simmons",
     "color": "#d6ab4f",
     "ink": "#352d22",
-    "width": 55,
+    "width": 35,
     "height": 249,
     "cover": "assets/books/hyperion.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 6,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/hyperion.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-dutch-house",
@@ -198,11 +246,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Ann Patchett",
     "color": "#a45155",
     "ink": "#fff3e6",
-    "width": 44,
+    "width": 30,
     "height": 244,
     "cover": "assets/books/the-dutch-house.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-dutch-house.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-dorians",
@@ -210,11 +261,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Nick Cutter",
     "color": "#3c4b3b",
     "ink": "#f0edd7",
-    "width": 47,
+    "width": 34,
     "height": 259,
     "cover": "assets/books/the-dorians.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 5,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-dorians.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-buffalo-hunter-hunter",
@@ -222,11 +276,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Stephen Graham Jones",
     "color": "#393431",
     "ink": "#e6866f",
-    "width": 50,
+    "width": 32,
     "height": 256,
     "cover": "assets/books/the-buffalo-hunter-hunter.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-buffalo-hunter-hunter.webp",
+    "spineType": "photographed"
   },
   {
     "id": "nothing-but-the-night",
@@ -234,11 +291,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "John Williams",
     "color": "#b8c9a1",
     "ink": "#293a27",
-    "width": 29,
+    "width": 28,
     "height": 235,
     "cover": "assets/books/nothing-but-the-night.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 5,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/nothing-but-the-night.webp",
+    "spineType": "photographed"
   },
   {
     "id": "butchers-crossing",
@@ -246,11 +306,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "John Williams",
     "color": "#315b47",
     "ink": "#f0dfba",
-    "width": 38,
+    "width": 28,
     "height": 242,
     "cover": "assets/books/butchers-crossing.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/butchers-crossing.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-illustrated-man",
@@ -258,11 +321,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Ray Bradbury",
     "color": "#e4cfaa",
     "ink": "#292e2f",
-    "width": 36,
+    "width": 28,
     "height": 240,
     "cover": "assets/books/the-illustrated-man.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-illustrated-man.webp",
+    "spineType": "photographed"
   },
   {
     "id": "basquiat",
@@ -270,11 +336,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Phoebe Hoban",
     "color": "#2859bb",
     "ink": "#f8ecd4",
-    "width": 52,
+    "width": 32,
     "height": 258,
     "cover": "assets/books/basquiat.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 9,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/basquiat.svg",
+    "spineType": "recreated"
   },
   {
     "id": "native-son",
@@ -282,11 +351,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Richard Wright",
     "color": "#292c2c",
     "ink": "#e7d6aa",
-    "width": 48,
+    "width": 32,
     "height": 257,
     "cover": "assets/books/native-son.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/native-son.svg",
+    "spineType": "recreated"
   },
   {
     "id": "look-at-me",
@@ -294,11 +366,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Jennifer Egan",
     "color": "#894d55",
     "ink": "#fff2db",
-    "width": 45,
+    "width": 39,
     "height": 249,
     "cover": "assets/books/look-at-me.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 6,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/look-at-me.webp",
+    "spineType": "photographed"
   },
   {
     "id": "my-heart-is-a-chainsaw",
@@ -306,11 +381,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Stephen Graham Jones",
     "color": "#e6e1d0",
     "ink": "#282b29",
-    "width": 51,
+    "width": 31,
     "height": 262,
     "cover": "assets/books/my-heart-is-a-chainsaw.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/my-heart-is-a-chainsaw.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-mummy",
@@ -318,11 +396,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Anne Rice",
     "color": "#323333",
     "ink": "#f0c2a7",
-    "width": 52,
+    "width": 40,
     "height": 247,
     "cover": "assets/books/the-mummy.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-mummy.webp",
+    "spineType": "photographed"
   },
   {
     "id": "a-winter-haunting",
@@ -330,11 +411,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Dan Simmons",
     "color": "#3c4246",
     "ink": "#e88f82",
-    "width": 36,
+    "width": 35,
     "height": 239,
     "cover": "assets/books/a-winter-haunting.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 6,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/a-winter-haunting.webp",
+    "spineType": "photographed"
   },
   {
     "id": "big-sur",
@@ -345,8 +429,11 @@ window.PORTFOLIO_BOOKS = [
     "width": 28,
     "height": 225,
     "cover": "assets/books/big-sur.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/big-sur.webp",
+    "spineType": "photographed"
   },
   {
     "id": "the-city-and-its-uncertain-walls",
@@ -354,11 +441,14 @@ window.PORTFOLIO_BOOKS = [
     "author": "Haruki Murakami",
     "color": "#343c68",
     "ink": "#efca68",
-    "width": 55,
+    "width": 36,
     "height": 254,
     "cover": "assets/books/the-city-and-its-uncertain-walls.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 7,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/the-city-and-its-uncertain-walls.webp",
+    "spineType": "photographed"
   },
   {
     "id": "no-country-for-old-men",
@@ -366,10 +456,13 @@ window.PORTFOLIO_BOOKS = [
     "author": "Cormac McCarthy",
     "color": "#9d8475",
     "ink": "#fff1d9",
-    "width": 34,
+    "width": 32,
     "height": 236,
     "cover": "assets/books/no-country-for-old-men.jpg",
-    "rating": null,
-    "quote": ""
+    "rating": 8,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/no-country-for-old-men.svg",
+    "spineType": "recreated"
   }
 ];

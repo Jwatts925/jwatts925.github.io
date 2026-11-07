@@ -18,7 +18,7 @@ A responsive GitHub Pages portfolio focused on BIM, preconstruction, facade syst
 - `style.css` — original/base styling
 - `script.js` — section expansion, navigation behavior, and contact fasteners
 - `books-data.js` — personal library titles, covers, and future ratings and quotes
-- `books.js` / `books.css` — interactive 3D bookshelf in the home page Books section
+- `books.js` / `books.css` — flat 2026 bookshelf, photographed spines, covers, and personal star ratings in the home page Books section
 - `project-index.js` — project names, locations, project details, image counts, and project-index interactions
 
 ## Assets

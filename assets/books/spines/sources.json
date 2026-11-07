@@ -1,0 +1,193 @@
+{
+  "year": 2026,
+  "photographed": 26,
+  "recreated": 5,
+  "books": [
+    {
+      "id": "the-candy-house",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "driven",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "william",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "carmilla",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-exorcist",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-day-of-the-triffids",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-underground-railroad",
+      "type": "photographed",
+      "source": "BOOK1.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "tokyo-express",
+      "type": "recreated",
+      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    },
+    {
+      "id": "jaws",
+      "type": "recreated",
+      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    },
+    {
+      "id": "the-abominable",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-institute",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "exiles",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "jane-eyre",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "salt",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "station-eleven",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "hyperion",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-dutch-house",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-dorians",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-buffalo-hunter-hunter",
+      "type": "photographed",
+      "source": "BOOK 2.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "nothing-but-the-night",
+      "type": "photographed",
+      "source": "BOOK 3.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "butchers-crossing",
+      "type": "photographed",
+      "source": "BOOK 3.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-illustrated-man",
+      "type": "photographed",
+      "source": "BOOK 3.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "basquiat",
+      "type": "recreated",
+      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    },
+    {
+      "id": "native-son",
+      "type": "recreated",
+      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    },
+    {
+      "id": "look-at-me",
+      "type": "photographed",
+      "source": "BOOOK 4.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "my-heart-is-a-chainsaw",
+      "type": "photographed",
+      "source": "BOOOK 4.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-mummy",
+      "type": "photographed",
+      "source": "BOOK 5.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "a-winter-haunting",
+      "type": "photographed",
+      "source": "BOOK 5.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "big-sur",
+      "type": "photographed",
+      "source": "BOOK 5.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "the-city-and-its-uncertain-walls",
+      "type": "photographed",
+      "source": "BOOK 5.jpg",
+      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+    },
+    {
+      "id": "no-country-for-old-men",
+      "type": "recreated",
+      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    }
+  ],
+  "research": [
+    "https://www.hamiltonbook.com/basquiat-a-quick-killing-in-art-paperbound",
+    "https://www.goodreads.com/book/show/15622.Native_Son",
+    "https://www.manhattanrarebooks.com/pages/books/561/peter-benchley/jaws?soldItem=true"
+  ]
+}
