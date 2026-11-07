@@ -7,6 +7,7 @@
 .artwork-heading p { margin: 0; }
 .artwork-heading p:first-child { font-size: clamp(1.2rem, 2.2vw, 1.75rem); letter-spacing: -.03em; }
 .artwork-heading p:last-child { font-size: .72rem; }
+.artwork-heading-hint { color: var(--coral); }
 .artwork-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 6vw, 6rem) clamp(2rem, 7vw, 7rem); align-items: end; max-width: 1180px; margin-inline: auto; }
 .artwork-piece { min-width: 0; margin: 0; }
 .artwork-piece-wide { grid-column: 1 / -1; }
