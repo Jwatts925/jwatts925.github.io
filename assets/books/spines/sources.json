@@ -1,7 +1,7 @@
 {
   "year": 2026,
-  "photographed": 26,
-  "recreated": 5,
+  "photographed": 28,
+  "recreated": 7,
   "books": [
     {
       "id": "the-candy-house",
@@ -183,6 +183,32 @@
       "id": "no-country-for-old-men",
       "type": "recreated",
       "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+    },
+    {
+      "id": "batman-court-of-owls",
+      "type": "recreated",
+      "source": "https://images4.penguinrandomhouse.com/cover/9781401235420?height=1200&alt=cover",
+      "method": "Flat SVG based on the verified cover colors and typography. A complete matching spine was not found online."
+    },
+    {
+      "id": "the-ruins",
+      "type": "photographed",
+      "source": "https://bookshopapocalypse.com/cdn/shop/products/theruins-2.jpg?v=1650625236&width=1946",
+      "method": "real spine photograph crop",
+      "notes": "Perspective crop only; actual black jacket, red author, white title and red floral art. Photograph has mylar reflections."
+    },
+    {
+      "id": "the-disposable-man",
+      "type": "recreated",
+      "source": "https://covers.openlibrary.org/b/isbn/9780892966851-L.jpg",
+      "method": "Flat SVG based on the verified cover colors and typography. A complete matching spine was not found online."
+    },
+    {
+      "id": "come-with-me",
+      "type": "photographed",
+      "source": "https://static.wixstatic.com/media/5b22b1_c78596ad923143aab6553fc44ff96a8b~mv2.jpg",
+      "method": "real spine photograph crop",
+      "notes": "Extracted only the Titan Books spine from a bookshelf photograph; no unrelated books or hands in crop. Earlier printing: white title, cyan author, dark forest/figure."
     }
   ],
   "research": [

@@ -184,5 +184,54 @@
     "author": "Cormac McCarthy",
     "coverSource": "https://covers.openlibrary.org/b/id/9296899-L.jpg?default=false",
     "catalogSource": "https://openlibrary.org/works/OL40875W"
+  },
+  {
+    "title": "Batman Vol. 1: The Court of Owls",
+    "author": "Scott Snyder & Greg Capullo",
+    "isbn": "9781401235420",
+    "coverSource": "https://images4.penguinrandomhouse.com/cover/9781401235420?height=1200&alt=cover",
+    "metadataSources": [
+      "https://www.dc.com/graphic-novels/batman-2011/batman-vol-1-the-court-of-owls-1",
+      "https://www.penguinrandomhouse.com/books/222139/batman-vol-1-the-court-of-owls-the-new-52-by-scott-snyder/"
+    ],
+    "notes": ""
+  },
+  {
+    "title": "The Ruins",
+    "author": "Scott Smith",
+    "isbn": "9781400043873",
+    "coverSource": "https://bookshopapocalypse.com/cdn/shop/products/theruins-1sq.jpg?v=1650625236&width=1946",
+    "metadataSources": [
+      "https://catalog.freelibrary.org/Record/1517485",
+      "https://openlibrary.org/books/OL8363019M/The_Ruins",
+      "https://bookshopapocalypse.com/products/the-ruins-by-scott-smith-first-edition-first-printing-2006",
+      "https://www.penguinrandomhouse.com/books/169514/the-ruins-by-scott-smith/"
+    ],
+    "notes": "Perspective crop of photographed first-edition jacket; preserves existing reflections."
+  },
+  {
+    "title": "The Disposable Man",
+    "author": "Archer Mayor",
+    "isbn": "9780892966851",
+    "coverSource": "https://covers.openlibrary.org/b/isbn/9780892966851-L.jpg",
+    "metadataSources": [
+      "https://archermayor.com/the-disposable-man/",
+      "https://openlibrary.org/works/OL14927639W/The_Disposable_Man",
+      "https://www.ebay.com/itm/395623223069",
+      "https://www.publishersweekly.com/9780892966851"
+    ],
+    "notes": "Matches the physical first-edition jacket photographed in disposable-man-photo1.jpg; ISBN verified in photographed copyright page disposable-man-photo4.jpg."
+  },
+  {
+    "title": "Come With Me",
+    "author": "Ronald Malfi",
+    "isbn": "9781789097375",
+    "coverSource": "https://images4.penguinrandomhouse.com/cover/9781789097375?height=1200&alt=cover",
+    "metadataSources": [
+      "https://titanbooks.com/70629-come-with-me/",
+      "https://www.penguinrandomhouse.com/books/676281/come-with-me-by-ronald-malfi/",
+      "https://bookbot.sk/g/576935"
+    ],
+    "notes": "Current publisher cover for verified ISBN 9781789097375. The real spine photograph shows the same title and Titan Books publisher in an earlier visual design; the exact printing and ISBN of the photographed spine are not visible and are not claimed verified."
   }
 ]

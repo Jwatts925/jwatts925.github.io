@@ -3,7 +3,9 @@
   const library = document.querySelector('[data-books-library]');
   if (!library || !Array.isArray(window.PORTFOLIO_BOOKS)) return;
 
-  const books = window.PORTFOLIO_BOOKS;
+  const defaultBooks = window.PORTFOLIO_BOOKS;
+  const orderStorageKey = 'james-watts:books:2026:order:v1';
+  const books = restoreOrder(defaultBooks);
   const viewport = library.querySelector('[data-books-viewport]');
   const shelf = library.querySelector('[data-books-shelf]');
   const selection = library.querySelector('[data-books-selection]');
@@ -22,11 +24,44 @@
   const status = library.querySelector('[data-books-status]');
   const scrollButtons = Array.from(library.querySelectorAll('[data-books-scroll]'));
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaultHint = 'Click a spine to pull out a book. Scroll to explore the whole shelf.';
+  const defaultHint = 'Click a spine to view its cover. Drag to rearrange the shelf.';
   library.querySelector('.books-count').textContent = `${books.length} books`;
   viewport.setAttribute('aria-label', `2026 bookshelf — scroll horizontally to browse all ${books.length} books`);
   let activeIndex = -1;
   let flight;
+  let gesture;
+  let dragFrame;
+  let suppressClickUntil = 0;
+  const dropMarker = document.createElement('span');
+  dropMarker.className = 'books-drop-marker';
+  dropMarker.hidden = true;
+  dropMarker.setAttribute('aria-hidden', 'true');
+
+  function restoreOrder(catalog) {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem(orderStorageKey));
+      if (!Array.isArray(saved)) return [...catalog];
+      const byId = new Map(catalog.map(book => [book.id, book]));
+      const restored = [];
+      for (const id of saved) {
+        if (typeof id !== 'string' || !byId.has(id)) continue;
+        restored.push(byId.get(id));
+        byId.delete(id);
+      }
+      return restored.concat([...byId.values()]);
+    } catch {
+      return [...catalog];
+    }
+  }
+
+  function saveOrder() {
+    try {
+      window.localStorage.setItem(orderStorageKey, JSON.stringify(books.map(book => book.id)));
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   const preload = (book) => {
     if (book.preloaded) return;
@@ -43,6 +78,9 @@
     button.setAttribute('aria-label', `${book.title} by ${book.author}. Show cover.`);
     button.setAttribute('aria-pressed', 'false');
     button.setAttribute('aria-controls', 'books-selected');
+    button.setAttribute('aria-describedby', 'books-arrange-help');
+    button.setAttribute('aria-keyshortcuts', 'Alt+ArrowLeft Alt+ArrowRight');
+    button.draggable = false;
     button.title = `${book.title} — ${book.author}`;
     button.style.setProperty('--book-width', `${book.width}px`);
     button.style.setProperty('--book-height', `${book.height}px`);
@@ -78,11 +116,23 @@
     button.addEventListener('focus', showHint);
     button.addEventListener('pointerleave', () => { hint.textContent = defaultHint; });
     button.addEventListener('blur', () => { hint.textContent = defaultHint; });
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+      if (event.detail > 0 && performance.now() < suppressClickUntil) {
+        event.preventDefault();
+        return;
+      }
+      const index = books.findIndex(entry => entry.id === book.id);
       if (activeIndex === index) returnBook();
       else selectBook(index, true);
     });
     button.addEventListener('keydown', (event) => {
+      const index = books.findIndex(entry => entry.id === book.id);
+      if (event.altKey && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+        event.preventDefault();
+        event.stopPropagation();
+        moveBook(index, Math.max(0, Math.min(books.length - 1, index + (event.key === 'ArrowRight' ? 1 : -1))));
+        return;
+      }
       let target;
       if (event.key === 'ArrowRight') target = Math.min(books.length - 1, index + 1);
       if (event.key === 'ArrowLeft') target = Math.max(0, index - 1);
@@ -93,8 +143,172 @@
       spineButtons[target].focus({ preventScroll: true });
       revealSpine(target);
     });
+    button.addEventListener('pointerdown', (event) => beginGesture(event, button));
+    button.addEventListener('pointermove', moveGesture, { passive: false });
+    button.addEventListener('pointerup', (event) => finishGesture(event, true));
+    button.addEventListener('pointercancel', (event) => finishGesture(event, false));
+    button.addEventListener('lostpointercapture', (event) => finishGesture(event, false));
+    button.addEventListener('dragstart', (event) => event.preventDefault());
+    button.addEventListener('contextmenu', (event) => {
+      if (gesture) event.preventDefault();
+    });
     shelf.appendChild(button);
     return button;
+  });
+  shelf.appendChild(dropMarker);
+
+  function moveBook(from, to) {
+    if (from === to) {
+      status.textContent = `${books[from].title} stays at position ${from + 1} of ${books.length}.`;
+      return;
+    }
+    const selectedId = books[activeIndex]?.id;
+    const [book] = books.splice(from, 1);
+    const [button] = spineButtons.splice(from, 1);
+    books.splice(to, 0, book);
+    spineButtons.splice(to, 0, button);
+    shelf.insertBefore(button, spineButtons[to + 1] || dropMarker);
+    activeIndex = selectedId ? books.findIndex(entry => entry.id === selectedId) : -1;
+    if (activeIndex >= 0) number.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${books.length}`;
+    const saved = saveOrder();
+    status.textContent = `${book.title} moved to position ${to + 1} of ${books.length}. ${saved ? 'Order saved in this browser.' : 'Order could not be saved in this browser.'}`;
+    hint.textContent = saved ? `${book.title} moved. Your order is saved on this device.` : 'Books moved. This browser could not save the arrangement.';
+    button.focus({ preventScroll: true });
+    revealSpine(to);
+    updateScrollButtons();
+  }
+
+  function beginGesture(event, button) {
+    if (!event.isPrimary || event.button !== 0 || gesture) return;
+    const touch = event.pointerType !== 'mouse';
+    gesture = {
+      pointerId: event.pointerId, button, touch, mode: 'pending',
+      startX: event.clientX, startY: event.clientY, lastX: event.clientX,
+      x: event.clientX, y: event.clientY, scrollBehavior: viewport.style.scrollBehavior,
+    };
+    button.setPointerCapture(event.pointerId);
+    if (touch) gesture.timer = window.setTimeout(startDrag, 300);
+  }
+
+  function startDrag() {
+    if (!gesture || gesture.mode !== 'pending') return;
+    window.clearTimeout(gesture.timer);
+    gesture.mode = 'drag';
+    gesture.sourceRect = gesture.button.getBoundingClientRect();
+    gesture.ghost = gesture.button.cloneNode(true);
+    gesture.ghost.classList.remove('is-selected');
+    gesture.ghost.classList.add('books-drag-ghost');
+    gesture.ghost.removeAttribute('data-book-id');
+    gesture.ghost.removeAttribute('aria-controls');
+    gesture.ghost.removeAttribute('aria-describedby');
+    gesture.ghost.setAttribute('aria-hidden', 'true');
+    gesture.ghost.tabIndex = -1;
+    gesture.ghost.style.width = `${gesture.sourceRect.width}px`;
+    gesture.ghost.style.height = `${gesture.sourceRect.height}px`;
+    document.body.appendChild(gesture.ghost);
+    gesture.button.classList.add('is-dragging');
+    viewport.style.scrollBehavior = 'auto';
+    library.classList.add('is-arranging');
+    status.textContent = `Moving ${gesture.button.title}. Release to place it on the shelf. Escape cancels.`;
+    updateDrag();
+    dragFrame = requestAnimationFrame(scrollDuringDrag);
+  }
+
+  function moveGesture(event) {
+    if (!gesture || event.pointerId !== gesture.pointerId) return;
+    gesture.x = event.clientX;
+    gesture.y = event.clientY;
+    const dx = event.clientX - gesture.startX;
+    const dy = event.clientY - gesture.startY;
+    if (gesture.mode === 'pending') {
+      if (!gesture.touch && Math.hypot(dx, dy) >= 7) startDrag();
+      else if (gesture.touch && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+        window.clearTimeout(gesture.timer);
+        gesture.mode = 'browse';
+        viewport.style.scrollBehavior = 'auto';
+      } else if (gesture.touch && Math.abs(dy) > 8) {
+        window.clearTimeout(gesture.timer);
+        gesture.mode = 'vertical';
+      }
+    }
+    if (gesture.mode === 'drag') {
+      event.preventDefault();
+      updateDrag();
+    } else if (gesture.mode === 'browse') {
+      event.preventDefault();
+      viewport.scrollLeft -= event.clientX - gesture.lastX;
+    }
+    gesture.lastX = event.clientX;
+  }
+
+  function updateDrag() {
+    if (!gesture || gesture.mode !== 'drag') return;
+    const source = gesture.sourceRect;
+    gesture.ghost.style.left = `${source.left + gesture.x - gesture.startX}px`;
+    gesture.ghost.style.top = `${source.top - 12 + Math.max(-20, Math.min(20, gesture.y - gesture.startY))}px`;
+    const others = spineButtons.filter(button => button !== gesture.button);
+    const index = others.findIndex(button => {
+      const rect = button.getBoundingClientRect();
+      return gesture.x < rect.left + rect.width / 2;
+    });
+    gesture.targetIndex = index < 0 ? others.length : index;
+    const target = others[gesture.targetIndex];
+    const boundary = target ? target.getBoundingClientRect().left - 2 : others.at(-1)?.getBoundingClientRect().right + 2;
+    if (Number.isFinite(boundary)) {
+      dropMarker.style.left = `${boundary - shelf.getBoundingClientRect().left}px`;
+      dropMarker.hidden = false;
+    }
+  }
+
+  function scrollDuringDrag() {
+    if (!gesture || gesture.mode !== 'drag') return;
+    const rect = viewport.getBoundingClientRect();
+    let speed = 0;
+    if (gesture.x < rect.left + 44) speed = -Math.min(14, (rect.left + 44 - gesture.x) / 3);
+    if (gesture.x > rect.right - 44) speed = Math.min(14, (gesture.x - rect.right + 44) / 3);
+    if (speed) {
+      viewport.scrollLeft += speed;
+      updateDrag();
+    }
+    dragFrame = requestAnimationFrame(scrollDuringDrag);
+  }
+
+  function finishGesture(event, commit) {
+    if (!gesture || (event && event.pointerId !== gesture.pointerId)) return;
+    const current = gesture;
+    gesture = undefined;
+    window.clearTimeout(current.timer);
+    cancelAnimationFrame(dragFrame);
+    current.ghost?.remove();
+    current.button.classList.remove('is-dragging');
+    library.classList.remove('is-arranging');
+    dropMarker.hidden = true;
+    viewport.style.scrollBehavior = current.scrollBehavior;
+    if (current.button.hasPointerCapture(current.pointerId)) current.button.releasePointerCapture(current.pointerId);
+    if (current.mode === 'drag' || current.mode === 'browse') suppressClickUntil = performance.now() + 450;
+    if (current.mode === 'drag') {
+      if (commit) {
+        const from = spineButtons.indexOf(current.button);
+        moveBook(from, current.targetIndex ?? from);
+      } else {
+        status.textContent = 'Book move cancelled.';
+      }
+    }
+  }
+
+  library.querySelector('[data-books-reset-order]').addEventListener('click', () => {
+    finishGesture(null, false);
+    const selectedId = books[activeIndex]?.id;
+    const byId = new Map(spineButtons.map(button => [button.dataset.bookId, button]));
+    books.splice(0, books.length, ...defaultBooks);
+    spineButtons.splice(0, spineButtons.length, ...books.map(book => byId.get(book.id)));
+    spineButtons.forEach(button => shelf.insertBefore(button, dropMarker));
+    activeIndex = selectedId ? books.findIndex(book => book.id === selectedId) : -1;
+    if (activeIndex >= 0) number.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${books.length}`;
+    try { window.localStorage.removeItem(orderStorageKey); } catch { /* The order is still reset for this visit. */ }
+    status.textContent = 'Original shelf order restored.';
+    hint.textContent = defaultHint;
+    updateScrollButtons();
   });
 
   function revealSpine(index) {
@@ -184,6 +398,12 @@
   cover.addEventListener('load', () => { cover.hidden = false; });
   returnButton.addEventListener('click', returnBook);
   library.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && gesture) {
+      event.preventDefault();
+      event.stopPropagation();
+      finishGesture(null, false);
+      return;
+    }
     if (event.key === 'Escape' && activeIndex >= 0) {
       event.preventDefault();
       returnBook();
