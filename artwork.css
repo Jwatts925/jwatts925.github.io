@@ -11,7 +11,10 @@
 .artwork-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(3rem, 6vw, 6rem) clamp(2rem, 7vw, 7rem); align-items: end; max-width: 1180px; margin-inline: auto; }
 .artwork-piece { min-width: 0; margin: 0; }
 .artwork-piece-wide { grid-column: 1 / -1; }
-#art-show-them-off { align-self: center; }
+@media (min-width: 761px) {
+  #art-show-them-off, #art-helps-to-run { align-self: stretch; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+  #art-show-them-off .artwork-open, #art-helps-to-run .artwork-open { align-self: center; }
+}
 .artwork-open { display: block; position: relative; width: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; color: inherit; cursor: zoom-in; text-align: left; }
 .artwork-images { display: block; width: 100%; }
 .artwork-images-pair { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(1rem, 4vw, 4rem); }
