@@ -1,0 +1,180 @@
+/* Keep the opening composition within the available screen, with natural
+   scrolling when a short or enlarged viewport needs more room. */
+.home-page .editorial-hero {
+  overflow: visible;
+}
+
+.home-page .hero-message,
+.home-page .hero-ifc-grid {
+  top: auto;
+  align-self: center;
+  margin: 0;
+}
+
+.home-page .hero-metrics {
+  margin: 0;
+}
+
+.home-page .hero-composition {
+  display: contents;
+}
+
+@media (min-width: 601px) {
+  .home-page .editorial-hero {
+    height: calc(100svh - var(--home-header-height) + 1px);
+    min-height: 27rem;
+    padding-block: clamp(1rem, 4svh, 3rem) clamp(1rem, 2.5svh, 2rem);
+    display: flex;
+  }
+
+  .home-page .editorial-hero-grid {
+    container-type: inline-size;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    row-gap: clamp(0.75rem, 2svh, 1.5rem);
+  }
+
+  .home-page .hero-nameplate {
+    gap: clamp(1rem, 4cqi, 4.5rem);
+    font-size: clamp(3rem, min(12.4cqi, 16svh), 11.5rem);
+    letter-spacing: 0.045em;
+  }
+
+  .home-page .hero-disciplines {
+    margin: 0;
+    padding-top: clamp(0.5rem, 1.2svh, 0.8rem);
+  }
+
+  .home-page .hero-message {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .home-page .hero-composition {
+    container-type: size;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(0.75rem, 1.6vw, 1.5rem);
+    min-height: 0;
+  }
+
+  .home-page .hero-message h1 {
+    font-size: clamp(1.75rem, min(5.6cqi, 8svh), 5.5rem);
+    line-height: 0.96;
+  }
+
+  .home-page .hero-ifc-grid {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(100%, 100cqh, 34rem);
+    height: auto;
+    min-height: 0;
+    max-width: 100%;
+    aspect-ratio: 1;
+    justify-self: center;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-page .hero-ifc-tile {
+    min-height: 0;
+    aspect-ratio: 1;
+  }
+
+  .home-page .hero-metrics {
+    grid-row: 4;
+  }
+
+  .home-page .hero-metrics > div:not(.hero-actions) {
+    grid-column: span 2;
+    min-height: clamp(7rem, 16svh, 11rem);
+    padding: clamp(0.75rem, 1.5svh, 1.5rem) 0.5rem;
+  }
+
+  .home-page .hero-metrics strong {
+    font-size: clamp(2.25rem, min(5cqi, 8svh), 5.5rem);
+  }
+
+  .home-page .hero-metrics small {
+    margin-top: clamp(0.5rem, 1svh, 0.85rem);
+  }
+
+  .home-page .hero-index div {
+    min-height: 4rem;
+    padding: 0.65rem clamp(0.4rem, 1cqi, 1rem);
+  }
+
+  .home-page .hero-actions {
+    grid-column: 7 / -1;
+    padding: 0;
+    border-top: 0;
+  }
+
+  .home-page .hero-index {
+    width: 100%;
+    margin: 0;
+  }
+
+  .home-page .hero-index dd {
+    font-size: clamp(0.68rem, 0.85cqi, 0.8rem);
+    overflow-wrap: anywhere;
+  }
+
+  .home-page .hero-actions .hero-resume-link {
+    min-height: 2.75rem;
+    font-size: clamp(0.9rem, 1.35cqi, 1.3rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .home-page .editorial-hero {
+    padding-block: clamp(1rem, 3svh, 1.75rem) 1.5rem;
+  }
+
+  .home-page .editorial-hero-grid {
+    row-gap: 1rem;
+  }
+
+  .home-page .hero-disciplines {
+    margin-top: 0.5rem;
+  }
+
+  .home-page .hero-ifc-grid {
+    width: min(100%, 32svh, max(8rem, calc(100svh - 28rem)), 22rem);
+  }
+
+  .home-page .hero-metrics > div:not(.hero-actions) {
+    min-height: 6.5rem;
+    padding: 1rem 0.4rem;
+  }
+
+  .home-page .hero-actions {
+    padding: 0;
+  }
+
+  .home-page .hero-index {
+    width: 100%;
+    margin: 0;
+  }
+
+  .home-page .hero-index div,
+  .home-page .hero-index div:first-child,
+  .home-page .hero-index div:last-child {
+    min-height: 4.5rem;
+    padding: 0.6rem 0.4rem;
+  }
+
+  .home-page .hero-actions .hero-resume-link {
+    min-height: 2.75rem;
+    margin: 0;
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 600px) {
+  .home-page .hero-ifc-grid {
+    width: min(100%, 22svh, 16rem);
+  }
+}
