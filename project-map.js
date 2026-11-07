@@ -12,6 +12,7 @@
   const detail = document.getElementById('map-project-detail');
   const ns = 'http://www.w3.org/2000/svg';
   const companies = { ww: 'Walters & Wolf', cs: 'C/S Erectors' };
+  const helmetShape = 'M-10 4H-9V1C-9-3-6-6-2-7V-8Q-2-9-1-9H1Q2-9 2-8V-7C6-6 9-3 9 1V4H10Q11 4 11 5V7H-11V5Q-11 4-10 4Z';
   let selected = null;
   const node = (tag, attrs = {}, text) => {
     const el = document.createElementNS(ns, tag);
@@ -19,6 +20,64 @@
     if (text !== undefined) el.textContent = text;
     return el;
   };
+  function hardHat(company) {
+    const icon = node('g', { class: 'map-hard-hat', 'data-company': company, 'aria-hidden': 'true' });
+    icon.append(node('path', { d: helmetShape, class: 'map-hat-shell' }));
+    icon.append(node('path', { d: 'M-2-6V1M2-6V1M-8 3H8', class: 'map-hat-detail' }));
+    return icon;
+  }
+  for (const key of figure.querySelectorAll('[data-hard-hat]')) {
+    const svg = node('svg', { viewBox: '-13 -13 26 26', 'aria-hidden': 'true' });
+    svg.append(hardHat(key.dataset.hardHat)); key.append(svg);
+  }
+  const preview = document.createElement('dialog');
+  preview.className = 'map-preview';
+  preview.setAttribute('aria-labelledby', 'map-preview-title');
+  preview.innerHTML = `<button class="map-preview-close" type="button" aria-label="Close project image"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <div class="map-preview-heading"><p class="map-preview-company"></p><h2 id="map-preview-title"></h2><p class="map-preview-city"></p></div>
+    <figure class="map-preview-art"><img class="map-preview-image" alt="" decoding="async" /></figure><div class="map-preview-links"></div>`;
+  document.body.append(preview);
+  preview.querySelector('.map-preview-close').addEventListener('click', () => preview.close());
+  preview.addEventListener('close', () => document.body.classList.remove('map-preview-open'));
+  preview.addEventListener('click', event => {
+    if (event.target !== preview) return;
+    const bounds = preview.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) preview.close();
+  });
+  const projectEntry = p => [...document.querySelectorAll('.project-index-item')].find(item => item.querySelector('.project-index-title')?.textContent === p.name);
+  function projectLink(p) {
+    const link = document.createElement('a'); link.href = `#map-project-${p.slug}`; link.textContent = 'View project ↗';
+    link.addEventListener('click', event => {
+      const project = projectEntry(p);
+      if (!project) return;
+      event.preventDefault();
+      if (preview.open) preview.close();
+      project.id = `map-project-${p.slug}`; project.classList.add('is-map-target');
+      const company = project.closest('.project-company-group');
+      if (!company.classList.contains('is-open')) company.querySelector('.project-company-trigger').click();
+      if (!project.classList.contains('is-open')) project.querySelector('.project-index-trigger').click();
+      project.querySelector('.project-index-trigger').focus({ preventScroll: true });
+    });
+    return link;
+  }
+  function openPreview(slug) {
+    const p = data.projects.find(project => project.slug === slug);
+    if (!p) return;
+    showProject(slug);
+    const sourceImage = projectEntry(p)?.querySelector('img');
+    const image = preview.querySelector('.map-preview-image');
+    image.src = sourceImage?.getAttribute('src') || `assets/project-index/${p.slug}/image-01.jpg`;
+    image.alt = sourceImage?.alt || `${p.name} project image`;
+    preview.querySelector('.map-preview-company').textContent = companies[p.company];
+    preview.querySelector('.map-preview-heading').dataset.company = p.company;
+    preview.querySelector('#map-preview-title').textContent = p.name;
+    preview.querySelector('.map-preview-city').textContent = p.city;
+    preview.querySelector('.map-preview-links').replaceChildren(projectLink(p));
+    if (!preview.open) {
+      document.documentElement.style.setProperty('--map-scrollbar-width', `${innerWidth - document.documentElement.clientWidth}px`);
+      preview.showModal(); document.body.classList.add('map-preview-open');
+    }
+  }
   const mercatorY = lat => Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360));
   function projection(bounds, width, height) {
     const [west, south, east, north] = bounds;
@@ -35,7 +94,7 @@
     west: [ ['Reno', -119.25, 39.6, 'start'], ['Roseville', -122.05, 39.0, 'end'], ['Las Vegas', -114.15, 36.15, 'end'], ['Los Angeles', -119.0, 34.1, 'end'], ['San Diego', -116.8, 32.45, 'end'] ]
   };
   function spreadMarkers(points, width, height) {
-    const gap = width < 210 ? 19 : 21;
+    const gap = width < 210 ? 26 : 28;
     points.forEach((p, i) => { p.x = p.ax + Math.cos(i * 2.4) * .7; p.y = p.ay + Math.sin(i * 2.4) * .7; });
     for (let pass = 0; pass < 240; pass++) {
       for (const p of points) { p.x += (p.ax - p.x) * .015; p.y += (p.ay - p.y) * .015; }
@@ -44,7 +103,7 @@
         const distance = Math.hypot(dx, dy) || .01;
         if (distance < gap) { const f = (gap - distance) / distance * .51; a.x += dx * f; a.y += dy * f; b.x -= dx * f; b.y -= dy * f; }
       }
-      points.forEach(p => { p.x = Math.max(12, Math.min(width - 12, p.x)); p.y = Math.max(12, Math.min(height - 12, p.y)); });
+      points.forEach(p => { p.x = Math.max(16, Math.min(width - 16, p.x)); p.y = Math.max(16, Math.min(height - 16, p.y)); });
     }
     return points;
   }
@@ -55,28 +114,18 @@
     figure.querySelectorAll('.map-marker').forEach(marker => marker.classList.toggle('is-selected', marker.dataset.slug === slug));
     detail.replaceChildren();
     const add = (cls, text) => { const el = document.createElement('p'); el.className = cls; el.textContent = text; detail.append(el); };
-    add('map-detail-company', companies[p.company]); add('map-detail-name', p.name); add('map-detail-location', p.location);
-    add('map-detail-precision', p.precision === 'city' ? 'City location · exact site unconfirmed' : p.precision === 'campus' ? 'Campus location · approximate' : 'Project site · approximate');
+    add('map-detail-company', companies[p.company]); add('map-detail-name', p.name); add('map-detail-location', p.city);
     const links = document.createElement('div'); links.className = 'map-detail-links';
-    const view = document.createElement('a'); view.href = `#map-project-${slug}`; view.textContent = 'View project ↗';
-    view.addEventListener('click', event => {
-      const project = [...document.querySelectorAll('.project-index-item')].find(item => item.querySelector('.project-index-title')?.textContent === p.name);
-      if (!project) return;
-      event.preventDefault(); project.id = `map-project-${slug}`; project.classList.add('is-map-target');
-      const company = project.closest('.project-company-group');
-      if (!company.classList.contains('is-open')) company.querySelector('.project-company-trigger').click();
-      if (!project.classList.contains('is-open')) project.querySelector('.project-index-trigger').click();
-      project.querySelector('.project-index-trigger').focus({ preventScroll: true });
-    });
-    const reference = document.createElement('a'); reference.href = p.source; reference.textContent = 'Location reference'; reference.target = '_blank'; reference.rel = 'noopener noreferrer';
-    links.append(view, reference); detail.append(links);
+    const imageButton = document.createElement('button'); imageButton.type = 'button'; imageButton.textContent = 'Open image';
+    imageButton.addEventListener('click', () => openPreview(slug));
+    links.append(imageButton, projectLink(p)); detail.append(links);
   }
   for (const [company, name] of Object.entries(companies)) {
     const group = document.createElement('optgroup'); group.label = name;
     data.projects.filter(p => p.company === company).forEach(p => { const option = document.createElement('option'); option.value = p.slug; option.textContent = p.name; group.append(option); });
     select.append(group);
   }
-  select.addEventListener('change', () => { if (select.value) showProject(select.value); });
+  select.addEventListener('change', () => { if (select.value) openPreview(select.value); });
   function draw(container) {
     const region = container.dataset.projectMap, map = data.maps[region];
     const width = container.clientWidth, height = container.clientHeight;
@@ -102,12 +151,12 @@
       }
     }
     for (const p of markers) {
-      const marker = node('a', { href: '#project-map-title', class: `map-marker${p.precision === 'city' ? ' is-city' : ''}${selected === p.slug ? ' is-selected' : ''}`, 'data-slug': p.slug, 'data-company': p.company, 'aria-label': `${p.name}, ${companies[p.company]}, ${p.location}${p.precision === 'city' ? ', city-level location' : ''}`, transform: `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})` });
-      marker.append(node('title', {}, `${p.name}\n${companies[p.company]}\n${p.location}`));
-      marker.append(node('circle', { r: 10, class: 'map-hit-area' }));
-      marker.append(node('circle', { r: 10.5, class: 'map-focus-ring' }));
-      marker.append(p.company === 'ww' ? node('circle', { r: 6.5, class: 'map-point' }) : node('path', { d: 'M0,-7.5L7.5,0L0,7.5L-7.5,0Z', class: 'map-point' }));
-      marker.addEventListener('click', e => { e.preventDefault(); showProject(p.slug); });
+      const marker = node('a', { href: '#project-map-title', class: `map-marker${selected === p.slug ? ' is-selected' : ''}`, 'data-slug': p.slug, 'data-company': p.company, 'aria-label': `Open ${p.name} image, ${companies[p.company]}, ${p.city}`, 'aria-haspopup': 'dialog', transform: `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})` });
+      marker.append(node('title', {}, `${p.name}\n${companies[p.company]}\n${p.city}`));
+      marker.append(node('circle', { r: 14, class: 'map-hit-area' }));
+      marker.append(node('circle', { r: 15, class: 'map-focus-ring' }));
+      marker.append(hardHat(p.company));
+      marker.addEventListener('click', e => { e.preventDefault(); openPreview(p.slug); });
       marker.addEventListener('focus', () => showProject(p.slug));
       svg.append(marker);
     }
@@ -129,10 +178,12 @@
         const r = { left: box.x + dx, right: box.x + box.width + dx, top: box.y + dy, bottom: box.y + box.height + dy };
         let score = Math.hypot(dx, dy);
         score += 100 * (Math.max(0, 3 - r.left) + Math.max(0, r.right - width + 3) + Math.max(0, 3 - r.top) + Math.max(0, r.bottom - height + 3));
-        for (const p of markers) if (p.x + 10 > r.left && p.x - 10 < r.right && p.y + 10 > r.top && p.y - 10 < r.bottom) score += 1000;
+        for (const p of markers) if (p.x + 14 > r.left && p.x - 14 < r.right && p.y + 14 > r.top && p.y - 14 < r.bottom) score += 1000;
         for (const other of placed) if (r.left < other.right + 3 && r.right > other.left - 3 && r.top < other.bottom + 3 && r.bottom > other.top - 3) score += 500;
         if (!best || score < best.score) best = { dx, dy, r, score };
       }
+      // Keep every hard hat clear on narrow maps when a city label has no room.
+      if (best.score >= 500) { label.remove(); continue; }
       label.setAttribute('x', x + best.dx); label.setAttribute('y', y + best.dy); placed.push(best.r);
     }
   }
