@@ -1,5 +1,5 @@
 /* Freelance section: extends the portfolio's existing Athletics / blue / coral system. */
-.site-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.site-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .home-page .portfolio-accordion {
   --section-count: 5;
