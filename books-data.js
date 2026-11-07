@@ -1,4 +1,4 @@
-// 2026 shelf. Ratings supplied by James; no review text is published.
+// 2026 shelf. Ratings supplied by James; flat spine artwork is inspired by the front covers.
 window.PORTFOLIO_BOOKS = [
   {
     "id": "the-candy-house",
@@ -12,8 +12,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-candy-house.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-candy-house.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "driven",
@@ -27,8 +27,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 6,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/driven.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/driven.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "william",
@@ -42,8 +42,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/william.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/william.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "carmilla",
@@ -57,8 +57,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/carmilla.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/carmilla.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-exorcist",
@@ -72,8 +72,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-exorcist.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-exorcist.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-day-of-the-triffids",
@@ -87,8 +87,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-day-of-the-triffids.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-day-of-the-triffids.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-underground-railroad",
@@ -102,8 +102,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-underground-railroad.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-underground-railroad.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "tokyo-express",
@@ -117,7 +117,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/tokyo-express.svg",
+    "spine": "assets/books/spines/tokyo-express.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -132,7 +132,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/jaws.svg",
+    "spine": "assets/books/spines/jaws.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -147,8 +147,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-abominable.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-abominable.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-institute",
@@ -162,8 +162,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 5,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-institute.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-institute.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "exiles",
@@ -177,8 +177,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 10,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/exiles.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/exiles.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "jane-eyre",
@@ -192,8 +192,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/jane-eyre.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/jane-eyre.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "salt",
@@ -207,8 +207,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/salt.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/salt.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "station-eleven",
@@ -222,8 +222,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/station-eleven.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/station-eleven.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "hyperion",
@@ -237,8 +237,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 6,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/hyperion.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/hyperion.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-dutch-house",
@@ -252,8 +252,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-dutch-house.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-dutch-house.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-dorians",
@@ -267,8 +267,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 5,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-dorians.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-dorians.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-buffalo-hunter-hunter",
@@ -282,8 +282,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-buffalo-hunter-hunter.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-buffalo-hunter-hunter.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "nothing-but-the-night",
@@ -297,8 +297,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 5,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/nothing-but-the-night.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/nothing-but-the-night.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "butchers-crossing",
@@ -312,8 +312,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/butchers-crossing.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/butchers-crossing.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-illustrated-man",
@@ -327,8 +327,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-illustrated-man.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-illustrated-man.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "basquiat",
@@ -342,7 +342,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/basquiat.svg",
+    "spine": "assets/books/spines/basquiat.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -357,7 +357,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/native-son.svg",
+    "spine": "assets/books/spines/native-son.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -372,8 +372,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 6,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/look-at-me.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/look-at-me.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "my-heart-is-a-chainsaw",
@@ -387,8 +387,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/my-heart-is-a-chainsaw.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/my-heart-is-a-chainsaw.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-mummy",
@@ -402,8 +402,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-mummy.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-mummy.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "a-winter-haunting",
@@ -417,8 +417,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 6,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/a-winter-haunting.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/a-winter-haunting.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "big-sur",
@@ -432,8 +432,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/big-sur.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/big-sur.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-city-and-its-uncertain-walls",
@@ -447,8 +447,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-city-and-its-uncertain-walls.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-city-and-its-uncertain-walls.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "no-country-for-old-men",
@@ -462,7 +462,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/no-country-for-old-men.svg",
+    "spine": "assets/books/spines/no-country-for-old-men.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -477,7 +477,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 9,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/batman-court-of-owls.svg",
+    "spine": "assets/books/spines/batman-court-of-owls.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -492,8 +492,8 @@ window.PORTFOLIO_BOOKS = [
     "rating": 8,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-ruins.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/the-ruins.svg?v=cover-spines-4",
+    "spineType": "recreated"
   },
   {
     "id": "the-disposable-man",
@@ -507,7 +507,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 7,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/the-disposable-man.svg",
+    "spine": "assets/books/spines/the-disposable-man.svg?v=cover-spines-4",
     "spineType": "recreated"
   },
   {
@@ -522,7 +522,7 @@ window.PORTFOLIO_BOOKS = [
     "rating": 6,
     "quote": "",
     "year": 2026,
-    "spine": "assets/books/spines/come-with-me.webp",
-    "spineType": "photographed"
+    "spine": "assets/books/spines/come-with-me.svg?v=cover-spines-4",
+    "spineType": "recreated"
   }
 ];

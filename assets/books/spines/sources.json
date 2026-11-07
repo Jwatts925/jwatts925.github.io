@@ -1,219 +1,217 @@
 {
   "year": 2026,
-  "photographed": 28,
-  "recreated": 7,
+  "photographed": 0,
+  "recreated": 35,
   "books": [
     {
       "id": "the-candy-house",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-candy-house.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "driven",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/driven.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "william",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/william.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "carmilla",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/carmilla.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-exorcist",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-exorcist.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-day-of-the-triffids",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-day-of-the-triffids.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-underground-railroad",
-      "type": "photographed",
-      "source": "BOOK1.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-underground-railroad.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "tokyo-express",
-      "type": "recreated",
-      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/tokyo-express.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "jaws",
-      "type": "recreated",
-      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/jaws.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-abominable",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-abominable.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-institute",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-institute.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "exiles",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/exiles.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "jane-eyre",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/jane-eyre.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "salt",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/salt.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "station-eleven",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/station-eleven.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "hyperion",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/hyperion.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-dutch-house",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-dutch-house.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-dorians",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-dorians.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-buffalo-hunter-hunter",
-      "type": "photographed",
-      "source": "BOOK 2.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-buffalo-hunter-hunter.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "nothing-but-the-night",
-      "type": "photographed",
-      "source": "BOOK 3.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/nothing-but-the-night.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "butchers-crossing",
-      "type": "photographed",
-      "source": "BOOK 3.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/butchers-crossing.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-illustrated-man",
-      "type": "photographed",
-      "source": "BOOK 3.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-illustrated-man.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "basquiat",
-      "type": "recreated",
-      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/basquiat.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "native-son",
-      "type": "recreated",
-      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/native-son.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "look-at-me",
-      "type": "photographed",
-      "source": "BOOOK 4.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/look-at-me.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "my-heart-is-a-chainsaw",
-      "type": "photographed",
-      "source": "BOOOK 4.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/my-heart-is-a-chainsaw.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-mummy",
-      "type": "photographed",
-      "source": "BOOK 5.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-mummy.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "a-winter-haunting",
-      "type": "photographed",
-      "source": "BOOK 5.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/a-winter-haunting.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "big-sur",
-      "type": "photographed",
-      "source": "BOOK 5.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/big-sur.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-city-and-its-uncertain-walls",
-      "type": "photographed",
-      "source": "BOOK 5.jpg",
-      "method": "Only the visible book spine was cropped and straightened. The original photograph remains private."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-city-and-its-uncertain-walls.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "no-country-for-old-men",
-      "type": "recreated",
-      "source": "Flat SVG based on the visible spine typography, colors, and existing cover. Complete original spine was obscured or not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/no-country-for-old-men.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "batman-court-of-owls",
-      "type": "recreated",
-      "source": "https://images4.penguinrandomhouse.com/cover/9781401235420?height=1200&alt=cover",
-      "method": "Flat SVG based on the verified cover colors and typography. A complete matching spine was not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/batman-court-of-owls.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-ruins",
-      "type": "photographed",
-      "source": "https://bookshopapocalypse.com/cdn/shop/products/theruins-2.jpg?v=1650625236&width=1946",
-      "method": "real spine photograph crop",
-      "notes": "Perspective crop only; actual black jacket, red author, white title and red floral art. Photograph has mylar reflections."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-ruins.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "the-disposable-man",
-      "type": "recreated",
-      "source": "https://covers.openlibrary.org/b/isbn/9780892966851-L.jpg",
-      "method": "Flat SVG based on the verified cover colors and typography. A complete matching spine was not found online."
+      "type": "cover-based SVG",
+      "source": "assets/books/the-disposable-man.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     },
     {
       "id": "come-with-me",
-      "type": "photographed",
-      "source": "https://static.wixstatic.com/media/5b22b1_c78596ad923143aab6553fc44ff96a8b~mv2.jpg",
-      "method": "real spine photograph crop",
-      "notes": "Extracted only the Titan Books spine from a bookshelf photograph; no unrelated books or hands in crop. Earlier printing: white title, cyan author, dark forest/figure."
+      "type": "cover-based SVG",
+      "source": "assets/books/come-with-me.jpg",
+      "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
     }
-  ],
-  "research": [
-    "https://www.hamiltonbook.com/basquiat-a-quick-killing-in-art-paperbound",
-    "https://www.goodreads.com/book/show/15622.Native_Son",
-    "https://www.manhattanrarebooks.com/pages/books/561/peter-benchley/jaws?soldItem=true"
   ]
 }
