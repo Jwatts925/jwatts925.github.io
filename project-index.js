@@ -37,7 +37,14 @@ const projectIndexData = [
   { name: "Sutter MOB", address: "Roseville, CA", slug: "sutter-mob", images: 5 },
   { name: "Millbrae Yards Phase II", address: "Millbrae, CA", slug: "millbrae-yards-phase-ii", images: 5 },
   { name: "SLAC - National Accelerator Lab", address: "Menlo Park, CA", slug: "slac-national-accelerator-lab", images: 10 },
-  { name: "San Quentin Rehabilitation Center", address: "San Quentin, CA", slug: "san-quentin-rehabilitation-center", images: 13 },
+  {
+    name: "San Quentin Rehabilitation Center", address: "San Quentin, CA", slug: "san-quentin-rehabilitation-center", images: 13,
+    photos: [
+      { file: "site-01.jpg", alt: "San Quentin Rehabilitation Center courtyard and glazed building facades", width: 2000, height: 1181 },
+      { file: "site-02.jpg", alt: "Glazing, metal cladding, and courtyard seating at San Quentin Rehabilitation Center", width: 1757, height: 1800 },
+      { file: "site-03.jpg", alt: "San Quentin Rehabilitation Center rooftop terrace beside the glazed facade", width: 2000, height: 1334 },
+    ],
+  },
   {
     name: "Stanford Atrium", address: "Stanford, CA", slug: "stanford-atrium", images: 10,
     photos: [
@@ -82,12 +89,13 @@ if (projectIndexList) {
       return 0;
     });
   const csErectorsProjects = projectIndexData.slice(saintFrancisIndex + 1);
+  const sanQuentin = csErectorsProjects.find((project) => project.slug === "san-quentin-rehabilitation-center");
   const stanfordAtrium = csErectorsProjects.find((project) => project.slug === "stanford-atrium");
   const companyGroups = [
     { name: "Walters & Wolf", logo: "walters-wolf", projects: waltersWolfProjects },
     {
       name: "C/S Erectors", logo: "cs-erectors",
-      projects: [stanfordAtrium, ...csErectorsProjects.filter((project) => project !== stanfordAtrium)],
+      projects: [sanQuentin, stanfordAtrium, ...csErectorsProjects.filter((project) => project !== sanQuentin && project !== stanfordAtrium)],
     },
   ];
 
