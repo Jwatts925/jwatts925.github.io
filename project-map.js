@@ -45,6 +45,7 @@
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) preview.close();
   });
   const projectEntry = p => [...document.querySelectorAll('.project-index-item')].find(item => item.querySelector('.project-index-title')?.textContent === p.name);
+  const modelImage = p => projectEntry(p)?.querySelector('img[src$="/image-01.jpg"]');
   function projectLink(p) {
     const link = document.createElement('a'); link.href = `#map-project-${p.slug}`; link.textContent = 'View project ↗';
     link.addEventListener('click', event => {
@@ -64,10 +65,10 @@
     const p = data.projects.find(project => project.slug === slug);
     if (!p) return;
     showProject(slug);
-    const sourceImage = projectEntry(p)?.querySelector('img');
+    const sourceImage = modelImage(p);
     const image = preview.querySelector('.map-preview-image');
     image.src = sourceImage?.getAttribute('src') || `assets/project-index/${p.slug}/image-01.jpg`;
-    image.alt = sourceImage?.alt || `${p.name} project image`;
+    image.alt = sourceImage?.alt || `${p.name} 3D model`;
     preview.querySelector('.map-preview-company').textContent = companies[p.company];
     preview.querySelector('.map-preview-heading').dataset.company = p.company;
     preview.querySelector('#map-preview-title').textContent = p.name;
@@ -110,22 +111,29 @@
   function showProject(slug) {
     const p = data.projects.find(project => project.slug === slug);
     if (!p) return;
+    if (selected === slug && detail.querySelector('.map-model-preview')) return;
     selected = slug; select.value = slug;
     figure.querySelectorAll('.map-marker').forEach(marker => marker.classList.toggle('is-selected', marker.dataset.slug === slug));
     detail.replaceChildren();
-    const add = (cls, text) => { const el = document.createElement('p'); el.className = cls; el.textContent = text; detail.append(el); };
+    const heading = document.createElement('div'); heading.className = 'map-detail-heading';
+    const add = (cls, text) => { const el = document.createElement('p'); el.className = cls; el.textContent = text; heading.append(el); };
     add('map-detail-company', companies[p.company]); add('map-detail-name', p.name); add('map-detail-location', p.city);
     const links = document.createElement('div'); links.className = 'map-detail-links';
-    const imageButton = document.createElement('button'); imageButton.type = 'button'; imageButton.textContent = 'Open image';
-    imageButton.addEventListener('click', () => openPreview(slug));
-    links.append(imageButton, projectLink(p)); detail.append(links);
+    links.append(projectLink(p));
+    const imageButton = document.createElement('button'); imageButton.type = 'button'; imageButton.className = 'map-model-preview';
+    imageButton.setAttribute('aria-label', `Enlarge ${p.name} model image`); imageButton.setAttribute('aria-haspopup', 'dialog');
+    const sourceImage = modelImage(p), image = document.createElement('img');
+    image.src = sourceImage?.getAttribute('src') || `assets/project-index/${p.slug}/image-01.jpg`;
+    image.alt = `${p.name} 3D model`; image.decoding = 'async';
+    imageButton.append(image); imageButton.addEventListener('click', () => openPreview(slug));
+    detail.append(heading, links, imageButton);
   }
   for (const [company, name] of Object.entries(companies)) {
     const group = document.createElement('optgroup'); group.label = name;
     data.projects.filter(p => p.company === company).forEach(p => { const option = document.createElement('option'); option.value = p.slug; option.textContent = p.name; group.append(option); });
     select.append(group);
   }
-  select.addEventListener('change', () => { if (select.value) openPreview(select.value); });
+  select.addEventListener('change', () => { if (select.value) showProject(select.value); });
   function draw(container) {
     const region = container.dataset.projectMap, map = data.maps[region];
     const width = container.clientWidth, height = container.clientHeight;
@@ -151,12 +159,12 @@
       }
     }
     for (const p of markers) {
-      const marker = node('a', { href: '#project-map-title', class: `map-marker${selected === p.slug ? ' is-selected' : ''}`, 'data-slug': p.slug, 'data-company': p.company, 'aria-label': `Open ${p.name} image, ${companies[p.company]}, ${p.city}`, 'aria-haspopup': 'dialog', transform: `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})` });
+      const marker = node('a', { href: '#map-project-detail', class: `map-marker${selected === p.slug ? ' is-selected' : ''}`, 'data-slug': p.slug, 'data-company': p.company, 'aria-label': `Show ${p.name} model, ${companies[p.company]}, ${p.city}`, transform: `translate(${p.x.toFixed(2)} ${p.y.toFixed(2)})` });
       marker.append(node('title', {}, `${p.name}\n${companies[p.company]}\n${p.city}`));
       marker.append(node('circle', { r: 14, class: 'map-hit-area' }));
       marker.append(node('circle', { r: 15, class: 'map-focus-ring' }));
       marker.append(hardHat(p.company));
-      marker.addEventListener('click', e => { e.preventDefault(); openPreview(p.slug); });
+      marker.addEventListener('click', e => { e.preventDefault(); showProject(p.slug); });
       marker.addEventListener('focus', () => showProject(p.slug));
       svg.append(marker);
     }
@@ -192,5 +200,6 @@
   const render = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(() => drawings.forEach(draw)); };
   new ResizeObserver(render).observe(figure);
   if (document.fonts) document.fonts.ready.then(render);
+  showProject(data.projects[0].slug);
   render();
 })();
