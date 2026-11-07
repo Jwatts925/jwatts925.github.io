@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="James Watts — 3D Modeling portfolio." />
-  <title>3D Modeling | James Watts Portfolio</title>
+  <meta name="description" content="James Watts — 3D Models portfolio." />
+  <title>3D Models | James Watts Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="swiss-theme.css?v=project-logos-20261106-4" />
   <script defer src="script.js?v=contact-fasteners-2"></script>
   <script defer src="project-index.js?v=san-quentin-photos-20261106"></script>
-  <link rel="stylesheet" href="project-map.css?v=20261106-1" />
+  <link rel="stylesheet" href="project-map.css?v=models-layout-20261106-2" />
   <script defer src="project-map-data.js?v=20261106-1"></script>
   <script defer src="project-map.js?v=20261106-1"></script>
   <link rel="stylesheet" href="freelance.css?v=freelance-books-20261106-1" />
@@ -44,31 +44,12 @@
       <div class="container category-hero-grid">
         <div class="category-title-block reveal">
           <p class="eyebrow">Portfolio 01</p>
-          <h1>3D Modeling</h1>
+          <h1>3D Models</h1>
           <p class="category-hero-copy project-map-intro">Project-specific Revit modeling and coordinated information for glazing and facade systems—from early estimating and design assist through shop drawings, fabrication support, and field installation.</p>
           <a class="category-back" href="index.html#experience"><span aria-hidden="true">←</span> Back to experience</a>
         </div>
 
-        <figure class="project-location-map reveal" aria-labelledby="project-map-title">
-          <figcaption class="project-map-heading"><span id="project-map-title">Project locations</span><span>42 projects</span></figcaption>
-          <div class="project-map-legend" aria-label="Map legend">
-            <span><i class="map-key map-key-ww" aria-hidden="true"></i>Walters &amp; Wolf <span class="map-company-count">22</span></span>
-            <span><i class="map-key map-key-cs" aria-hidden="true"></i>C/S Erectors <span class="map-company-count">20</span></span>
-          </div>
-          <div class="project-map-composition">
-            <div class="project-map-panel project-map-bay"><p class="map-panel-title">San Francisco Bay Area</p><div class="map-drawing" data-project-map="bay"></div></div>
-            <div class="project-map-side">
-              <div class="project-map-panel project-map-west"><p class="map-panel-title">California + Nevada</p><div class="map-drawing" data-project-map="west"></div></div>
-              <div class="map-project-detail" id="map-project-detail" aria-live="polite" aria-atomic="true">
-                <p class="map-detail-prompt">Explore the projects.</p><p class="map-detail-help">Select a marker to see the project and location.</p>
-              </div>
-            </div>
-          </div>
-          <div class="map-selection"><label class="visually-hidden" for="map-project-select">Choose a project location</label><select id="map-project-select"><option value="">Choose a project…</option></select></div>
-          <p class="map-location-note">Outlined markers indicate city locations. Nearby markers are separated for clarity.</p>
-          <p class="map-credit">Map outlines: <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener noreferrer">Natural Earth</a></p>
-          <noscript><p>Project names and cities are listed in the Project Index below.</p></noscript>
-        </figure>
+
       </div>
     </section>
 
@@ -97,17 +78,12 @@
           </article>
         </div>
 
-        <section class="project-index" id="project-index" aria-labelledby="project-index-title">
-          <h2 id="project-index-title">Project Index</h2>
-          <div class="project-index-list" data-project-index></div>
-        </section>
-
         <section class="bim-sheet-gallery" aria-label="Selected BIM model sheets">
           <div class="bim-sheet-list">
             <figure class="bim-sheet">
               <img
                 src="assets/bim-master-sheets/sheet-1.webp"
-                alt="Selected BIM models overview sheet one"
+                alt="Walters &amp; Wolf 3D building models overview"
                 loading="eager"
                 decoding="async"
               />
@@ -116,7 +92,7 @@
             <figure class="bim-sheet">
               <img
                 src="assets/bim-master-sheets/sheet-2.webp"
-                alt="Selected BIM models overview sheet two"
+                alt="C/S Erectors 3D building models overview"
                 loading="eager"
                 decoding="async"
               />
@@ -124,9 +100,37 @@
           </div>
         </section>
 
+        <section class="project-index" id="project-index" aria-labelledby="project-index-title">
+          <h2 id="project-index-title">Project Index</h2>
+          <div class="project-index-list" data-project-index></div>
+        </section>
+
+        <figure class="project-location-map reveal" aria-labelledby="project-map-title">
+          <figcaption class="project-map-heading"><span id="project-map-title">Project locations</span><span>42 projects</span></figcaption>
+          <div class="project-map-legend" aria-label="Map legend">
+            <span><i class="map-key map-key-ww" aria-hidden="true"></i>Walters &amp; Wolf <span class="map-company-count">22</span></span>
+            <span><i class="map-key map-key-cs" aria-hidden="true"></i>C/S Erectors <span class="map-company-count">20</span></span>
+          </div>
+          <div class="project-map-composition">
+            <div class="project-map-panel project-map-bay"><p class="map-panel-title">San Francisco Bay Area</p><div class="map-drawing" data-project-map="bay"></div></div>
+            <div class="project-map-side">
+              <div class="project-map-panel project-map-west"><p class="map-panel-title">California + Nevada</p><div class="map-drawing" data-project-map="west"></div></div>
+              <div class="map-project-detail" id="map-project-detail" aria-live="polite" aria-atomic="true">
+                <p class="map-detail-prompt">Explore the projects.</p><p class="map-detail-help">Select a marker to see the project and location.</p>
+              </div>
+            </div>
+          </div>
+          <div class="map-selection"><label class="visually-hidden" for="map-project-select">Choose a project location</label><select id="map-project-select"><option value="">Choose a project…</option></select></div>
+          <p class="map-location-note">Outlined markers indicate city locations. Nearby markers are separated for clarity.</p>
+          <p class="map-credit">Map outlines: <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener noreferrer">Natural Earth</a></p>
+          <noscript><p>Project names and cities are listed in the Project Index above.</p></noscript>
+        </figure>
+
+
+
 
         <nav class="category-navigation reveal" aria-label="Portfolio categories">
-          <a href="bim-coordination.html" aria-current="page">3D Modeling</a>
+          <a href="bim-coordination.html" aria-current="page">3D Models</a>
           <a href="facade-design-manual.html">Facade Design Manual</a>
           <a href="automation.html">Dynamo + PyRevit</a>
           <a href="documentation.html">Logistics &amp; Proposals</a>
