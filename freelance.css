@@ -214,7 +214,7 @@
 .fl-card-action p { margin: 0; font-size: .76rem; line-height: 1.6; }
 #facade-pricing .fl-quote-factors .fl-item-number,
 #facade-pricing .fl-card-action p {
-  color: #ffe6b6;
+  color: var(--coral);
 }
 .fl-card-return {
   display: none;
