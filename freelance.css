@@ -206,6 +206,10 @@
 .fl-card-action { padding: 0 clamp(1.4rem,2.5vw,2.5rem) clamp(1.4rem,2.5vw,2.5rem); }
 .fl-card-action .fl-button { display: flex; width: 100%; box-sizing: border-box; }
 .fl-card-action p { margin: .8rem 0 0; font-size: .76rem; line-height: 1.6; }
+#facade-pricing .fl-quote-factors .fl-item-number,
+#facade-pricing .fl-card-action p {
+  color: #ffe6b6;
+}
 .fl-options-title { margin: 0 0 1rem; color: inherit; font-size: 1.1rem; line-height: 1.3; font-weight: 500; }
 .fl-delivery-options { margin: 0 0 2rem; border-top: 1px solid var(--grid-line); }
 .fl-delivery-options > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--grid-line); font-size: .88rem; line-height: 1.5; }

@@ -451,20 +451,6 @@ summary:focus-visible {
   }
 }
 
-.portrait-click-hint {
-  display: block;
-  width: 100%;
-  margin-top: 0.2rem;
-  color: var(--tech-blue);
-  font-family: var(--sans);
-  font-size: 0.58rem;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-align: center;
-  text-transform: lowercase;
-}
-
 .hero-portrait:focus-visible {
   outline: 2px solid var(--coral);
   outline-offset: 0.35rem;
