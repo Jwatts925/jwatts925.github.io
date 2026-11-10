@@ -28,19 +28,28 @@
   }
 
   .home-page .editorial-hero-grid {
+    --hero-name-inset: clamp(0.75rem, 1.6cqi, 1.5rem);
     container-type: inline-size;
     grid-template-rows: auto auto minmax(0, 1fr) auto;
     row-gap: clamp(0.75rem, 2svh, 1.5rem);
   }
 
   .home-page .hero-nameplate {
-    gap: clamp(1rem, 4cqi, 4.5rem);
+    --hero-name-word-gap: clamp(1rem, 4cqi, 4.5rem);
+    gap: var(--hero-name-word-gap);
     font-size: clamp(3rem, min(12.4cqi, 16svh), 11.5rem);
-    letter-spacing: 0.045em;
+    /* The name takes about 6.75em before tracking, with nine gaps between letters. */
+    letter-spacing: clamp(
+      0.045em,
+      calc((100cqi - var(--hero-name-inset) - var(--hero-name-word-gap) - 6.75em) / 9),
+      0.24em
+    );
   }
 
   .home-page .hero-disciplines {
+    grid-column: 1 / -1;
     margin: 0;
+    margin-inline-end: var(--hero-name-inset);
     padding-top: clamp(0.5rem, 1.2svh, 0.8rem);
   }
 

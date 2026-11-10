@@ -212,8 +212,7 @@
 }
 .fl-card-action .fl-button { display: flex; grid-column: 1 / -1; width: 100%; box-sizing: border-box; }
 .fl-card-action p { margin: 0; font-size: .76rem; line-height: 1.6; }
-#facade-pricing .fl-quote-factors .fl-item-number,
-#facade-pricing .fl-card-action p {
+#facade-pricing .fl-quote-factors .fl-item-number {
   color: var(--coral);
 }
 .fl-card-return {

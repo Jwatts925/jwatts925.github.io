@@ -920,7 +920,7 @@ summary:focus-visible {
 }
 
 .education-logo {
-  width: clamp(5.5rem, 8vw, 8rem);
+  width: clamp(5.5rem, 9.5vw, 9.5rem);
   height: auto;
   flex: 0 0 auto;
   object-fit: contain;
@@ -946,6 +946,11 @@ summary:focus-visible {
   gap: 0.4rem;
   padding-top: 0;
   border-top: 0;
+}
+
+.education-details > strong {
+  font-size: clamp(1.25rem, 1.6vw, 1.625rem);
+  line-height: 1.2;
 }
 
 .education-date {
