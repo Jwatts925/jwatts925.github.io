@@ -167,6 +167,54 @@
 .fl-pricing-section { margin-top: var(--fl-section-band); margin-bottom: var(--fl-section-band); }
 .fl-project-art { display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr); place-items: center; height: clamp(19rem, 28vw, 28rem); padding: 1.25rem; }
 .fl-project-model { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.fl-sfo-caption { flex-wrap: wrap; }
+.fl-sfo-toggle { min-height: 44px; padding: .55rem .85rem; cursor: pointer; font-family: inherit; }
+.fl-sfo-toggle:disabled { cursor: wait; opacity: .7; }
+.fl-sfo-viewer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  border: 1px solid var(--tech-blue);
+  background: #f8faff;
+  color: var(--tech-blue);
+}
+.fl-sfo-dialog {
+  width: min(calc(100% - 1.5rem), 96rem);
+  height: calc(100% - 1.5rem);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+}
+.fl-sfo-dialog::backdrop { background: rgb(27 42 76 / 72%); }
+body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
+.fl-sfo-stage { min-width: 0; min-height: 0; }
+.fl-sfo-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.fl-sfo-stage canvas:active { cursor: grabbing; }
+.fl-sfo-stage canvas:focus-visible { outline: 2px solid var(--tech-blue); outline-offset: -3px; }
+.fl-sfo-tools { padding: .4rem .65rem; border-top: 1px solid #ccd7ef; background: #fff; font-size: .74rem; }
+.fl-sfo-tools p { margin: 0; }
+.fl-sfo-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .75rem; margin-top: .15rem; }
+.fl-sfo-selection { flex: 1 1 9rem; font-weight: 600; }
+.fl-sfo-controls button {
+  min-height: 36px;
+  padding: .2rem 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+  cursor: pointer;
+  font: inherit;
+}
+.fl-sfo-status { margin: -.5rem 0 .9rem; font-size: .82rem; }
+.fl-sfo-status:empty, .fl-sfo-viewer[hidden], .fl-terminal-art [hidden], .fl-sfo-caption [hidden] { display: none; }
+@media (max-width: 480px) {
+  .fl-terminal-art.is-model-active { height: clamp(18rem, 75vw, 23rem); }
+  .fl-sfo-selection { flex-basis: 100%; }
+}
 .fl-project-specs { display: grid; gap: .65rem; margin: 0; padding: 0 0 1.5rem; font-size: .82rem; line-height: 1.5; }
 .fl-project-specs > div { display: grid; grid-template-columns: 3.5rem minmax(0,1fr); gap: 1rem; }
 .fl-project-specs dt { font-size: .66rem; text-transform: uppercase; letter-spacing: .06em; padding-top: .18rem; }

@@ -8,8 +8,9 @@
   <title>Freelance Facade Modeling &amp; Revit Automation | James Watts</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="swiss-theme.css" />
-  <link rel="stylesheet" href="freelance.css?v=pricing-return-3" />
+  <link rel="stylesheet" href="freelance.css?v=sfo-viewer-1" />
   <script defer src="script.js?v=pricing-return-1"></script>
+  <script type="module" src="assets/freelance/sfo-viewer.js"></script>
 </head>
 <body class="category-page freelance-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -111,9 +112,27 @@
     <section class="fl-projects-section" id="projects" aria-labelledby="projects-title"><div class="container">
       <div class="fl-projects-heading"><h2 id="projects-title">Past Projects</h2><p>Real freelance work for glazing contractors, with the scope and deliverables shown up front.</p></div>
       <div class="fl-project-grid">
-        <article class="fl-project" aria-labelledby="sfo-project-title">
-            <div class="fl-project-art fl-terminal-art"><img class="fl-project-model fl-sfo-model" src="assets/freelance/sfo-t3w-transparent.png" alt="SFO Terminal 3W glazing, aluminum panels, and entrance model" loading="lazy" /></div>
-            <div class="fl-project-caption"><div><p>ACR Glazing Contractors</p><h3 id="sfo-project-title">SFO Terminal 3W</h3></div></div>
+        <article class="fl-project" id="sfo-terminal-3w" aria-labelledby="sfo-project-title">
+            <div class="fl-project-art fl-terminal-art">
+              <img class="fl-project-model fl-sfo-model" src="assets/freelance/sfo-t3w-transparent.png" alt="SFO Terminal 3W glazing, aluminum panels, and entrance model" loading="lazy" />
+              <div class="fl-sfo-viewer" id="sfo-viewer" hidden>
+                <div class="fl-sfo-stage"></div>
+                <div class="fl-sfo-tools">
+                  <p id="sfo-viewer-help">Drag to orbit. Scroll or pinch to zoom. Right-drag or two-finger drag to pan.</p>
+                  <div class="fl-sfo-controls">
+                    <p class="fl-sfo-selection" role="status">Select a part to inspect it.</p>
+                    <button class="fl-sfo-reset" type="button">Reset view</button>
+                    <button class="fl-sfo-expand" type="button">Expand view</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <dialog class="fl-sfo-dialog" aria-label="Expanded SFO Terminal 3W model"></dialog>
+            <div class="fl-project-caption fl-sfo-caption">
+              <div><p>ACR Glazing Contractors</p><h3 id="sfo-project-title">SFO Terminal 3W</h3></div>
+              <button class="fl-button fl-sfo-toggle" type="button" aria-controls="sfo-viewer" aria-expanded="false" hidden>Explore in 3D</button>
+            </div>
+            <p class="fl-sfo-status" role="status"></p>
             <dl class="fl-project-specs"><div><dt>Scope</dt><dd>Glazing / Aluminum Panels / Doors</dd></div><div><dt>Area</dt><dd>3,200 square feet</dd></div><div><dt>Delivery</dt><dd>3D model</dd></div></dl>
         </article>
         <article class="fl-project" aria-labelledby="harvest-project-title">
