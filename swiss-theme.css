@@ -764,150 +764,118 @@ summary:focus-visible {
 }
 
 .experience-list {
-  border-top: 2px solid var(--tech-blue);
+  --experience-gutter: clamp(1rem, 2.5vw, 2.5rem);
+  border-top: 1px solid var(--tech-blue);
 }
 
 .experience-entry {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-areas: "role role role logo logo logo copy copy copy copy copy copy";
-  gap: clamp(1rem, 2vw, 2rem);
-  align-items: center;
-  padding: clamp(2rem, 4vw, 3.5rem) 0;
   border-bottom: 1px solid var(--tech-blue);
-  transition: background 180ms ease;
 }
 
-.experience-entry::before {
+.experience-trigger {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 1rem;
+  gap: 1rem;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.75rem) var(--experience-gutter);
+  color: var(--tech-blue);
+  background: var(--white);
+  cursor: pointer;
+  list-style: none;
+}
+
+.experience-trigger::-webkit-details-marker {
   display: none;
 }
 
-.experience-entry:hover {
-  background: linear-gradient(90deg, rgba(210, 215, 223, 0.32), transparent 72%);
-}
-
-.experience-entry:hover::before {
-  transform: scaleY(1);
-}
-
-.experience-brand {
-  grid-area: logo;
-  display: flex;
-  height: 100%;
-  min-height: 12rem;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-}
-
-.experience-index,
-.experience-role p,
-.experience-meta {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.experience-index {
-  position: absolute;
-  top: clamp(2rem, 4vw, 3.5rem);
-  right: 0;
-  z-index: 1;
-  color: var(--coral);
-}
-
-.experience-entry:first-child .experience-index {
-  top: 1.65rem;
-}
-
-.experience-index,
-.service-number,
-.capability-grid-merged .card-number,
-.editorial-project-grid .project-number {
-  font-size: clamp(0.95rem, 1vw, 1.1rem) !important;
-  line-height: 1;
-}
-
-.experience-logo {
-  display: flex;
-  width: min(100%, 10rem);
-  height: 7rem;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
+.experience-trigger::after {
+  width: 0.65rem;
+  height: 0.65rem;
   justify-self: center;
-  padding: 0;
-  background: transparent;
-  border: 0;
+  content: "";
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  transform: translateY(-20%) rotate(45deg);
 }
 
-.experience-logo-wide {
-  width: min(100%, 12rem);
+.experience-entry[open] > .experience-trigger::after {
+  transform: translateY(20%) rotate(225deg);
 }
 
-.experience-logo img {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  filter: brightness(0) saturate(100%) invert(36%) sepia(28%) saturate(1934%) hue-rotate(185deg) brightness(92%) contrast(87%);
+.experience-trigger:hover {
+  background: var(--pale-slate);
 }
 
-.experience-role {
-  grid-area: role;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: center;
+.experience-entry:nth-child(even) > .experience-trigger {
+  color: var(--white);
+  background: var(--tech-blue);
 }
 
-.experience-role p {
-  margin: 0 0 1.15rem;
-  color: var(--tech-blue);
+.experience-trigger:hover,
+.experience-entry[open] > .experience-trigger {
+  box-shadow: inset 0 -3px var(--coral);
 }
 
-.experience-role h3 {
-  max-width: 17rem;
-  margin: 0;
-  color: var(--tech-blue);
+.experience-trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -5px;
+}
+
+.experience-company {
   font-family: var(--display);
-  font-size: clamp(2.3rem, 4vw, 4.6rem);
+  font-size: clamp(1.5rem, 3.4vw, 3.5rem);
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.035em;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 .experience-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.55rem 0.85rem;
-  margin-top: 1.4rem;
-}
-
-.experience-meta time {
-  color: var(--coral);
+  gap: 0.35rem 0.75rem;
+  font-family: var(--mono);
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
 .experience-location {
-  padding-left: 0.85rem;
-  color: var(--deep-ink);
-  border-left: 1px solid var(--tech-blue);
+  padding-left: 0.75rem;
+  border-left: 1px solid currentColor;
+}
+
+.experience-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 2fr);
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  align-items: center;
+  padding: clamp(1.25rem, 3vw, 2.5rem) var(--experience-gutter);
+}
+
+.experience-role {
+  margin: 0;
+  color: var(--tech-blue);
+  font-family: var(--display);
+  font-size: clamp(1.65rem, 3vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.experience-logo {
+  display: block;
+  width: min(100%, 10rem);
+  height: auto;
+  max-height: 6rem;
+  justify-self: center;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(36%) sepia(28%) saturate(1934%) hue-rotate(185deg) brightness(92%) contrast(87%);
 }
 
 .experience-copy {
-  grid-area: copy;
-  align-self: center;
-  padding-top: 1.7rem;
-  border-top: 1px solid var(--grid-line);
-}
-
-.experience-copy ul {
   display: grid;
   gap: 1rem;
   margin: 0;
@@ -993,11 +961,6 @@ summary:focus-visible {
   border-bottom: 2px solid var(--tech-blue);
 }
 
-/* Skills merged into Experience */
-.experience-skills {
-  margin-top: 5rem;
-}
-
 .experience-resume-download {
   display: flex;
   width: min(100%, 28rem);
@@ -1017,6 +980,13 @@ summary:focus-visible {
 
 .experience-resume-download:hover {
   color: var(--tech-blue);
+}
+
+.service-number,
+.capability-grid-merged .card-number,
+.editorial-project-grid .project-number {
+  font-size: clamp(0.95rem, 1vw, 1.1rem) !important;
+  line-height: 1;
 }
 
 .merged-section-label {
@@ -2043,9 +2013,11 @@ summary:focus-visible {
   .portfolio-section-title { padding: 0.15em 0 0.04em; font-size: clamp(3.15rem, 15vw, 7rem); line-height: 0.78; }
   .portfolio-section-number { align-self: end; padding-bottom: 0.8rem; font-size: 1rem; }
   .portfolio-section-inner { padding-top: clamp(2.5rem, 9vw, 4rem); padding-bottom: clamp(3rem, 11vw, 5rem); }
-  .experience-entry { grid-template-areas: "role role role role role role role role logo logo logo logo" "copy copy copy copy copy copy copy copy copy copy copy copy"; }
-  .experience-brand { transform: none; }
-  .experience-copy { margin-top: 0.5rem; }
+  .experience-trigger { grid-template-columns: minmax(0, 1fr) 1rem; gap: 0.4rem 0.75rem; }
+  .experience-trigger::after { grid-column: 2; grid-row: 1 / span 2; }
+  .experience-meta { grid-column: 1; }
+  .experience-panel { grid-template-columns: minmax(0, 1fr) minmax(0, clamp(4rem, 19vw, 8rem)); }
+  .experience-copy { grid-column: 1 / -1; }
   .education-heading-group,
   .education-details { grid-column: 1 / -1; }
   .education-inline { row-gap: 0.75rem; }
@@ -2123,14 +2095,6 @@ summary:focus-visible {
   .portfolio-section-trigger { grid-template-columns: minmax(0, 1fr) 2rem; }
   .portfolio-section-title { font-size: clamp(3rem, 15vw, 4.8rem); }
   .portfolio-section-number { grid-column: 2; }
-  .experience-entry { grid-template-columns: 1fr; grid-template-areas: "role" "logo" "copy"; gap: 1.25rem; padding-block: 2.25rem; }
-  .experience-brand { min-height: 8rem; justify-content: center; justify-self: stretch; }
-  .experience-index { top: 2.25rem; right: 0; }
-  .experience-logo,
-  .experience-logo-wide { width: min(8rem, 44vw); height: 6rem; margin-inline: auto; justify-self: center; }
-  .experience-role h3 { max-width: none; font-size: clamp(2.65rem, 14vw, 4rem); line-height: 0.88; }
-  .experience-meta { gap: 0.45rem 0.65rem; margin-top: 1rem; line-height: 1.4; }
-  .experience-copy { margin-top: 0; padding-top: 1.25rem; }
   .experience-copy li { font-size: 0.96rem; line-height: 1.6; }
   .education-inline { padding: 1.25rem; }
   .education-heading-group { display: grid; grid-template-columns: minmax(3.75rem, 4.25rem) minmax(0, 1fr); align-items: center; gap: 0.75rem; }

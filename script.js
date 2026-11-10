@@ -160,6 +160,20 @@ if (window.location.hash) {
   }
 }
 
+document.querySelectorAll('.fl-card-return').forEach((button) => {
+  const card = button.closest('.fl-pricing-card');
+  const details = card.querySelector('.fl-pricing-details');
+  const summary = details.querySelector('summary');
+
+  button.addEventListener('click', () => {
+    details.open = false;
+    summary.focus({ preventScroll: true });
+    card.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'instant' : 'smooth' });
+  });
+
+  button.hidden = false;
+});
+
 
 // Update the portfolio page indicator as the reader scrolls.
 const portfolioReader = document.querySelector('[data-portfolio-reader]');
