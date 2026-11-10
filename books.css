@@ -41,6 +41,52 @@
 .books-shelf { position: relative; isolation: isolate; display: flex; align-items: flex-end; gap: 3px; width: max-content; min-width: 100%; height: 320px; padding: 38px 25px 40px; box-sizing: border-box; }
 .books-shelf::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; bottom: 38px; height: 80px; background: linear-gradient(0deg, #b4a18d30, transparent); pointer-events: none; }
 .books-shelf::after { content: ''; position: absolute; z-index: 2; left: 0; right: 0; bottom: 29px; height: 11px; background: #cda681; pointer-events: none; }
+.books-current {
+  --current-cover-width: 124px;
+  --stand-color: #514940;
+  display: grid;
+  flex: none;
+  justify-items: center;
+  gap: 8px;
+  margin: 0 clamp(.65rem, 1.6vw, 1.4rem) 0 0;
+}
+.books-current .books-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .6rem;
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+.books-current .books-label::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.books-current-stand { position: relative; padding: 0 7px 12px; }
+.books-current-stand img {
+  display: block;
+  width: var(--current-cover-width);
+  height: auto;
+  box-shadow: 0 3px 8px #17243826;
+}
+.books-current-stand::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 8px;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--stand-color);
+}
+.books-current-stand::after {
+  content: '';
+  position: absolute;
+  inset: auto 12px 0;
+  height: 8px;
+  border-inline: 3px solid var(--stand-color);
+}
 .books-spine { position: relative; flex: 0 0 var(--book-width); width: var(--book-width); height: var(--book-height); border: 0; border-radius: 1px 1px 0 0; margin: 0; padding: 0; background: var(--book-color); color: var(--book-ink); cursor: grab; user-select: none; transition: transform 240ms ease, opacity 240ms ease; -webkit-tap-highlight-color: transparent; }
 .books-spine:hover, .books-spine:focus-visible { transform: translateY(-12px); z-index: 3; }
 .books-spine:focus-visible { outline: 3px solid var(--tech-blue); outline-offset: 4px; }
@@ -88,6 +134,7 @@
   .books-quote .books-label { font-size: .57rem; }
   .books-return { font-size: .65rem; margin-top: .6rem; }
   .books-shelf { height: 230px; padding-inline: 12px; }
+  .books-current { --current-cover-width: 90px; }
   .books-spine { height: calc(var(--book-height) * .68); }
   .books-spine-title { top: 15px; bottom: 40px; font-size: calc(var(--spine-font) * .9); }
   .books-hover-label { font-size: .7rem; }
@@ -110,6 +157,7 @@
   .books-quote { min-height: 2.8rem; }
   .books-return { margin-top: .2rem; }
   .books-shelf { height: 210px; padding-top: 0; }
+  .books-current { --current-cover-width: 86px; }
   .books-spine { height: calc(var(--book-height) * .63); }
   .books-spine-title { top: 15px; bottom: 40px; font-size: calc(var(--spine-font) * .84); }
   .books-spine-author { bottom: 15px; }

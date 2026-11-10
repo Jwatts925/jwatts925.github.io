@@ -233,5 +233,13 @@
       "https://bookbot.sk/g/576935"
     ],
     "notes": "Current publisher cover for verified ISBN 9781789097375. The real spine photograph shows the same title and Titan Books publisher in an earlier visual design; the exact printing and ISBN of the photographed spine are not visible and are not claimed verified."
+  },
+  {
+    "title": "Song of Kali",
+    "author": "Dan Simmons",
+    "isbn": "9780312865832",
+    "coverSource": "https://mpd-biblio-covers.imgix.net/9780312865832.jpg",
+    "catalogSource": "https://us.macmillan.com/books/9780312865832/songofkali/",
+    "notes": "Tor paperback cover for the currently reading display."
   }
 ]

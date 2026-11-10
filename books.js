@@ -25,8 +25,7 @@
   const scrollButtons = Array.from(library.querySelectorAll('[data-books-scroll]'));
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const defaultHint = 'Choose a spine to view its cover.';
-  library.querySelector('.books-count').textContent = `${books.length} books`;
-  viewport.setAttribute('aria-label', `2026 bookshelf — scroll horizontally to browse all ${books.length} books`);
+  library.querySelector('.books-count').textContent = `${books.length} shelved`;
   let activeIndex = -1;
   let flight;
   let gesture;

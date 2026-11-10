@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="swiss-theme.css?v=employment-tabs-1" />
   <script defer src="script.js?v=portrait-toggle-1"></script>
   <link rel="stylesheet" href="freelance.css?v=freelance-books-2026-flat-2" />
-  <link rel="stylesheet" href="books.css?v=books-2026-swipe-2" />
+  <link rel="stylesheet" href="books.css?v=books-2026-current-read-1" />
   <link rel="stylesheet" href="home-layout.css?v=responsive-hero-1" />
   <script defer src="books-data.js?v=books-2026-cover-spines-4"></script>
-  <script defer src="books.js?v=books-2026-swipe-1"></script>
+  <script defer src="books.js?v=books-2026-current-read-1"></script>
   <link rel="stylesheet" href="artwork.css?v=artwork-4" />
   <script defer src="artwork.js?v=artwork-1"></script>
 </head>
@@ -251,7 +251,7 @@
         </summary>
         <div class="portfolio-section-panel books-panel">
           <div class="container books-library" data-books-library>
-            <div class="books-heading"><p class="books-eyebrow">2026 Shelf</p><p class="books-count">35 books</p></div>
+            <div class="books-heading"><p class="books-eyebrow">2026 Shelf</p><p class="books-count">35 shelved</p></div>
             <div class="books-display">
               <div class="books-selection" id="books-selected" data-books-selection>
                 <div class="books-cover-anchor" data-books-cover>
@@ -275,8 +275,15 @@
               </div>
               <div class="books-empty" data-books-empty hidden><p class="books-eyebrow">The next chapter</p><h3>Pull up a book.</h3><p>Choose any spine below to see its cover.</p></div>
             </div>
-            <div class="books-shelf-viewport" data-books-viewport role="region" aria-label="2026 bookshelf — scroll horizontally to browse all 35 books">
-              <div class="books-shelf" data-books-shelf role="group" aria-label="Book spines" aria-describedby="books-arrange-help"></div>
+            <div class="books-shelf-viewport" data-books-viewport role="region" aria-label="2026 bookshelf">
+              <div class="books-shelf" data-books-shelf role="group" aria-label="Books on the shelf" aria-describedby="books-arrange-help">
+                <figure class="books-current">
+                  <figcaption class="books-label">Currently reading</figcaption>
+                  <div class="books-current-stand">
+                    <img src="assets/books/song-of-kali.jpg" alt="Song of Kali by Dan Simmons" width="1400" height="2120" loading="lazy" decoding="async" draggable="false" />
+                  </div>
+                </figure>
+              </div>
             </div>
             <div class="books-shelf-footer">
               <p class="books-hover-label" data-books-hint></p>
