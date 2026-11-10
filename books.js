@@ -24,7 +24,7 @@
   const status = library.querySelector('[data-books-status]');
   const scrollButtons = Array.from(library.querySelectorAll('[data-books-scroll]'));
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const defaultHint = 'Click a spine to view its cover. Drag to rearrange the shelf.';
+  const defaultHint = 'Choose a spine to view its cover.';
   library.querySelector('.books-count').textContent = `${books.length} books`;
   viewport.setAttribute('aria-label', `2026 bookshelf — scroll horizontally to browse all ${books.length} books`);
   let activeIndex = -1;
@@ -179,20 +179,17 @@
   }
 
   function beginGesture(event, button) {
-    if (!event.isPrimary || event.button !== 0 || gesture) return;
-    const touch = event.pointerType !== 'mouse';
+    if (event.pointerType !== 'mouse' || !event.isPrimary || event.button !== 0 || gesture) return;
     gesture = {
-      pointerId: event.pointerId, button, touch, mode: 'pending',
-      startX: event.clientX, startY: event.clientY, lastX: event.clientX,
+      pointerId: event.pointerId, button, mode: 'pending',
+      startX: event.clientX, startY: event.clientY,
       x: event.clientX, y: event.clientY, scrollBehavior: viewport.style.scrollBehavior,
     };
     button.setPointerCapture(event.pointerId);
-    if (touch) gesture.timer = window.setTimeout(startDrag, 300);
   }
 
   function startDrag() {
     if (!gesture || gesture.mode !== 'pending') return;
-    window.clearTimeout(gesture.timer);
     gesture.mode = 'drag';
     gesture.sourceRect = gesture.button.getBoundingClientRect();
     gesture.ghost = gesture.button.cloneNode(true);
@@ -220,25 +217,11 @@
     gesture.y = event.clientY;
     const dx = event.clientX - gesture.startX;
     const dy = event.clientY - gesture.startY;
-    if (gesture.mode === 'pending') {
-      if (!gesture.touch && Math.hypot(dx, dy) >= 7) startDrag();
-      else if (gesture.touch && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
-        window.clearTimeout(gesture.timer);
-        gesture.mode = 'browse';
-        viewport.style.scrollBehavior = 'auto';
-      } else if (gesture.touch && Math.abs(dy) > 8) {
-        window.clearTimeout(gesture.timer);
-        gesture.mode = 'vertical';
-      }
-    }
+    if (gesture.mode === 'pending' && Math.hypot(dx, dy) >= 7) startDrag();
     if (gesture.mode === 'drag') {
       event.preventDefault();
       updateDrag();
-    } else if (gesture.mode === 'browse') {
-      event.preventDefault();
-      viewport.scrollLeft -= event.clientX - gesture.lastX;
     }
-    gesture.lastX = event.clientX;
   }
 
   function updateDrag() {
@@ -277,7 +260,6 @@
     if (!gesture || (event && event.pointerId !== gesture.pointerId)) return;
     const current = gesture;
     gesture = undefined;
-    window.clearTimeout(current.timer);
     cancelAnimationFrame(dragFrame);
     current.ghost?.remove();
     current.button.classList.remove('is-dragging');
@@ -285,8 +267,8 @@
     dropMarker.hidden = true;
     viewport.style.scrollBehavior = current.scrollBehavior;
     if (current.button.hasPointerCapture(current.pointerId)) current.button.releasePointerCapture(current.pointerId);
-    if (current.mode === 'drag' || current.mode === 'browse') suppressClickUntil = performance.now() + 450;
     if (current.mode === 'drag') {
+      suppressClickUntil = performance.now() + 450;
       if (commit) {
         const from = spineButtons.indexOf(current.button);
         moveBook(from, current.targetIndex ?? from);

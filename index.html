@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="swiss-theme.css?v=book-hover-59" />
   <script defer src="script.js?v=portrait-toggle-1"></script>
   <link rel="stylesheet" href="freelance.css?v=freelance-books-2026-flat-2" />
-  <link rel="stylesheet" href="books.css?v=books-2026-drag-3" />
+  <link rel="stylesheet" href="books.css?v=books-2026-swipe-1" />
   <link rel="stylesheet" href="home-layout.css?v=responsive-hero-1" />
   <script defer src="books-data.js?v=books-2026-cover-spines-4"></script>
-  <script defer src="books.js?v=books-2026-drag-3"></script>
+  <script defer src="books.js?v=books-2026-swipe-1"></script>
   <link rel="stylesheet" href="artwork.css?v=artwork-4" />
   <script defer src="artwork.js?v=artwork-1"></script>
 </head>
@@ -325,7 +325,14 @@
               <p class="books-hover-label" data-books-hint></p>
               <div class="books-shelf-controls" aria-label="Browse the shelf"><button class="books-scroll" type="button" data-books-scroll="-1" aria-label="Scroll shelf left">←</button><button class="books-scroll" type="button" data-books-scroll="1" aria-label="Scroll shelf right">→</button></div>
             </div>
-            <div class="books-arrange-help"><p id="books-arrange-help">Drag to rearrange. On touchscreens, press and hold. <span class="books-status">Use Alt and the left or right arrow key to move a focused book.</span> Your arrangement is saved in this browser.</p><button class="books-reset-order" type="button" data-books-reset-order>Reset order</button></div>
+            <div class="books-arrange-help">
+              <p id="books-arrange-help">
+                <span class="books-mouse-help">Drag to rearrange. Your arrangement is saved in this browser.</span>
+                <span class="books-touch-help">Swipe left or right to browse the shelf.</span>
+                <span class="books-status">Use Alt and the left or right arrow key to move a focused book.</span>
+              </p>
+              <button class="books-reset-order" type="button" data-books-reset-order>Reset order</button>
+            </div>
             <p class="books-status" aria-live="polite" aria-atomic="true" data-books-status></p>
             <noscript><p>Enable JavaScript to explore the interactive shelf.</p></noscript>
           </div>
