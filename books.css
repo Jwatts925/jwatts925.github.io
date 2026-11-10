@@ -59,7 +59,7 @@
 .books-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .books-arrange-help { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem; margin: .3rem 0 0; font-size: .7rem; color: #596b88; }
 .books-touch-help { display: none; }
-@media (pointer: coarse) {
+@media (max-width: 760px), (pointer: coarse) {
   .books-mouse-help { display: none; }
   .books-touch-help { display: inline; }
 }
