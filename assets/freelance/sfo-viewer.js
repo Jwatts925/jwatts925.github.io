@@ -73,7 +73,7 @@ async function createViewer() {
     new URL('./sfo-t3w-display.glb', import.meta.url).href,
   );
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xf8faff);
+  scene.background = new THREE.Color(0xffffff);
   const fill = new THREE.HemisphereLight(0xffffff, 0x9aaac0, 2);
   const sun = new THREE.DirectionalLight(0xfff5e8, 2.25);
   sun.position.set(4, 7, 5);

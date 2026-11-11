@@ -173,7 +173,7 @@
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   border: 1px solid var(--tech-blue);
-  background: #f8faff;
+  background: #fff;
   color: var(--tech-blue);
 }
 .fl-sfo-dialog {
