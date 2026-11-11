@@ -924,6 +924,7 @@ summary:focus-visible {
   height: auto;
   flex: 0 0 auto;
   object-fit: contain;
+  transform: scale(1.2);
 }
 
 .education-heading-group h3 {
