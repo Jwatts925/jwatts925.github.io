@@ -104,7 +104,7 @@
 /* Revision 2: quiet model slots and the portfolio's shared contact section. */
 .fl-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .fl-projects-heading { margin-bottom: 2rem; }
-.fl-terminal-art, .fl-harvest-art { color: var(--tech-blue); background: transparent; }
+.fl-model-art { color: var(--tech-blue); background: transparent; }
 .fl-model-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; opacity: .65; }
 .fl-model-placeholder svg { width: 4.5rem; height: 4.5rem; }
 .fl-model-placeholder > span { font-size: .72rem; letter-spacing: .04em; }
@@ -166,8 +166,7 @@
 .fl-pricing-section + .fl-projects-section { padding-top: 0; }
 .fl-pricing-section { margin-top: var(--fl-section-band); margin-bottom: var(--fl-section-band); }
 .fl-project-art { display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr); place-items: center; height: clamp(19rem, 28vw, 28rem); padding: 1.25rem; }
-.fl-project-model { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
-.fl-sfo-viewer {
+.fl-model-viewer {
   position: absolute;
   inset: 0;
   display: grid;
@@ -176,7 +175,7 @@
   background: #fff;
   color: var(--tech-blue);
 }
-.fl-sfo-dialog {
+.fl-model-dialog {
   width: min(calc(100% - 1.5rem), 96rem);
   height: calc(100% - 1.5rem);
   max-width: none;
@@ -185,10 +184,10 @@
   border: 0;
   overflow: hidden;
 }
-.fl-sfo-dialog::backdrop { background: rgb(27 42 76 / 72%); }
-body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
-.fl-sfo-stage { position: relative; min-width: 0; min-height: 0; }
-.fl-sfo-placeholder {
+.fl-model-dialog::backdrop { background: rgb(27 42 76 / 72%); }
+body:has(.fl-model-dialog[open]) { overflow: hidden; }
+.fl-model-stage { position: relative; min-width: 0; min-height: 0; }
+.fl-model-placeholder {
   position: absolute;
   inset: 0;
   display: grid;
@@ -199,15 +198,15 @@ body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
   text-align: center;
   font-size: .85rem;
 }
-.fl-sfo-placeholder p { margin: 0; }
-.fl-sfo-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
-.fl-sfo-stage canvas:active { cursor: grabbing; }
-.fl-sfo-stage canvas:focus-visible { outline: 2px solid var(--tech-blue); outline-offset: -3px; }
-.fl-sfo-tools { padding: .4rem .65rem; border-top: 1px solid #ccd7ef; background: #fff; font-size: .74rem; }
-.fl-sfo-tools p { margin: 0; }
-.fl-sfo-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .75rem; margin-top: .15rem; }
-.fl-sfo-selection { flex: 1 1 9rem; font-weight: 600; }
-.fl-sfo-controls button, .fl-sfo-retry {
+.fl-model-placeholder p { margin: 0; }
+.fl-model-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.fl-model-stage canvas:active { cursor: grabbing; }
+.fl-model-stage canvas:focus-visible { outline: 2px solid var(--tech-blue); outline-offset: -3px; }
+.fl-model-tools { padding: .4rem .65rem; border-top: 1px solid #ccd7ef; background: #fff; font-size: .74rem; }
+.fl-model-tools p { margin: 0; }
+.fl-model-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .75rem; margin-top: .15rem; }
+.fl-model-selection { flex: 1 1 9rem; font-weight: 600; }
+.fl-model-controls button, .fl-model-retry {
   min-height: 36px;
   padding: .2rem 0;
   color: inherit;
@@ -218,11 +217,11 @@ body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
   cursor: pointer;
   font: inherit;
 }
-.fl-sfo-controls button:disabled { opacity: .55; cursor: default; }
-.fl-sfo-status:empty, .fl-sfo-viewer [hidden] { display: none; }
+.fl-model-controls button:disabled { opacity: .55; cursor: default; }
+.fl-model-status:empty, .fl-model-viewer [hidden] { display: none; }
 @media (max-width: 480px) {
-  .fl-project-art.fl-terminal-art { height: clamp(18rem, 75vw, 23rem); }
-  .fl-sfo-selection { flex-basis: 100%; }
+  .fl-project-art.fl-model-art { height: clamp(18rem, 75vw, 23rem); }
+  .fl-model-selection { flex-basis: 100%; }
 }
 .fl-project-specs { display: grid; gap: .65rem; margin: 0; padding: 0 0 1.5rem; font-size: .82rem; line-height: 1.5; }
 .fl-project-specs > div { display: grid; grid-template-columns: 3.5rem minmax(0,1fr); gap: 1rem; }

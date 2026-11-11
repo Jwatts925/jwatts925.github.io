@@ -8,9 +8,9 @@
   <title>Freelance Facade Modeling &amp; Revit Automation | James Watts</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="swiss-theme.css" />
-  <link rel="stylesheet" href="freelance.css?v=sfo-viewer-3" />
+  <link rel="stylesheet" href="freelance.css?v=facade-viewers-1" />
   <script defer src="script.js?v=pricing-return-1"></script>
-  <script type="module" src="assets/freelance/sfo-viewer.js?v=3"></script>
+  <script type="module" src="assets/freelance/facade-viewers.js"></script>
 </head>
 <body class="category-page freelance-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -113,33 +113,52 @@
       <div class="fl-projects-heading"><h2 id="projects-title">Past Projects</h2><p>Real freelance work for glazing contractors, with the scope and deliverables shown up front.</p></div>
       <div class="fl-project-grid">
         <article class="fl-project" id="sfo-terminal-3w" aria-labelledby="sfo-project-title">
-            <div class="fl-project-art fl-terminal-art">
-              <div class="fl-sfo-viewer" id="sfo-viewer">
-                <div class="fl-sfo-stage">
-                  <div class="fl-sfo-placeholder">
-                    <p class="fl-sfo-status" role="status"></p>
-                    <button class="fl-sfo-retry" type="button" hidden>Retry loading model</button>
+            <div class="fl-project-art fl-model-art">
+              <div class="fl-model-viewer" id="sfo-viewer" data-project="SFO Terminal 3W" data-model="sfo-t3w-display.glb" data-angle="-0.815 0.479 -0.327">
+                <div class="fl-model-stage">
+                  <div class="fl-model-placeholder">
+                    <p class="fl-model-status" role="status"></p>
+                    <button class="fl-model-retry" type="button" hidden>Retry loading model</button>
                     <noscript><p>Enable JavaScript to view the 3D model.</p></noscript>
                   </div>
                 </div>
-                <div class="fl-sfo-tools">
-                  <p id="sfo-viewer-help">Drag to orbit. Click the model, then scroll to zoom, or pinch on touch. Right-drag or two-finger drag to pan.</p>
-                  <div class="fl-sfo-controls">
-                    <p class="fl-sfo-selection" role="status">Select a part to inspect it.</p>
-                    <button class="fl-sfo-reset" type="button" disabled>Reset view</button>
-                    <button class="fl-sfo-expand" type="button" disabled>Expand view</button>
+                <div class="fl-model-tools">
+                  <p class="fl-model-help" id="sfo-viewer-help">Drag to orbit. Click the model, then scroll to zoom, or pinch on touch. Right-drag or two-finger drag to pan.</p>
+                  <div class="fl-model-controls">
+                    <p class="fl-model-selection" role="status">Select a part to inspect it.</p>
+                    <button class="fl-model-reset" type="button" disabled>Reset view</button>
+                    <button class="fl-model-expand" type="button" disabled>Expand view</button>
                   </div>
                 </div>
               </div>
             </div>
-            <dialog class="fl-sfo-dialog" aria-label="Expanded SFO Terminal 3W model"></dialog>
+            <dialog class="fl-model-dialog" aria-label="Expanded SFO Terminal 3W model"></dialog>
             <div class="fl-project-caption">
               <div><p>ACR Glazing Contractors</p><h3 id="sfo-project-title">SFO Terminal 3W</h3></div>
             </div>
             <dl class="fl-project-specs"><div><dt>Scope</dt><dd>Glazing / Aluminum Panels / Doors</dd></div><div><dt>Area</dt><dd>3,200 square feet</dd></div><div><dt>Delivery</dt><dd>3D model</dd></div></dl>
         </article>
-        <article class="fl-project" aria-labelledby="harvest-project-title">
-            <div class="fl-project-art fl-harvest-art"><img class="fl-project-model fl-harvest-model" src="assets/freelance/second-harvest-transparent.png" alt="Second Harvest model showing glazing and door assemblies" loading="lazy" /></div>
+        <article class="fl-project" id="second-harvest" aria-labelledby="harvest-project-title">
+            <div class="fl-project-art fl-model-art">
+              <div class="fl-model-viewer" id="harvest-viewer" data-project="Second Harvest" data-model="second-harvest-display.glb" data-angle="0.891 0.163 -0.425">
+                <div class="fl-model-stage">
+                  <div class="fl-model-placeholder">
+                    <p class="fl-model-status" role="status"></p>
+                    <button class="fl-model-retry" type="button" hidden>Retry loading model</button>
+                    <noscript><p>Enable JavaScript to view the 3D model.</p></noscript>
+                  </div>
+                </div>
+                <div class="fl-model-tools">
+                  <p class="fl-model-help" id="harvest-viewer-help">Drag to orbit. Click the model, then scroll to zoom, or pinch on touch. Right-drag or two-finger drag to pan.</p>
+                  <div class="fl-model-controls">
+                    <p class="fl-model-selection" role="status">Select a part to inspect it.</p>
+                    <button class="fl-model-reset" type="button" disabled>Reset view</button>
+                    <button class="fl-model-expand" type="button" disabled>Expand view</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <dialog class="fl-model-dialog" aria-label="Expanded Second Harvest model"></dialog>
             <div class="fl-project-caption"><div><p>Royal Glass</p><h3 id="harvest-project-title">Second Harvest</h3></div></div>
             <dl class="fl-project-specs"><div><dt>Scope</dt><dd>Glazing / Doors / Shop Drawing Package</dd></div><div><dt>Area</dt><dd>6,500 square feet</dd></div><div><dt>Delivery</dt><dd>3D model + shop drawing package</dd></div></dl>
         </article>

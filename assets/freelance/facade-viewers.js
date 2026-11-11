@@ -1,76 +1,86 @@
-const viewer = document.querySelector('#sfo-viewer');
-const stage = viewer.querySelector('.fl-sfo-stage');
-const art = viewer.parentElement;
-const dialog = document.querySelector('.fl-sfo-dialog');
-const reset = viewer.querySelector('.fl-sfo-reset');
-const expand = viewer.querySelector('.fl-sfo-expand');
-const selection = viewer.querySelector('.fl-sfo-selection');
-const placeholder = viewer.querySelector('.fl-sfo-placeholder');
-const status = placeholder.querySelector('.fl-sfo-status');
-const retry = placeholder.querySelector('.fl-sfo-retry');
 const selectionHint = 'Select a part to inspect it.';
-let modelView;
+document.querySelectorAll('.fl-model-viewer').forEach(mountViewer);
 
-function showLoadError(message) {
-  reset.disabled = true;
-  expand.disabled = true;
-  placeholder.hidden = false;
-  retry.hidden = false;
-  status.textContent = message;
-}
+function mountViewer(viewer) {
+  const art = viewer.parentElement;
+  const dialog = art.closest('.fl-project').querySelector('.fl-model-dialog');
+  const reset = viewer.querySelector('.fl-model-reset');
+  const expand = viewer.querySelector('.fl-model-expand');
+  const placeholder = viewer.querySelector('.fl-model-placeholder');
+  const status = placeholder.querySelector('.fl-model-status');
+  const retry = placeholder.querySelector('.fl-model-retry');
+  const canExpand = typeof dialog.showModal === 'function';
+  let modelView;
 
-async function loadViewer() {
-  status.textContent = 'Loading 3D model…';
-  retry.hidden = true;
-  try {
-    modelView = await createViewer();
-    modelView.resize();
-    placeholder.hidden = true;
-    reset.disabled = false;
-    expand.disabled = false;
-  } catch (error) {
-    console.error('SFO Terminal 3W viewer:', error);
-    showLoadError('The 3D model could not load.');
+  function showLoadError(message) {
+    reset.disabled = true;
+    expand.disabled = true;
+    placeholder.hidden = false;
+    retry.hidden = false;
+    status.textContent = message;
   }
-}
 
-retry.addEventListener('click', loadViewer);
-if ('IntersectionObserver' in window) {
-  status.textContent = 'Loading 3D model…';
-  const visibility = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return;
-    visibility.disconnect();
+  function onContextLost() {
+    modelView = null;
+    if (dialog.open) dialog.close();
+    showLoadError('The 3D view was interrupted.');
+  }
+
+  async function loadViewer() {
+    status.textContent = 'Loading 3D model…';
+    retry.hidden = true;
+    try {
+      modelView = await createViewer(viewer, dialog, onContextLost);
+      modelView.resize();
+      placeholder.hidden = true;
+      reset.disabled = false;
+      expand.disabled = false;
+    } catch (error) {
+      console.error(`${viewer.dataset.project} viewer:`, error);
+      showLoadError('The 3D model could not load.');
+    }
+  }
+
+  retry.addEventListener('click', loadViewer);
+  if ('IntersectionObserver' in window) {
+    status.textContent = 'Loading 3D model…';
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      visibility.disconnect();
+      loadViewer();
+    }, { rootMargin: '400px' });
+    visibility.observe(viewer);
+  } else {
     loadViewer();
-  }, { rootMargin: '400px' });
-  visibility.observe(viewer);
-} else {
-  loadViewer();
+  }
+
+  reset.addEventListener('click', () => modelView.fit());
+  expand.hidden = !canExpand;
+  expand.addEventListener('click', () => {
+    if (dialog.open) {
+      dialog.close();
+      return;
+    }
+    dialog.append(viewer);
+    dialog.showModal();
+    expand.textContent = 'Close expanded view';
+    expand.focus();
+    modelView.resize();
+  });
+  dialog.addEventListener('close', () => {
+    art.append(viewer);
+    expand.textContent = 'Expand view';
+    modelView?.resize();
+    (modelView ? expand : retry).focus({ preventScroll: true });
+  });
 }
 
-reset.addEventListener('click', () => modelView.fit());
-expand.hidden = typeof dialog.showModal !== 'function';
-expand.addEventListener('click', () => {
-  if (dialog.open) {
-    dialog.close();
-    return;
-  }
-  dialog.append(viewer);
-  dialog.showModal();
-  expand.textContent = 'Close expanded view';
-  expand.focus();
-  modelView.resize();
-});
-dialog.addEventListener('close', () => {
-  art.append(viewer);
-  expand.textContent = 'Expand view';
-  modelView?.resize();
-  (modelView ? expand : retry).focus({ preventScroll: true });
-});
-
-async function createViewer() {
+async function createViewer(viewer, dialog, onContextLost) {
+  const stage = viewer.querySelector('.fl-model-stage');
+  const selection = viewer.querySelector('.fl-model-selection');
   const { THREE, GLTFLoader, OrbitControls } = await import('./sfo-viewer-engine.js?v=2');
   const { scene: model } = await new GLTFLoader().loadAsync(
-    new URL('./sfo-t3w-display.glb', import.meta.url).href,
+    new URL(viewer.dataset.model, import.meta.url).href,
   );
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
@@ -84,7 +94,7 @@ async function createViewer() {
   const distance = bounds.getSize(new THREE.Vector3()).length();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.02, distance * 4);
   // Match the axonometric angle of the original portfolio render.
-  const openingAngle = new THREE.Vector3(-0.815, 0.479, -0.327).normalize();
+  const openingAngle = new THREE.Vector3(...viewer.dataset.angle.split(' ').map(Number)).normalize();
   const viewRight = new THREE.Vector3().crossVectors(camera.up, openingAngle).normalize();
   const viewUp = new THREE.Vector3().crossVectors(openingAngle, viewRight);
   const vertex = new THREE.Vector3();
@@ -110,8 +120,8 @@ async function createViewer() {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   const canvas = renderer.domElement;
   canvas.tabIndex = 0;
-  canvas.setAttribute('aria-label', 'SFO Terminal 3W interactive facade model');
-  canvas.setAttribute('aria-describedby', 'sfo-viewer-help');
+  canvas.setAttribute('aria-label', `${viewer.dataset.project} interactive facade model`);
+  canvas.setAttribute('aria-describedby', viewer.querySelector('.fl-model-help').id);
   canvas.title = 'Arrow keys to orbit, + or − to zoom, Enter to inspect the center.';
   stage.append(canvas);
 
@@ -199,10 +209,8 @@ async function createViewer() {
     controls.dispose();
     renderer.dispose();
     canvas.remove();
-    modelView = null;
     selection.textContent = selectionHint;
-    if (dialog.open) dialog.close();
-    showLoadError('The 3D view was interrupted.');
+    onContextLost();
   }, { once: true });
 
   return { fit: () => controls.reset(), resize };
