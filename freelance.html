@@ -8,9 +8,9 @@
   <title>Freelance Facade Modeling &amp; Revit Automation | James Watts</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="swiss-theme.css" />
-  <link rel="stylesheet" href="freelance.css?v=sfo-viewer-1" />
+  <link rel="stylesheet" href="freelance.css?v=sfo-viewer-2" />
   <script defer src="script.js?v=pricing-return-1"></script>
-  <script type="module" src="assets/freelance/sfo-viewer.js"></script>
+  <script type="module" src="assets/freelance/sfo-viewer.js?v=2"></script>
 </head>
 <body class="category-page freelance-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -114,25 +114,28 @@
       <div class="fl-project-grid">
         <article class="fl-project" id="sfo-terminal-3w" aria-labelledby="sfo-project-title">
             <div class="fl-project-art fl-terminal-art">
-              <img class="fl-project-model fl-sfo-model" src="assets/freelance/sfo-t3w-transparent.png" alt="SFO Terminal 3W glazing, aluminum panels, and entrance model" loading="lazy" />
-              <div class="fl-sfo-viewer" id="sfo-viewer" hidden>
-                <div class="fl-sfo-stage"></div>
+              <div class="fl-sfo-viewer" id="sfo-viewer">
+                <div class="fl-sfo-stage">
+                  <div class="fl-sfo-placeholder">
+                    <p class="fl-sfo-status" role="status"></p>
+                    <button class="fl-sfo-retry" type="button" hidden>Retry loading model</button>
+                    <noscript><p>Enable JavaScript to view the 3D model.</p></noscript>
+                  </div>
+                </div>
                 <div class="fl-sfo-tools">
-                  <p id="sfo-viewer-help">Drag to orbit. Scroll or pinch to zoom. Right-drag or two-finger drag to pan.</p>
+                  <p id="sfo-viewer-help">Drag to orbit. Click the model, then scroll to zoom, or pinch on touch. Right-drag or two-finger drag to pan.</p>
                   <div class="fl-sfo-controls">
                     <p class="fl-sfo-selection" role="status">Select a part to inspect it.</p>
-                    <button class="fl-sfo-reset" type="button">Reset view</button>
-                    <button class="fl-sfo-expand" type="button">Expand view</button>
+                    <button class="fl-sfo-reset" type="button" disabled>Reset view</button>
+                    <button class="fl-sfo-expand" type="button" disabled>Expand view</button>
                   </div>
                 </div>
               </div>
             </div>
             <dialog class="fl-sfo-dialog" aria-label="Expanded SFO Terminal 3W model"></dialog>
-            <div class="fl-project-caption fl-sfo-caption">
+            <div class="fl-project-caption">
               <div><p>ACR Glazing Contractors</p><h3 id="sfo-project-title">SFO Terminal 3W</h3></div>
-              <button class="fl-button fl-sfo-toggle" type="button" aria-controls="sfo-viewer" aria-expanded="false" hidden>Explore in 3D</button>
             </div>
-            <p class="fl-sfo-status" role="status"></p>
             <dl class="fl-project-specs"><div><dt>Scope</dt><dd>Glazing / Aluminum Panels / Doors</dd></div><div><dt>Area</dt><dd>3,200 square feet</dd></div><div><dt>Delivery</dt><dd>3D model</dd></div></dl>
         </article>
         <article class="fl-project" aria-labelledby="harvest-project-title">

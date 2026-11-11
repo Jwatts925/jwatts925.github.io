@@ -167,9 +167,6 @@
 .fl-pricing-section { margin-top: var(--fl-section-band); margin-bottom: var(--fl-section-band); }
 .fl-project-art { display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr); place-items: center; height: clamp(19rem, 28vw, 28rem); padding: 1.25rem; }
 .fl-project-model { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
-.fl-sfo-caption { flex-wrap: wrap; }
-.fl-sfo-toggle { min-height: 44px; padding: .55rem .85rem; cursor: pointer; font-family: inherit; }
-.fl-sfo-toggle:disabled { cursor: wait; opacity: .7; }
 .fl-sfo-viewer {
   position: absolute;
   inset: 0;
@@ -190,7 +187,19 @@
 }
 .fl-sfo-dialog::backdrop { background: rgb(27 42 76 / 72%); }
 body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
-.fl-sfo-stage { min-width: 0; min-height: 0; }
+.fl-sfo-stage { position: relative; min-width: 0; min-height: 0; }
+.fl-sfo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: .5rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: .85rem;
+}
+.fl-sfo-placeholder p { margin: 0; }
 .fl-sfo-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
 .fl-sfo-stage canvas:active { cursor: grabbing; }
 .fl-sfo-stage canvas:focus-visible { outline: 2px solid var(--tech-blue); outline-offset: -3px; }
@@ -198,7 +207,7 @@ body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
 .fl-sfo-tools p { margin: 0; }
 .fl-sfo-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .75rem; margin-top: .15rem; }
 .fl-sfo-selection { flex: 1 1 9rem; font-weight: 600; }
-.fl-sfo-controls button {
+.fl-sfo-controls button, .fl-sfo-retry {
   min-height: 36px;
   padding: .2rem 0;
   color: inherit;
@@ -209,10 +218,10 @@ body:has(.fl-sfo-dialog[open]) { overflow: hidden; }
   cursor: pointer;
   font: inherit;
 }
-.fl-sfo-status { margin: -.5rem 0 .9rem; font-size: .82rem; }
-.fl-sfo-status:empty, .fl-sfo-viewer[hidden], .fl-terminal-art [hidden], .fl-sfo-caption [hidden] { display: none; }
+.fl-sfo-controls button:disabled { opacity: .55; cursor: default; }
+.fl-sfo-status:empty, .fl-sfo-viewer [hidden] { display: none; }
 @media (max-width: 480px) {
-  .fl-terminal-art.is-model-active { height: clamp(18rem, 75vw, 23rem); }
+  .fl-project-art.fl-terminal-art { height: clamp(18rem, 75vw, 23rem); }
   .fl-sfo-selection { flex-basis: 100%; }
 }
 .fl-project-specs { display: grid; gap: .65rem; margin: 0; padding: 0 0 1.5rem; font-size: .82rem; line-height: 1.5; }

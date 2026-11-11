@@ -1,50 +1,51 @@
 const viewer = document.querySelector('#sfo-viewer');
 const stage = viewer.querySelector('.fl-sfo-stage');
 const art = viewer.parentElement;
-const poster = viewer.previousElementSibling;
 const dialog = document.querySelector('.fl-sfo-dialog');
-const toggle = document.querySelector('.fl-sfo-toggle');
 const reset = viewer.querySelector('.fl-sfo-reset');
 const expand = viewer.querySelector('.fl-sfo-expand');
 const selection = viewer.querySelector('.fl-sfo-selection');
-const status = document.querySelector('.fl-sfo-status');
+const placeholder = viewer.querySelector('.fl-sfo-placeholder');
+const status = placeholder.querySelector('.fl-sfo-status');
+const retry = placeholder.querySelector('.fl-sfo-retry');
 const selectionHint = 'Select a part to inspect it.';
 let modelView;
 
-function showViewer(show) {
-  viewer.hidden = !show;
-  poster.hidden = show;
-  art.classList.toggle('is-model-active', show);
-  toggle.setAttribute('aria-expanded', String(show));
-  toggle.textContent = show ? 'Back to image' : 'Explore in 3D';
-  if (show) viewer.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+function showLoadError(message) {
+  reset.disabled = true;
+  expand.disabled = true;
+  placeholder.hidden = false;
+  retry.hidden = false;
+  status.textContent = message;
 }
 
-toggle.hidden = false;
-toggle.addEventListener('click', async () => {
-  if (modelView) {
-    showViewer(viewer.hidden);
-    if (!viewer.hidden) modelView.focus();
-    return;
-  }
-
-  toggle.disabled = true;
-  toggle.textContent = 'Loading 3D…';
-  status.textContent = 'Loading the SFO Terminal 3W model.';
+async function loadViewer() {
+  status.textContent = 'Loading 3D model…';
+  retry.hidden = true;
   try {
     modelView = await createViewer();
-    showViewer(true);
     modelView.resize();
-    modelView.focus();
-    status.textContent = '';
+    placeholder.hidden = true;
+    reset.disabled = false;
+    expand.disabled = false;
   } catch (error) {
     console.error('SFO Terminal 3W viewer:', error);
-    showViewer(false);
-    status.textContent = 'The 3D model could not load. You can try again or use the project image.';
-  } finally {
-    toggle.disabled = false;
+    showLoadError('The 3D model could not load.');
   }
-});
+}
+
+retry.addEventListener('click', loadViewer);
+if ('IntersectionObserver' in window) {
+  status.textContent = 'Loading 3D model…';
+  const visibility = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    visibility.disconnect();
+    loadViewer();
+  }, { rootMargin: '400px' });
+  visibility.observe(viewer);
+} else {
+  loadViewer();
+}
 
 reset.addEventListener('click', () => modelView.fit());
 expand.hidden = typeof dialog.showModal !== 'function';
@@ -63,11 +64,11 @@ dialog.addEventListener('close', () => {
   art.append(viewer);
   expand.textContent = 'Expand view';
   modelView?.resize();
-  (viewer.hidden ? toggle : expand).focus({ preventScroll: true });
+  (modelView ? expand : retry).focus({ preventScroll: true });
 });
 
 async function createViewer() {
-  const { THREE, GLTFLoader, OrbitControls } = await import('./sfo-viewer-engine.js');
+  const { THREE, GLTFLoader, OrbitControls } = await import('./sfo-viewer-engine.js?v=2');
   const { scene: model } = await new GLTFLoader().loadAsync(
     new URL('./sfo-t3w-display.glb', import.meta.url).href,
   );
@@ -78,8 +79,33 @@ async function createViewer() {
   sun.position.set(4, 7, 5);
   scene.add(model, fill, sun);
 
-  const fieldOfView = 38;
-  const camera = new THREE.PerspectiveCamera(fieldOfView, 1, 0.02, 200);
+  const bounds = new THREE.Box3().setFromObject(model);
+  const target = bounds.getCenter(new THREE.Vector3());
+  const distance = bounds.getSize(new THREE.Vector3()).length();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.02, distance * 4);
+  // Match the axonometric angle of the original portfolio render.
+  const openingAngle = new THREE.Vector3(-0.815, 0.479, -0.327).normalize();
+  const viewRight = new THREE.Vector3().crossVectors(camera.up, openingAngle).normalize();
+  const viewUp = new THREE.Vector3().crossVectors(openingAngle, viewRight);
+  const vertex = new THREE.Vector3();
+  const projected = new THREE.Vector2();
+  const min = new THREE.Vector2(Infinity, Infinity);
+  const max = new THREE.Vector2(-Infinity, -Infinity);
+  model.traverse((part) => {
+    if (!part.isMesh) return;
+    const positions = part.geometry.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      vertex.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld).sub(target);
+      projected.set(vertex.dot(viewRight), vertex.dot(viewUp));
+      min.min(projected);
+      max.max(projected);
+    }
+  });
+  const frameSize = max.clone().sub(min).multiplyScalar(1.16);
+  const frameCenter = min.add(max).multiplyScalar(0.5);
+  target.addScaledVector(viewRight, frameCenter.x).addScaledVector(viewUp, frameCenter.y);
+  camera.position.copy(target).addScaledVector(openingAngle, distance);
+
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   const canvas = renderer.domElement;
@@ -90,54 +116,25 @@ async function createViewer() {
   stage.append(canvas);
 
   const controls = new OrbitControls(camera, canvas);
-  const bounds = new THREE.Box3().setFromObject(model);
-  const sphere = bounds.getBoundingSphere(new THREE.Sphere());
-  const openingAngle = new THREE.Vector3(-1, 0.44, -0.23).normalize();
-  const viewRight = new THREE.Vector3().crossVectors(camera.up, openingAngle).normalize();
-  const viewUp = new THREE.Vector3().crossVectors(openingAngle, viewRight);
-  const vertex = new THREE.Vector3();
-  controls.maxDistance = sphere.radius * 9;
-  controls.minDistance = 0.3;
+  controls.target.copy(target);
+  controls.minZoom = 0.2;
+  controls.maxZoom = 20;
+  controls.update();
+  controls.saveState();
   const render = () => renderer.render(scene, camera);
   controls.addEventListener('change', render);
-  const fit = () => {
-    const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const horizontal = vertical * camera.aspect;
-    let distance = 0;
-    // Fit the visible shape instead of the large empty corner inside its bounding box.
-    model.traverse((part) => {
-      if (!part.isMesh) return;
-      const positions = part.geometry.attributes.position;
-      for (let i = 0; i < positions.count; i++) {
-        vertex.fromBufferAttribute(positions, i).applyMatrix4(part.matrixWorld).sub(sphere.center);
-        const width = Math.abs(vertex.dot(viewRight)) / horizontal;
-        const height = Math.abs(vertex.dot(viewUp)) / vertical;
-        distance = Math.max(distance, vertex.dot(openingAngle) + Math.max(width, height) * 1.16);
-      }
-    });
-    controls.target.copy(sphere.center);
-    camera.position.copy(sphere.center).addScaledVector(openingAngle, distance);
-    controls.update();
-    render();
-  };
 
-  let fitted = false;
   const resize = () => {
     if (!stage.clientWidth || !stage.clientHeight) return;
     const aspect = stage.clientWidth / stage.clientHeight;
-    camera.aspect = aspect;
-    // Keep the short edge usable when the expanded view is tall and narrow.
-    const vertical = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
-    const minHorizontal = Math.tan(THREE.MathUtils.degToRad(45 / 2));
-    camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.max(vertical, minHorizontal / aspect)));
+    const halfHeight = Math.max(frameSize.y, frameSize.x / aspect) / 2;
+    camera.top = halfHeight;
+    camera.bottom = -halfHeight;
+    camera.right = halfHeight * aspect;
+    camera.left = -camera.right;
     camera.updateProjectionMatrix();
     renderer.setSize(stage.clientWidth, stage.clientHeight, false);
-    if (!fitted) {
-      fitted = true;
-      fit();
-    } else {
-      render();
-    }
+    render();
   };
   const observer = new ResizeObserver(resize);
   observer.observe(stage);
@@ -165,6 +162,10 @@ async function createViewer() {
   }
 
   let pointer;
+  // Let the page keep scrolling until a visitor interacts with the inline model.
+  canvas.addEventListener('wheel', (event) => {
+    if (document.activeElement !== canvas && !dialog.open) event.stopImmediatePropagation();
+  }, { capture: true, passive: true });
   canvas.addEventListener('pointerdown', (event) => {
     pointer = event.isPrimary && event.button === 0
       ? { id: event.pointerId, x: event.clientX, y: event.clientY }
@@ -201,9 +202,8 @@ async function createViewer() {
     modelView = null;
     selection.textContent = selectionHint;
     if (dialog.open) dialog.close();
-    showViewer(false);
-    status.textContent = 'The 3D view was interrupted. Select Explore in 3D to try again.';
+    showLoadError('The 3D view was interrupted.');
   }, { once: true });
 
-  return { fit, resize, focus: () => canvas.focus({ preventScroll: true }) };
+  return { fit: () => controls.reset(), resize };
 }
