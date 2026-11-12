@@ -68,8 +68,10 @@
 .books-current-stand { position: relative; padding: 0 7px 12px; }
 .books-current-stand img {
   display: block;
-  width: var(--current-cover-width);
+  width: auto;
   height: auto;
+  max-width: var(--current-cover-width);
+  max-height: calc(var(--current-cover-width) * 1.52);
   box-shadow: 0 3px 8px #17243826;
 }
 .books-current-stand::before {

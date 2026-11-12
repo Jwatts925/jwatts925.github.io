@@ -524,5 +524,20 @@ window.PORTFOLIO_BOOKS = [
     "year": 2026,
     "spine": "assets/books/spines/come-with-me.svg?v=cover-spines-4",
     "spineType": "recreated"
+  },
+  {
+    "id": "song-of-kali",
+    "title": "Song of Kali",
+    "author": "Dan Simmons",
+    "color": "#702c20",
+    "ink": "#f0e7cf",
+    "width": 32,
+    "height": 248,
+    "cover": "assets/books/song-of-kali.jpg",
+    "rating": 6,
+    "quote": "",
+    "year": 2026,
+    "spine": "assets/books/spines/song-of-kali.svg",
+    "spineType": "recreated"
   }
 ];

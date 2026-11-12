@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="76" height="640" viewBox="0 0 76 640">
+  <title>Song of Kali — Dan Simmons</title>
+  <rect width="76" height="640" fill="#702c20"/>
+  <path d="M76 230C22 315 85 365 26 475C11 501 11 549 29 567H76Z" fill="#974327"/>
+  <rect width="76" height="226" fill="#222522"/>
+  <path d="M0 227H76M0 565H76" stroke="#b37a4d" stroke-width="2"/>
+  <text transform="translate(30 28) rotate(90)" fill="#f0e7cf" font-family="Georgia, serif" font-size="22" textLength="170" lengthAdjust="spacingAndGlyphs">DAN SIMMONS</text>
+  <text transform="translate(23 251) rotate(90)" fill="#f0e7cf" font-family="Georgia, serif" font-size="42" textLength="291" lengthAdjust="spacingAndGlyphs">SONG OF KALI</text>
+  <rect y="567" width="76" height="73" fill="#3b5146"/>
+  <path d="M8 601Q22 587 35 600Q23 610 8 601ZM41 600Q54 587 68 601Q53 610 41 600Z" fill="#c5d0aa"/>
+  <circle cx="23" cy="602" r="3" fill="#222522"/>
+  <circle cx="53" cy="602" r="3" fill="#222522"/>
+</svg>

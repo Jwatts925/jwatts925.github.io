@@ -1,7 +1,7 @@
 {
   "year": 2026,
   "photographed": 0,
-  "recreated": 35,
+  "recreated": 36,
   "books": [
     {
       "id": "the-candy-house",
@@ -212,6 +212,12 @@
       "type": "cover-based SVG",
       "source": "assets/books/come-with-me.jpg",
       "method": "Flat typography, palette, and simple motifs inspired by the displayed front cover. Not a scan of a physical spine."
+    },
+    {
+      "id": "song-of-kali",
+      "type": "cover-based SVG",
+      "source": "assets/books/song-of-kali.jpg",
+      "method": "Rust and black palette, serif lettering, and an eye motif inspired by the Tor paperback cover."
     }
   ]
 }
