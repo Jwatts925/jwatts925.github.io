@@ -39,7 +39,7 @@ const projectIndexData = [
   { name: "SLAC - National Accelerator Lab", address: "Menlo Park, CA", slug: "slac-national-accelerator-lab", images: 10 },
   {
     name: "San Quentin Rehabilitation Center", address: "San Quentin, CA", slug: "san-quentin-rehabilitation-center", images: 13,
-    photos: [
+    galleryImages: [
       { file: "site-01.jpg", alt: "San Quentin Rehabilitation Center courtyard and glazed building facades", width: 2000, height: 1181 },
       { file: "site-02.jpg", alt: "Glazing, metal cladding, and courtyard seating at San Quentin Rehabilitation Center", width: 1757, height: 1800 },
       { file: "site-03.jpg", alt: "San Quentin Rehabilitation Center rooftop terrace beside the glazed facade", width: 2000, height: 1334 },
@@ -47,7 +47,7 @@ const projectIndexData = [
   },
   {
     name: "Stanford Atrium", address: "Stanford, CA", slug: "stanford-atrium", images: 10,
-    photos: [
+    galleryImages: [
       { file: "site-01.jpg", alt: "Stanford Atrium facade with vertical perforated fins and glazing during construction", width: 2000, height: 1304 },
       { file: "site-02.jpg", alt: "Upward view of Stanford Atrium perforated fins, mounting arms, and glazing", width: 1658, height: 2000 },
       { file: "site-08.jpg", alt: "Interior scaffolding alongside Stanford Atrium glazing and perforated panels", width: 2000, height: 753 },
@@ -57,7 +57,24 @@ const projectIndexData = [
     ],
   },
   { name: "YMCA - Redwood City", address: "Redwood City, CA", slug: "ymca-redwood-city", images: 79 },
-  { name: "SSF Wellness", address: "South San Francisco, CA", slug: "ssf-wellness", images: 10 }
+  { name: "SSF Wellness", address: "South San Francisco, CA", slug: "ssf-wellness", images: 10 },
+  {
+    name: "SEP 7 - SFPUC", address: "San Francisco, CA", slug: "sep-7-sfpuc",
+    galleryImages: [
+      { file: "model-01.webp", alt: "Isometric façade model with color-coded glazing and vertical fins", width: 1812, height: 1105 },
+      { file: "model-02.webp", alt: "Isometric model showing corner glazing, window openings, and the roof perimeter", width: 2048, height: 1107 },
+      { file: "model-03.webp", alt: "Opposite isometric view of the glazing, window openings, and roof perimeter", width: 2048, height: 1259 },
+      { file: "model-04.webp", alt: "Isometric façade model showing the long elevation with vertical fins", width: 1768, height: 1083 },
+      { file: "site-7442.webp", alt: "Boom lifts beside two timber structures during façade installation", width: 1800, height: 1442 },
+      { file: "site-7447.webp", alt: "Boom lifts reaching the roof edge and upper level of the timber building", width: 1800, height: 1200 },
+      { file: "site-7455.webp", alt: "Vertical façade framing at a corner of the exposed timber structure", width: 1800, height: 1605 },
+      { file: "site-7574.webp", alt: "Blue boom lift reaching the roof at a timber building corner", width: 1063, height: 1800 },
+      { file: "site-7576.webp", alt: "Street view of the timber building under construction with a lift at the roof edge", width: 1800, height: 1200 },
+      { file: "site-7585.webp", alt: "Lift platform alongside upper-floor façade framing beneath a timber roof", width: 1800, height: 1794 },
+      { file: "site-7586.webp", alt: "Timber framing and diagonal steel braces at the building exterior", width: 906, height: 1800 },
+      { file: "site-7592.webp", alt: "Steel framing and tall columns below the projecting timber roof", width: 1800, height: 1420 },
+    ],
+  },
 ];
 
 const projectIndexList = document.querySelector("[data-project-index]");
@@ -99,19 +116,19 @@ if (projectIndexList) {
     },
   ];
 
-  const imageMarkup = (project) => {
-    if (!project.slug || !project.images) return "";
+  const imageMarkup = ({ slug, name, images = 0, galleryImages = [] }) => {
+    if (!slug) return "";
 
-    const photos = (project.photos || []).map((photo) => `
+    const namedImages = galleryImages.map((image) => `
         <figure class="project-index-image">
-          <img src="assets/project-index/${project.slug}/${photo.file}" alt="${photo.alt}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async" />
+          <img src="assets/project-index/${slug}/${image.file}" alt="${image.alt}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async" />
         </figure>`).join("");
 
-    return photos + Array.from({ length: project.images }, (_, index) => {
+    return namedImages + Array.from({ length: images }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return `
         <figure class="project-index-image">
-          <img src="assets/project-index/${project.slug}/image-${number}.jpg" alt="${project.name} project view ${index + 1}" loading="lazy" decoding="async" />
+          <img src="assets/project-index/${slug}/image-${number}.jpg" alt="${name} project view ${index + 1}" loading="lazy" decoding="async" />
         </figure>`;
     }).join("");
   };
@@ -124,7 +141,8 @@ if (projectIndexList) {
     const panelId = `project-panel-${index + 1}`;
     const buttonId = `project-trigger-${index + 1}`;
     const gallery = imageMarkup(project);
-    const galleryLayout = project.images > 3
+    const imageCount = (project.images || 0) + (project.galleryImages?.length || 0);
+    const galleryLayout = imageCount > 3
       ? "gallery-many"
       : ["gallery-major-left", "gallery-row", "gallery-major-right"][index % 3];
 
