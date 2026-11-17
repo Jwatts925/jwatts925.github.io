@@ -106,13 +106,14 @@ if (projectIndexList) {
       return 0;
     });
   const csErectorsProjects = projectIndexData.slice(saintFrancisIndex + 1);
+  const sfpuc = csErectorsProjects.find((project) => project.slug === "sep-7-sfpuc");
   const sanQuentin = csErectorsProjects.find((project) => project.slug === "san-quentin-rehabilitation-center");
   const stanfordAtrium = csErectorsProjects.find((project) => project.slug === "stanford-atrium");
   const companyGroups = [
     { name: "Walters & Wolf", logo: "walters-wolf", projects: waltersWolfProjects },
     {
       name: "C/S Erectors", logo: "cs-erectors",
-      projects: [sanQuentin, stanfordAtrium, ...csErectorsProjects.filter((project) => project !== sanQuentin && project !== stanfordAtrium)],
+      projects: [sfpuc, sanQuentin, stanfordAtrium, ...csErectorsProjects.filter((project) => project !== sfpuc && project !== sanQuentin && project !== stanfordAtrium)],
     },
   ];
 
